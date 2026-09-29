@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const avatarText = document.getElementById('avatar-text');
   let typingTimeout;
 
-  // Historias / Detalles técnicos para cada proyecto
   const projectStories = {
     'Terra Alfajor (Concana)': '🚀 ¡Este es un POS real! Elba resolvió la lógica de pedidos en tiempo real para cocina, cierre diario y despliegue continuo en PythonAnywhere.',
     'SGMO': '📊 Proyecto enfocado en control de costos de mano de obra para construcción. ¡Maneja lógica de contratos, asistencias e informes automatizados!',
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'Comunidad': '🏠 Próximo proyecto: Sistema SaaS enfocado en resolver la administración y convivencia en condominios.'
   };
 
-  // Función efecto Máquina de Escribir
   function typeWriter(text, i = 0) {
     if (i === 0) avatarText.textContent = '';
     if (i < text.length) {
@@ -23,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Detectar hover en las tarjetas de proyectos
   const projectCards = document.querySelectorAll('.project-card');
 
   projectCards.forEach(card => {
