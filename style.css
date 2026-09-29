@@ -730,3 +730,11 @@ footer {
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); /* Resplandor dorado */
   transform: translateY(-2px);
 }
+
+.avatar-img {
+  width: 50px;           /* O el tamaño que tenga tu burbuja */
+  height: 50px;
+  border-radius: 50%;    /* La hace 100% circular */
+  object-fit: cover;     /* Evita que la foto se deforme o estire */
+  border: 2px solid #d4af37; /* Tu toque dorado elegante */
+}
