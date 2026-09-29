@@ -570,3 +570,98 @@ footer {
 .avatar-character:hover {
   transform: scale(1.1);
 }
+
+/* Contenedor principal centrado y limpio */
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  background-color: transparent;
+}
+
+/* Grupo de píldoras flotantes con fondo suave y elegante */
+.nav-pills {
+  display: inline-flex;
+  gap: 8px;
+  background-color: #f7f6f2; /* Tono crema sutil y refinado */
+  padding: 6px;
+  border-radius: 50px;       /* Forma ovalada fluida */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); /* Sombra muy suave */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Enlaces individuales con estilo de píldora */
+.nav-pill {
+  text-decoration: none;
+  color: #333333;            /* Texto oscuro elegante */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 10px 22px;
+  border-radius: 50px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+/* Efecto al pasar el cursor por encima */
+.nav-pill:hover {
+  color: #0a0a0a;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Píldora activa (sección actual) */
+.nav-pill.active {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+}
+/* Contenedor principal sin márgenes altos sobrantes */
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0; /* Espaciado vertical reducido */
+}
+
+/* Barra compacta y contenida */
+.nav-pills {
+  display: inline-flex;
+  gap: 4px;                  /* Espacio mínimo entre pestañas */
+  background-color: #f7f6f2; /* Tono crema sutil */
+  padding: 4px;              /* Borde interior estrecho */
+  border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Enlaces compactos y estilizados */
+.nav-pill {
+  text-decoration: none;
+  color: #4a4a4a;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.85rem;        /* Texto ligeramente más pequeño y elegante */
+  font-weight: 500;
+  padding: 6px 14px;         /* Padding muy ajustado */
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+/* Efecto hover con un toque y brillo dorado sofisticado */
+.nav-pill:hover {
+  color: #1a1a1a;
+  background-color: #ffffff;
+  border-color: #d4af37; /* Borde dorado fino */
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4), 0 2px 6px rgba(0, 0, 0, 0.05); /* Resplandor sutil dorado */
+  transform: translateY(-1px); /* Elevación ligera muy suave */
+}
+
+
+/* Elemento seleccionado */
+.nav-pill.active {
+  background-color: #ffffff;
+  color: #111111;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}

@@ -11,12 +11,14 @@
 
   <header class="navbar">
     <a class="brand" href="#inicio">Elba Neira</a>
-    <nav>
-      <a href="#sobre-mi">Sobre mí</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#proceso">Mi forma de trabajar</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
+    <nav class="navbar-container">
+  <div class="nav-pills">
+    <a href="#sobre-mi" class="nav-pill active">Sobre mí</a>
+    <a href="#proyectos" class="nav-pill">Proyectos</a>
+    <a href="#mi-forma-de-trabajar" class="nav-pill">Mi forma de trabajar</a>
+    <a href="#contacto" class="nav-pill">Contacto</a>
+  </div>
+</nav>
   </header>
 
   <main>
@@ -235,7 +237,7 @@
             <div class="project-number">01</div>
             <div class="project-content">
               <p class="project-type">SISTEMA POS & GESTIÓN DE PEDIDOS · FULL-STACK</p>
-              <h3>Terra Alfajor (Concana)</h3>
+              <h3>Terra Alfajor (Con caña)</h3>
               <p>
                 Aplicación Web Full-Stack desplegada en PythonAnywhere. Cuenta con punto de venta interactivo,
                 panel de cocina con pedidos en tiempo real, API REST interna y lógica de cierre diario.
@@ -247,7 +249,7 @@
                 <span>JavaScript</span>
               </div>
               <div class="project-links">
-                <a href="https://terralfajor.pythonanywhere.com/" target="_blank" rel="noopener">Ver App en vivo ↗</a>
+                <a href="https://terralfajor.pythonanywhere.com/caja/" target="_blank" rel="noopener">Ver App en vivo ↗</a>
                 <a href="https://github.com/elbaneira/concana-django" target="_blank" rel="noopener">Ver Código en GitHub ↗</a>
               </div>
             </div>
@@ -258,7 +260,7 @@
             <div class="project-number">02</div>
             <div class="project-content">
               <p class="project-type">APP DE PEDIDOS & LOGÍSTICA · EVENTOS</p>
-              <h3>18 Septiembre / Ramada</h3>
+              <h3>Fietas dieciocheras</h3>
               <p>
                 Sistema de toma de pedidos en tiempo real y cálculo automatizado de insumos para un puesto
                 de venta durante una celebración de Fiestas Patrias.
@@ -300,45 +302,44 @@
     </section>
 
     <!-- METODOLOGÍA -->
-    <section class="process section" id="proceso">
-      <div class="section-label">04 — MI METODOLOGÍA</div>
-      <div class="process-grid">
+<section class="process section" id="mi-forma-de-trabajar">
+  <div class="section-label">04 — MI METODOLOGÍA</div>
+  <div class="process-grid">
+    <div>
+      <h2>Mi forma de trabajar</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span>01</span>
         <div>
-         
-          <h2>Mi forma de trabajar:<br><span>del problema a la solución.</span></h2>
-        </div>
-        <div class="steps">
-          <div class="step">
-            <span>01</span>
-            <div>
-              <h3>— Entender</h3>
-              <p>Comprender el problema antes de escribir código.</p>
-            </div>
-          </div>
-          <div class="step">
-            <span>02 </span>
-            <div>
-              <h3>— Diseñar</h3>
-              <p>Pensar la lógica, los datos y la estructura.</p>
-            </div>
-          </div>
-          <div class="step">
-            <span>03</span>
-            <div>
-              <h3>— Construir</h3>
-              <p>Convertir la idea en una solución funcional.</p>
-            </div>
-          </div>
-          <div class="step">
-            <span>04</span>
-            <div>
-              <h3>— Mejorar</h3>
-              <p>Probar, detectar errores y volver a construir.</p>
-            </div>
-          </div>
+          <h3>— Entender</h3>
+          <p>Comprender el problema antes de escribir código.</p>
         </div>
       </div>
-    </section>
+      <div class="step">
+        <span>02</span>
+        <div>
+          <h3>— Diseñar</h3>
+          <p>Pensar la lógica, los datos y la estructura.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span>03</span>
+        <div>
+          <h3>— Construir</h3>
+          <p>Convertir la idea en una solución funcional.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span>04</span>
+        <div>
+          <h3>— Mejorar</h3>
+          <p>Probar, detectar errores y volver a construir.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- TECNOLOGÍAS -->
     <section class="stack section">
@@ -370,7 +371,7 @@
       </div>
     </section>
   </main>
-
+    
   <footer>
     <p>© 2026 Elba Neira</p>
     <p>Hecho con intención, detalle y código.</p>
