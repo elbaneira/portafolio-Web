@@ -665,3 +665,13 @@ footer {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   font-weight: 600;
 }
+
+/* Brillo dorado sofisticado al pasar el cursor para TODAS las píldoras (incluida la activa) */
+.nav-pill:hover,
+.nav-pill.active:hover {
+  color: #1a1a1a !important;
+  background-color: #ffffff !important;
+  border-color: #d4af37 !important; /* Borde dorado fino */
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.45), 0 2px 6px rgba(0, 0, 0, 0.05) !important; /* Resplandor dorado */
+  transform: translateY(-1px);
+}
