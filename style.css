@@ -514,10 +514,10 @@ footer {
     padding-top: 0;
 }
 
-/* Avatar Interactivo */
+/* Widget Flotante del Avatar */
 .avatar-widget {
   position: fixed;
-  bottom: 2rem;
+  bottom: 220px; /* Subido de 80px a 220px para que quede arriba y libre de las tarjetas */
   right: 2rem;
   display: flex;
   flex-direction: column;
@@ -540,29 +540,17 @@ footer {
   transition: all 0.3s ease;
 }
 
-.avatar-bubble::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  right: 20px;
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid #1a1a1a;
-}
-
 .avatar-character {
   width: 56px;
   height: 56px;
   background: #252525;
-  border: 2px solid #00d26a; /* Tu color de acento Borde verde fluorescente */
+  border: 2px solid #00d26a; /* Borde verde fluorescente */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.8rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -674,4 +662,71 @@ footer {
   border-color: #d4af37 !important; /* Borde dorado fino */
   box-shadow: 0 0 12px rgba(212, 175, 55, 0.45), 0 2px 6px rgba(0, 0, 0, 0.05) !important; /* Resplandor dorado */
   transform: translateY(-1px);
+}
+
+/* Contenedor principal que oculta el desborde */
+.tech-slider {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  background: transparent;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* Pista que se mueve infinitamente */
+.tech-slide-track {
+  display: inline-flex;
+  gap: 15px;
+  animation: scrollInfinito 25s linear infinite;
+}
+
+/* Se pausa la animación al pasar el mouse */
+.tech-slider:hover .tech-slide-track {
+  animation-play-state: paused;
+}
+
+/* Estilo elegante para las etiquetas (sin cajas pesadas) */
+.tech-badge {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 30px; /* Bordes suaves estilo píldora */
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  background: #111; /* Cambia a contraste al pasar el cursor */
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Keyframes de la animación continua */
+@keyframes scrollInfinito {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Estilo elegante para las etiquetas del carrusel con toque dorado */
+.tech-badge {
+  background: #ffffff;
+  border: 1px solid #d4af37; /* Borde dorado elegante */
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  color: #2c2c2c;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.15); /* Sombra dorada sutil */
+  transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el cursor: elevación sutil sin cambiar a negro */
+.tech-badge:hover {
+  border-color: #b8860b; /* Dorado más cálido al posar el cursor */
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); /* Resplandor dorado */
+  transform: translateY(-2px);
 }
