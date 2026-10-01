@@ -516,48 +516,69 @@ footer {
 
 /* Widget Flotante del Avatar */
 .avatar-widget {
-  position: fixed;
-  bottom: 220px; /* Subido de 80px a 220px para que quede arriba y libre de las tarjetas */
-  right: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.8rem;
-  z-index: 1000;
+  position: fixed !important;
+  bottom: 70px !important;
+  right: 20px !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  gap: 12px !important;
+  z-index: 9999 !important;
+  max-width: 320px !important;
 }
 
-.avatar-bubble {
-  background-color: #1a1a1a;
-  color: #f0f0f0;
-  border: 1px solid #333;
-  padding: 1rem 1.2rem;
-  border-radius: 12px;
-  max-width: 280px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  font-size: 0.9rem;
-  line-height: 1.4;
-  position: relative;
-  transition: all 0.3s ease;
+avatar-bubble {
+  background: #1e293b !important; /* Tarjeta oscura elegante */
+  color: #f8fafc !important;        /* Texto blanco legibles */
+  padding: 10px 14px !important;
+  border-radius: 12px !important;
+  border: 1px solid #38bdf8 !important; /* Borde cian técnico */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+  text-align: left !important;
 }
+
 
 .avatar-character {
-  width: 56px;
-  height: 56px;
-  background: #252525;
-  border: 2px solid #00d26a; /* Borde verde fluorescente */
-  border-radius: 50%;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
 .avatar-character:hover {
   transform: scale(1.1);
 }
+
+.avatar-img {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  border: 2px solid #38bdf8 !important;
+  object-fit: cover !important;
+}
+
+/* Corrección para que el avatar no tape la lectura en celulares */
+/* Adaptación para celulares */
+/* Ajuste móvil */
+@media (max-width: 768px) {
+  .avatar-widget {
+    bottom: 60px !important;
+    right: 15px !important;
+    max-width: 220px !important;
+  }
+  .avatar-bubble {
+    font-size: 0.75rem !important;
+  }
+  .avatar-img {
+    width: 42px !important;
+    height: 42px !important;
+  }
+}
+
+
 
 /* Contenedor principal centrado y limpio */
 .navbar-container {
@@ -731,10 +752,202 @@ footer {
   transform: translateY(-2px);
 }
 
-.avatar-img {
-  width: 50px;           /* O el tamaño que tenga tu burbuja */
-  height: 50px;
-  border-radius: 50%;    /* La hace 100% circular */
-  object-fit: cover;     /* Evita que la foto se deforme o estire */
-  border: 2px solid #d4af37; /* Tu toque dorado elegante */
+/* ==========================================
+   MÓDULO: CONSOLA INTERACTIVA (Sobria y Elegante)
+   ========================================== */
+.console-section {
+  margin: 35px auto;
+  padding: 0 15px;
 }
+
+.console-intro h2 {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+}
+
+.console-intro p {
+  color: #94a3b8;
+  font-size: 0.92rem;
+  margin-bottom: 15px;
+}
+
+/* Botones de comandos rápidos */
+.console-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.console-btn {
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-family: 'Fira Code', Consolas, monospace;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.console-btn:hover {
+  background: #38bdf8;
+  color: #0f172a;
+  border-color: #38bdf8;
+}
+
+.btn-clear {
+  margin-left: auto;
+  opacity: 0.8;
+}
+
+/* Ventana estilo Terminal */
+.terminal-window {
+  background: #090d16;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  font-family: 'Fira Code', Consolas, monospace;
+}
+/* ==========================================
+   TERMINAL Y AVATAR DANTE (CÓDIGO UNIFICADO)
+   ========================================== */
+
+/* 1. Ventana principal de la Terminal - Container */
+.terminal-window {
+  background-color: #090d16;
+  border-radius: 12px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  font-family: 'Fira Code', Consolas, monospace;
+  margin: 20px 0 40px;
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;      /* Altura máxima permitida */
+  overflow: auto;        /* Necesario para que funcione 'resize' */
+  resize: vertical;     /* Permite agrandar/achicar verticalmente arrastrando la esquina */
+  min-height: 250px;     /* Altura mínima permitida */
+ 
+}
+
+
+/* 2. Barra superior con luces */
+.terminal-topbar {
+  background: #111827;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.red { background: #ef4444; }
+.yellow { background: #f59e0b; }
+.green { background: #22c55e; }
+
+.terminal-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* 3. Cuerpo de la consola */
+.terminal-body, #terminal-output {
+  flex: 1;
+  background-color: #090d16;
+  color: #f8fafc;
+  padding: 16px 20px;
+  min-height: 200px;
+  overflow-y: auto;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.term-line {
+  color: #f8fafc;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.term-accent { color: #f59e0b; } /* Dorado */
+.term-cmd { color: #38bdf8; }    /* Azul cian */
+
+/* 4. Barra de entrada fija abajo */
+.terminal-input-line {
+  background-color: #111827;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+}
+
+.prompt {
+  color: #38bdf8;
+  margin-right: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+#terminal-input {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  width: 100%;
+  outline: none;
+}
+
+/* 5. Avatar Dante flotante */
+.avatar-widget {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  z-index: 9999;
+  max-width: 320px;
+}
+
+.avatar-bubble {
+  background-color: #0f172a;
+  color: #f8fafc;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #38bdf8;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.avatar-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #38bdf8;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .terminal-title { display: none; }
+}
+

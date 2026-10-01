@@ -20,7 +20,49 @@
   </div>
 </nav>
   </header>
+    <!-- CONSOLA INTERACTIVA -->
+<!-- CONSOLA INTERACTIVA UNIFICADA -->
+<section class="console-section container">
+  <div class="console-intro">
+    <h2>Consola de Exploración</h2>
+  </div>
 
+  <!-- Botones de comandos rápidos -->
+  <div class="console-buttons">
+    <button type="button" class="console-btn" onclick="ejecutarComando('cat sobre_mi.py')">📄 cat sobre_mi.py</button>
+    <button type="button" class="console-btn" onclick="ejecutarComando('ls proyectos/')">📁 ls proyectos/</button>
+    <button type="button" class="console-btn" onclick="ejecutarComando('python3 auditoria.py')">🔍 python3 auditoria.py</button>
+    <button type="button" class="console-btn btn-clear" onclick="ejecutarComando('clear')">🧹 clear</button>
+  </div>
+
+  <!-- Ventana de la Terminal -->
+  <div class="terminal-window">
+    <div class="terminal-topbar">
+      <div class="terminal-dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <span class="terminal-title">dante_debugger@elba-tech:~ (python3)</span>
+    </div>
+
+    <!-- Cuerpo donde habla Dante y se imprimen las respuestas -->
+    <div class="terminal-body" id="terminal-output">
+      <p class="term-line">
+        <span class="term-accent">🤖 [DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.
+      </p>
+      <p class="term-line">
+        👉 Escribe <span class="term-cmd">'help'</span> abajo o usa los botones de acceso rápido para comenzar.
+      </p>
+    </div>
+
+    <!-- Línea de entrada fija abajo -->
+    <div class="terminal-input-line">
+      <span class="prompt">elba@tech:~$</span>
+      <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off">
+    </div>
+  </div>
+</section>
   <main>
     <section class="hero" id="inicio">
       <div class="hero-content">
@@ -81,201 +123,208 @@
     <!-- =========================================
          SECCIÓN PROYECTOS
     ========================================== -->
-    <section class="projects section" id="proyectos">
 
-      <div class="section-label">03 — PROYECTOS</div>
+   <!-- ========================================== -->
+<!-- SECCIÓN DE PROYECTOS -->
+<!-- ========================================== -->
+<section class="projects section" id="proyectos">
+  <div class="section-label">03 — PROYECTOS</div>
 
-      <div class="projects-intro">
-        <div>
-          <h2>Dos formas de <span>resolver.</span></h2>
-        </div>
+  <div class="projects-intro">
+    <div>
+      <h2>Dos formas de <span>resolver.</span></h2>
+    </div>
+    <p>
+      No todos los problemas requieren el mismo tipo de desarrollo.
+      En mi portafolio conviven proyectos construidos con mayor
+      profundidad y soluciones más ágiles, creadas para responder
+      a una necesidad concreta.
+    </p>
+  </div>
+
+  <!-- CATEGORÍA 01: PROYECTOS DE DESARROLLO (1 AL 5) -->
+  <section class="project-category category-deep">
+    <div class="category-header">
+      <div>
+        <h3>Proyectos de desarrollo</h3>
         <p>
-          No todos los problemas requieren el mismo tipo de desarrollo.
-          En mi portafolio conviven proyectos construidos con mayor
-          profundidad y soluciones más ágiles, creadas para responder
-          a una necesidad concreta.
+          Soluciones trabajadas con mayor profundidad, donde la lógica, los datos,
+          la estructura y la evolución del sistema son parte central del proyecto.
         </p>
       </div>
+    </div>
 
-      <!-- CATEGORÍA 01: PROYECTOS DE DESARROLLO -->
-      <section class="project-category category-deep">
-        <div class="category-header">
-          <div>
-            <h3>Proyectos de desarrollo</h3>
-            <p>
-              Soluciones trabajadas con mayor profundidad, donde la lógica, los datos,
-              la estructura y la evolución del sistema son parte central del proyecto.
-            </p>
+    <div class="project-grid">
+
+      <!-- PROYECTO 1 -->
+      <article class="project-card featured" id="card-sgmo">
+        <div class="project-number">01</div>
+        <div class="project-content">
+          <p class="project-type">PROYECTO PROPIO · CONSTRUCCIÓN</p>
+          <h3>SGMO</h3>
+          <p>
+            Sistema de Gestión de Mano de Obra pensado para la construcción y
+            administración de personal, con el desafío de evolucionar hacia un ciclo
+            completo de gestión, asistencia, datos y reportes.
+          </p>
+          <div class="tags">
+            <span>Python</span>
+            <span>SQL</span>
+            <span>Datos</span>
+            <span>Automatización</span>
           </div>
+          <a href="https://github.com/elbaneira/Bootcamp-Full-Stack-Python-grupo-1/tree/main/AYUDANTIA/Proyecto%20-M%C3%B3dulo%203/mano_obra_nomina" target="_blank" rel="noopener">
+            Ver en GitHub ↗
+          </a>
         </div>
+        <span class="card-corner">PROYECTO EN EVOLUCIÓN</span>
+      </article>
 
-        <div class="project-grid">
-
-          <!-- 01. SGMO -->
-          <article class="project-card featured">
-            <div class="project-number">01</div>
-            <div class="project-content">
-              <p class="project-type">PROYECTO PROPIO · CONSTRUCCIÓN</p>
-              <h3>SGMO</h3>
-              <p>
-                Sistema de Gestión de Mano de Obra pensado para la construcción y
-                administración de personal, con el desafío de evolucionar hacia un ciclo
-                completo de gestión, asistencia, datos y reportes.
-              </p>
-              <div class="tags">
-                <span>Python</span>
-                <span>SQL</span>
-                <span>Datos</span>
-                <span>Automatización</span>
-              </div>
-              <a href="https://github.com/elbaneira/Bootcamp-Full-Stack-Python-grupo-1/tree/main/AYUDANTIA/Proyecto%20-M%C3%B3dulo%203/mano_obra_nomina" target="_blank" rel="noopener">
-                Ver en GitHub ↗
-              </a>
-            </div>
-            <span class="card-corner">PROYECTO EN EVOLUCIÓN</span>
-          </article>
-
-          <!-- 02. DJANGO WEB APP -->
-          <article class="project-card">
-            <div class="project-number">02</div>
-            <div class="project-content">
-              <p class="project-type">DESARROLLO WEB · DJANGO</p>
-              <h3>Django Web App</h3>
-              <p>
-                Aplicación web desarrollada en Django de una plataforma de gestión de Proyectos y Tareas.
-              </p>
-              <div class="tags">
-                <span>Python</span>
-                <span>Django</span>
-                <span>HTML</span>
-              </div>
-              <a href="https://github.com/elbaneira/DjangoWebApp-.git" target="_blank" rel="noopener">
-                Ver proyecto ↗
-              </a>
-            </div>
-          </article>
-
-          <!-- 03. ALKE WALLET -->
-          <article class="project-card">
-            <div class="project-number">03</div>
-            <div class="project-content">
-              <p class="project-type">BASES DE DATOS · SQL</p>
-              <h3>Alke Wallet</h3>
-              <p>
-                Modelo de gestión financiera relacional para transacciones, usuarios, monedas y reglas de integridad.
-              </p>
-              <div class="tags">
-                <span>SQL</span>
-                <span>MySQL</span>
-                <span>BD Relacional</span>
-              </div>
-              <a href="https://github.com/elbaneira/Alke-Wallet.git" target="_blank" rel="noopener">
-                Ver proyecto ↗
-              </a>
-            </div>
-          </article>
-
-          <!-- 04. GESTIÓN DE CLIENTES -->
-          <article class="project-card">
-            <div class="project-number">04</div>
-            <div class="project-content">
-              <p class="project-type">PROGRAMACIÓN ORIENTADA A OBJETOS</p>
-              <h3>Gestión de Clientes</h3>
-              <p>
-                Proyecto en Python centrado en POO, validaciones, CRUD y organización lógica de la aplicación.
-              </p>
-              <div class="tags">
-                <span>Python</span>
-                <span>POO</span>
-                <span>CRUD</span>
-              </div>
-              <a href="https://github.com/elbaneira/Bootcamp-Full-Stack-Python-grupo-1/tree/main/AYUDANTIA/Proyecto%20-%20M%C3%B3dulo%204" target="_blank" rel="noopener">
-                Ver proyecto ↗
-              </a>
-            </div>
-          </article>
-
-          <!-- 05. POWER BI -->
-          <article class="project-card">
-            <div class="project-number">05</div>
-            <div class="project-content">
-              <p class="project-type">ANÁLISIS DE DATOS</p>
-              <h3>Power BI Dashboards</h3>
-              <p>
-                Visualización e indicadores clave para facilitar la toma de decisiones basada en datos.
-              </p>
-              <div class="tags">
-                <span>Power BI</span>
-                <span>DAX</span>
-                <span>Datos</span>
-              </div>
-              <a href="https://youtu.be/Q9QxNap9yDg" target="_blank" rel="noopener">
-                Ver video demo ↗
-              </a>
-            </div>
-          </article>
-
-        </div>
-      </section>
-
-      <!-- CATEGORÍA 02: SOLUCIONES EXPRESS -->
-      <section class="project-category category-express">
-        <div class="category-header">
-          <div>
-            <h3>Soluciones Express</h3>
-            <p>
-              Desarrollos de respuesta rápida, creados para resolver necesidades concretas en eventos,
-              ventas o gestión, con foco en utilidad y tiempos de implementación.
-            </p>
+      <!-- PROYECTO 2 -->
+      <article class="project-card" id="card-django">
+        <div class="project-number">02</div>
+        <div class="project-content">
+          <p class="project-type">DESARROLLO WEB · DJANGO</p>
+          <h3>Django Web App</h3>
+          <p>
+            Aplicación web desarrollada en Django de una plataforma de gestión de Proyectos y Tareas.
+          </p>
+          <div class="tags">
+            <span>Python</span>
+            <span>Django</span>
+            <span>HTML</span>
           </div>
+          <a href="https://github.com/elbaneira/DjangoWebApp-.git" target="_blank" rel="noopener">
+            Ver proyecto ↗
+          </a>
         </div>
+      </article>
 
-        <div class="project-grid express-grid">
+      <!-- PROYECTO 3 -->
+      <article class="project-card" id="card-alke">
+        <div class="project-number">03</div>
+        <div class="project-content">
+          <p class="project-type">BASES DE DATOS · SQL</p>
+          <h3>Alke Wallet</h3>
+          <p>
+            Modelo de gestión financiera relacional para transacciones, usuarios, monedas y reglas de integridad.
+          </p>
+          <div class="tags">
+            <span>SQL</span>
+            <span>MySQL</span>
+            <span>BD Relacional</span>
+          </div>
+          <a href="https://github.com/elbaneira/Alke-Wallet.git" target="_blank" rel="noopener">
+            Ver proyecto ↗
+          </a>
+        </div>
+      </article>
 
-          <!-- CONCANA / TERRA ALFAJOR -->
-          <article class="project-card express-card">
-            <div class="project-number">01</div>
-            <div class="project-content">
-              <p class="project-type">SISTEMA POS & GESTIÓN DE PEDIDOS · FULL-STACK</p>
-              <h3>Terra Alfajor (Con caña)</h3>
-              <p>
-                Aplicación Web Full-Stack desplegada en PythonAnywhere. Cuenta con punto de venta interactivo,
-                panel de cocina con pedidos en tiempo real, API REST interna y lógica de cierre diario.
-              </p>
-              <div class="tags">
-                <span>Django</span>
-                <span>Python</span>
-                <span>PythonAnywhere</span>
-                <span>JavaScript</span>
-              </div>
-              <div class="project-links">
-                <a href="https://terralfajor.pythonanywhere.com/caja/" target="_blank" rel="noopener">Ver App en vivo ↗</a>
-                <a href="https://github.com/elbaneira/concana-django" target="_blank" rel="noopener">Ver Código en GitHub ↗</a>
-              </div>
-            </div>
-          </article>
+      <!-- PROYECTO 4 -->
+      <article class="project-card" id="card-clientes">
+        <div class="project-number">04</div>
+        <div class="project-content">
+          <p class="project-type">PROGRAMACIÓN ORIENTADA A OBJETOS</p>
+          <h3>Gestión de Clientes</h3>
+          <p>
+            Proyecto en Python centrado en POO, validaciones, CRUD y organización lógica de la aplicación.
+          </p>
+          <div class="tags">
+            <span>Python</span>
+            <span>POO</span>
+            <span>CRUD</span>
+          </div>
+          <a href="https://github.com/elbaneira/Bootcamp-Full-Stack-Python-grupo-1/tree/main/AYUDANTIA/Proyecto%20-%20M%C3%B3dulo%204" target="_blank" rel="noopener">
+            Ver proyecto ↗
+          </a>
+        </div>
+      </article>
 
-          <!-- KERMESSE / CELEBRACIÓN -->
-          <article class="project-card express-card">
-            <div class="project-number">02</div>
-            <div class="project-content">
-              <p class="project-type">APP DE PEDIDOS & LOGÍSTICA · EVENTOS</p>
-              <h3>Fietas dieciocheras</h3>
-              <p>
-                Sistema de toma de pedidos en tiempo real y cálculo automatizado de insumos para un puesto
-                de venta durante una celebración de Fiestas Patrias.
-              </p>
-              <div class="tags">
-                <span>Django</span>
-                <span>Python</span>
-                <span>Render</span>
-                <span>Ventas</span>
-              </div>
-              <div class="project-links">
-                <a href="https://kermesse-anticuchos-1.onrender.com/" target="_blank" rel="noopener">Ver App en vivo ↗</a>
-              </div>
-            </div>
-          </article>
+      <!-- PROYECTO 5 -->
+      <article class="project-card" id="card-power bi">
+        <div class="project-number">05</div>
+        <div class="project-content">
+          <p class="project-type">ANÁLISIS DE DATOS</p>
+          <h3>Power BI Dashboards</h3>
+          <p>
+            Visualización e indicadores clave para facilitar la toma de decisiones basada en datos.
+          </p>
+          <div class="tags">
+            <span>Power BI</span>
+            <span>DAX</span>
+            <span>Datos</span>
+          </div>
+          <a href="https://youtu.be/Q9QxNap9yDg" target="_blank" rel="noopener">
+            Ver video demo ↗
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CATEGORÍA 02: SOLUCIONES EXPRESS (E1 Y E2) -->
+  <section class="project-category category-express" id="seccion-express">
+    <div class="category-header">
+      <div>
+        <h3>Soluciones Express</h3>
+        <p>
+          Desarrollos de respuesta rápida, creados para resolver necesidades concretas en eventos,
+          ventas o gestión, con foco en utilidad y tiempos de implementación.
+        </p>
+      </div>
+    </div>
+
+    <div class="project-grid express-grid">
+
+      <!-- EXPRESS E1 -->
+      <!-- SOLUCIÓN EXPRESS 1: SIN CAÑA -->
+<article class="project-card express" id="card-e1">
+  <div class="project-header">
+    <span class="badge badge-express">⚡ Solución Express 1</span>
+    <h3>Sin Caña (POS & Pedidos)</h3>
+  </div>
+  
+  <p class="project-description">
+    Sistema de automatización comercial enfocado en optimizar el cálculo de insumos, gestión de pedidos y control de ventas para emprendimientos en fiesta de la chilenidad.
+  </p>
+
+  <div class="project-techs">
+    <span class="tech-tag">Python</span>
+    <span class="tech-tag">Lógica Comercial</span>
+    <span class="tech-tag">Control de Insumos</span>
+  </div>
+
+  <div class="project-actions">
+    <a href="https://github.com/elbaneira/concana-django.git" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+      📁 Repositorio GitHub
+    </a>
+  </div>
+</article>
+
+<!-- SOLUCIÓN EXPRESS 2: FIESTAS DIECIOCHERAS -->
+<article class="project-card express" id="card-e2">
+  <div class="project-header">
+    <span class="badge badge-express">⚡ Solución Express 2</span>
+    <h3>Kermesse Dieciochera (Logística & Cajas)</h3>
+  </div>
+  
+  <p class="project-description">
+    Herramienta de presupuestación y control de flujo de caja e inventario en tiempo real durante la Kermesse escolar.
+  </p>
+
+  <div class="project-techs">
+    <span class="tech-tag">Python</span>
+    <span class="tech-tag">Análisis de Costos</span>
+    <span class="tech-tag">Gestión de Inventario</span>
+  </div>
+
+  <div class="project-actions">
+    <a href="https://github.com/elbaneira/kermesse-anticuchos.git" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+      📁 Repositorio GitHub
+    </a>
+  </div>
+</article>
 
           <!-- COMUNIDAD (PRÓXIMO DESAFÍO) -->
           <article class="project-card future">
@@ -408,7 +457,7 @@
     </div>
     <div class="avatar-character">
       <!-- Aquí pones tu foto real en lugar del emoji -->
-      <img src="img/tu-foto.jpg" alt="Elba Neira" class="avatar-img">
+      <img src="img/Dante.jpg" alt="Elba Neira" class="avatar-img">
     </div>
   </aside>
 
