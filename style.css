@@ -981,19 +981,20 @@ avatar-bubble {
   margin: 0 auto;
   padding: 2rem 1rem;
 }
-
-/* Columna Derecha: Video */
+/* 1. Limita el tamaño del contenedor del video */
 .hero-video-wrapper {
   flex: 1;
   min-width: 300px;
+  max-width: 500px; /* Limita el ancho máximo para que no crezca tanto */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* 2. Fuerza al video a ajustarse dentro de su contenedor */
 .hero-video {
   width: 100%;
-  max-width: 480px;
+  max-width: 100%;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
