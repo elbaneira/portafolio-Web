@@ -689,27 +689,18 @@ footer {
    ========================================== */
 
 .avatar-widget {
-  position: fixed !important;
-  bottom: 20px !important;
-  right: 20px !important;
-  z-index: 999999 !important;
-  display: flex !important;
-  align-items: flex-end !important;
-  gap: 10px !important;
-  max-width: 320px !important;
-  pointer-events: auto !important;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 15px;
+  background-color: rgba(255, 255, 255, 0.05); /* Sombra tenue dentro de la consola */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Burbuja de texto */
 .avatar-bubble {
-  background-color: #0d1527 !important;
-  color: #f8fafc !important;
-  padding: 10px 14px !important;
-  border-radius: 12px !important;
-  border: 1px solid rgba(56, 189, 248, 0.5) !important;
-  font-size: 0.82rem !important;
-  line-height: 1.4 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+  color: #e2e8f0;
+  font-size: 0.9rem;
 }
 
 /* Contenedor e Imagen del Personaje */
@@ -718,13 +709,10 @@ footer {
 }
 
 .avatar-img {
-  width: 52px !important;
-  height: 52px !important;
-  border-radius: 50% !important;
-  border: 2px solid #38bdf8 !important;
-  object-fit: cover !important;
-  display: block !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 /* Asegurar que las opciones de la terminal sean cliqueables en PC y móvil */
 .clickable-cmd {
