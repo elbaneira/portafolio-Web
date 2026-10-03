@@ -181,13 +181,13 @@ function procesarComandoLogica(cmd) {
 
   } else if (cmdLimpio === '2' || cmdLimpio.includes('django') || cmdLimpio.includes('certimanager')) {
     imprimirLineaTerminal(`
-      <span class="term-accent">📂 [PROYECTO 2]: CertiManager ORM</span><br>
+      <span class="term-accent">📂 [PROYECTO 2]: Django Web App</span><br>
       • <span class="term-cmd">Tecnologías:</span> Python, Django ORM, PostgreSQL, Bootstrap.<br>
       • <span class="term-cmd">Propósito:</span> Sistema de gestión de certificados e historial.<br>
       • <span class="term-cmd">Demostración:</span> <a href="#card-django" onclick="window.desplazarASeccion('card-django'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a><br>
       <span style="color: #22c55e;">> Enfocando tarjeta CertiManager...</span>
     `);
-    hablarDante("CertiManager al descubierto: arquitectura backend en Django.");
+    hablarDante("Django Web App al descubierto: arquitectura backend en Django.");
     window.desplazarASeccion('card-django');
 
   } else if (cmdLimpio === '3' || cmdLimpio.includes('alke') || cmdLimpio.includes('wallet')) {
