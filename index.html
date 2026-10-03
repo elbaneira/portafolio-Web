@@ -6,6 +6,22 @@
   <meta name="description" content="Portafolio de Elba Neira — Administración, datos, automatización y desarrollo de soluciones.">
   <title>Elba Neira | Portafolio</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G-EW4MVT949B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EW4MVT949B');
+</script>
+
+  <script 
+  data-goatcounter="https://elbatech.goatcounter.com/count"
+  async 
+  src="https://gc.zgo.at/count.js">
+</script>
 </head>
 <body>
 
@@ -48,7 +64,26 @@
           Tu navegador no soporta videos HTML5.
         </video>
       </div>
-    </div> <!-- Cierre correcto de hero-container -->
+    </div> 
+      
+    <!-- 1. Historial de respuestas de Dante en la Terminal -->
+      <div class="terminal-body" id="terminal-output">
+        <p class="term-line">
+          <span class="term-accent">🤖 [DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.
+        </p>
+        <p class="term-line">
+          👉 Escribe <span class="term-cmd">'help'</span> abajo o usa los botones de acceso rápido para comenzar.
+        </p>
+      </div>
+
+      <!-- 2. Barra de entrada (Input + Botón de Flecha) -->
+      <div class="terminal-input-row">
+        <span class="prompt">elba@tech:~$</span>
+        <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off" spellcheck="false">
+        <button id="terminal-submit-btn">→</button>
+      </div>
+
+  -- Cierre de terminal-window --><!-- Cierre correcto de hero-container -->
   </section>
 
   <!-- 2. CONSOLA INTERACTIVA UNIFICADA -->
@@ -75,37 +110,6 @@
         </div>
         <span class="terminal-title">dante_debugger@elba-tech:~ (python3)</span>
       </div>
-
-     <!-- ==========================================
-           1. AQUÍ COLOCAS EL AVATAR DE DANTE
-      =========================================== -->
-      <aside class="avatar-widget" id="avatar-widget">
-         <div class="avatar-character" style="width: 50px; height: 50px; min-width: 50px; min-height: 50px; border-radius: 50%; overflow: hidden; display: inline-block;">
-              <img src="img/Dante.jpg" alt="Dante" style="width: 50px !important; height: 50px !important; object-fit: cover !important; display: block !important;">
-        </div>
-        <div id="avatar-text" class="avatar-bubble">
-          👋 ¡Hola! Soy el asistente de Elba. Escribe 'help' en la consola para comenzar.
-        </div>
-      </aside>
-
-      <!-- 2. Historial de respuestas de Dante -->
-      <div class="terminal-body" id="terminal-output">
-        <p class="term-line">
-          <span class="term-accent">🤖 [DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.
-        </p>
-        <p class="term-line">
-          👉 Escribe <span class="term-cmd">'help'</span> abajo o usa los botones de acceso rápido para comenzar.
-        </p>
-      </div>
-
-      <!-- 3. Barra de entrada (Input + Botón de Flecha) -->
-      <div class="terminal-input-row">
-        <span class="prompt">elba@tech:~$</span>
-        <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off" spellcheck="false">
-        <button id="terminal-submit-btn">→</button>
-      </div>
-      
-    </div>
   </section>
 
   <!-- 3. SECCIÓN SOBRE MÍ -->
@@ -472,23 +476,15 @@
     <p>© 2026 Elba Neira</p>
     <p>Hecho con intención, detalle y código.</p>
   </footer>
-    
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G-EW4MVT949B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+      <!-- 2. Tu widget flotante de Dante (si va fijo al final) -->
+    <aside class="avatar-widget" id="avatar-widget">
+      <div id="avatar-text" class="avatar-bubble">
+        👋 ¡Hola! Soy el asistente de Elba.
+      </div>
+      <img src="img/Dante.jpg" alt="Dante" class="avatar-img">
+    </aside>
 
-  gtag('config', 'G-EW4MVT949B');
-</script>
-
-  <script 
-  data-goatcounter="https://elbatech.goatcounter.com/count"
-  async 
-  src="https://gc.zgo.at/count.js">
-</script>
-
-  <script src="script.js"></script>
+    <!-- 3. Scripts de JavaScript -->
+    <script src="js/script.js"></script>
 </body>
 </html>
