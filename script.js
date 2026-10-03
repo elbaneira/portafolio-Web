@@ -31,18 +31,35 @@ document.addEventListener('DOMContentLoaded', () => {
 // ====================================================
 const terminalInput = document.getElementById('terminal-input');
 const terminalOutput = document.getElementById('terminal-output');
+const submitBtn = document.getElementById('terminal-submit-btn'); // Captura el nuevo botón
+
+// Función centralizada para procesar el comando
+function procesarEntrada() {
+  if (!terminalInput) return;
+  
+  const command = terminalInput.value.trim();
+  if (command) {
+    // Imprimir el comando ingresado en pantalla
+    imprimirLineaTerminal(`<span class="term-prompt">elba@tech:~$</span> ${command}`);
+    ejecutarComando(command);
+  }
+  terminalInput.value = ''; // Limpiar el input
+}
 
 if (terminalInput) {
+  // 1. Evento al presionar Enter en PC o teclado móvil
   terminalInput.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
-      const command = this.value.trim();
-      if (command) {
-        // Imprimir el comando ingresado en pantalla
-        imprimirLineaTerminal(`<span class="term-prompt">elba@tech:~$</span> ${command}`);
-        ejecutarComando(command);
-      }
-      this.value = ''; // Limpiar el input
+      e.preventDefault(); // Evita comportamientos no deseados en móviles
+      procesarEntrada();
     }
+  });
+}
+
+// 2. Evento al hacer clic o tocar el botón
+if (submitBtn) {
+  submitBtn.addEventListener('click', function () {
+    procesarEntrada();
   });
 }
 
