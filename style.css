@@ -660,11 +660,17 @@ footer {
   }
 
   #terminal-input {
-    font-size: 14px;
-    padding: 4px;
-    min-width: 0;
-  }
-
+   font-size: 14px;
+   padding: 4px 6px;
+   width: 100%;
+  flex: 1 1 auto; /* Obliga al campo de texto a crecer y tomar todo el espacio libre */
+  min-width: 100px; /* Evita que colapse o desaparezca en teléfonos pequeños */
+  background: transparent;
+  border: none;
+  color: #f8fafc;
+  font-family: 'Fira Code', Consolas, monospace;
+  outline: none;
+}
   /* Botón de envío (Flecha) perfectamente visible y corrido a la izquierda */
   #terminal-submit-btn {
     min-width: 40px;
