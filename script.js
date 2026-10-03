@@ -81,7 +81,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+// Aseguramos que la función esté disponible de forma global
+window.ejecutarComando = function(comando) {
+  const terminalOutput = document.getElementById('terminal-output');
+  
+  // 1. Imprime el comando simulando que el usuario lo escribió
+  if (terminalOutput) {
+    const linea = document.createElement('p');
+    linea.className = 'term-line';
+    linea.innerHTML = `<span class="prompt">elba@tech:~$</span> ${comando}`;
+    terminalOutput.appendChild(linea);
+  }
 
+  // 2. Procesa la respuesta
+  procesarComando(comando);
+
+  // 3. Scroll automático hacia el final del historial
+  if (terminalOutput) {
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+  }
+};
   // Escuchar clic en el botón con la flecha
   if (submitBtn) {
     submitBtn.addEventListener('click', function () {
@@ -238,37 +257,34 @@ ${estiloHtml} Sentencia grabada en la consola.<br>
   const cmd = comando.trim().toLowerCase();
 } else {
   switch (cmd) {
-    case 'help':
-      imprimirLineaTerminal(`
-        <div class="term-response">
-          <p class="term-accent" style="margin-bottom: 8px; font-weight: bold;">💡 Comandos disponibles (haz clic para ejecutar):</p>
-          <ul style="list-style: none; padding-left: 0; margin: 0;">
-            <li style="margin-bottom: 6px;">
-              <span class="term-cmd clickable-cmd" onclick="ejecutarComando('cat sobre_mi.py')">📄 cat sobre_mi.py</span>
-              <span style="color: #94a3b8;"> : Perfil profesional y trayectoria.</span>
-            </li>
-            <li style="margin-bottom: 6px;">
-              <span class="term-cmd clickable-cmd" onclick="ejecutarComando('ls proyectos/')">📁 ls proyectos/</span>
-              <span style="color: #94a3b8;"> : Lista de desarrollos y soluciones.</span>
-            </li>
-            <li style="margin-bottom: 6px;">
-              <span class="term-cmd clickable-cmd" onclick="ejecutarComando('python3 auditoria.py')">🔍 python3 auditoria.py</span>
-              <span style="color: #94a3b8;"> : Calidad de datos y lógica backend.</span>
-            </li>
-            <li style="margin-bottom: 6px;">
-              <span class="term-cmd clickable-cmd" onclick="ejecutarComando('contacto')">✉️ contacto</span>
-              <span style="color: #94a3b8;"> : Formas de comunicación directa.</span>
-            </li>
-            <li style="margin-bottom: 6px;">
-              <span class="term-cmd clickable-cmd" onclick="ejecutarComando('clear')">🧹 clear</span>
-              <span style="color: #94a3b8;"> : Limpia la consola.</span>
-            </li>
-          </ul>
-        </div>
-      `);
-      hablarDante("Selecciona cualquier opción o escribe un comando abajo.");
-      break;
-
+    ccase 'help':
+  imprimirLineaTerminal(`
+    <div class="term-response">
+      <p class="term-accent" style="margin-bottom: 8px; font-weight: bold;">💡 Comandos disponibles (haz clic para ejecutar):</p>
+      <ul style="list-style: none; padding-left: 0; margin: 0;">
+        <li style="margin-bottom: 6px;">
+          <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('cat sobre_mi.py')">📄 cat sobre_mi.py</span>
+          <span style="color: #94a3b8;"> : Perfil profesional y trayectoria.</span>
+        </li>
+        <li style="margin-bottom: 6px;">
+          <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('ls proyectos/')">📁 ls proyectos/</span>
+          <span style="color: #94a3b8;"> : Lista de desarrollos y soluciones.</span>
+        </li>
+        <li style="margin-bottom: 6px;">
+          <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('python3 auditoria.py')">🔍 python3 auditoria.py</span>
+          <span style="color: #94a3b8;"> : Calidad de datos y lógica backend.</span>
+        </li>
+        <li style="margin-bottom: 6px;">
+          <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('clear')">🧹 clear</span>
+          <span style="color: #94a3b8;"> : Limpia la consola.</span>
+        </li>
+      </ul>
+    </div>
+  `);
+  if (typeof hablarDante === 'function') {
+    hablarDante("Selecciona cualquier opción o escribe un comando abajo.");
+  }
+  break;
     case 'cat sobre_mi.py':
       imprimirLineaTerminal(`
         <div class="term-response">
