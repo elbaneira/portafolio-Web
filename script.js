@@ -39,13 +39,20 @@ function procesarEntrada() {
   
   const command = terminalInput.value.trim();
   if (command) {
-    // Imprimir el comando ingresado en pantalla
-    imprimirLineaTerminal(`<span class="term-prompt">elba@tech:~$</span> ${command}`);
-    ejecutarComando(command);
-  }
-  terminalInput.value = ''; // Limpiar el input
-}
 
+    
+   function imprimirLineaTerminal(htmlContent) {
+  const terminalOutput = document.getElementById('terminal-output');
+  if (!terminalOutput) return;
+
+  const nuevaLinea = document.createElement('div');
+  nuevaLinea.className = 'terminal-line';
+  nuevaLinea.innerHTML = htmlContent;
+
+  // Usamos prepend() en lugar de appendChild() 
+  // para que funcione con column-reverse
+  terminalOutput.prepend(nuevaLinea); 
+}
 if (terminalInput) {
   // 1. Evento al presionar Enter en PC o teclado móvil
   terminalInput.addEventListener('keydown', function (e) {
