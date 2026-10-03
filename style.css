@@ -941,16 +941,22 @@ aside.terminal-section,
   z-index: 10;
 }
 
-.avatar-bubble {
-  background-color: #0f172a;
-  color: #f8fafc;
-  padding: 12px 16px;
+/* Ajuste para la burbuja del asistente Dante */
+.dante-bubble, .chat-bubble { /* Reemplaza por la clase que tengas */
+  position: absolute;
+  bottom: 80px;            /* Ubicación sobre el avatar */
+  right: 20px;
+  width: 260px;            /* ANCHO FIJO para que no se comprima verticalmente */
+  max-width: 85vw;
+  background-color: #0d1527;
+  border: 1px solid rgba(56, 189, 248, 0.4);
   border-radius: 12px;
-  border: 1px solid #38bdf8;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
-  font-size: 0.82rem;
+  padding: 12px 16px;
+  color: #f8fafc;
+  font-size: 0.85rem;
   line-height: 1.4;
-  margin: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  z-index: 100;
 }
 
 .avatar-img {
