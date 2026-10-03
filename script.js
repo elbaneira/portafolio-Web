@@ -236,7 +236,7 @@ ${estiloHtml} Sentencia grabada en la consola.<br>
     switch (cmdLimpio) {
      function procesarComando(comando) {
   const cmd = comando.trim().toLowerCase();
-
+} else {
   switch (cmd) {
     case 'help':
       imprimirLineaTerminal(`
