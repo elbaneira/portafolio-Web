@@ -76,23 +76,14 @@ window.copiarCorreoDirecto = function(e) {
 // ====================================================
 // 3. FUNCIÓN GLOBAL DE EJECUCIÓN (COMPATIBLE CON PC Y MÓVIL)
 // ====================================================
-window.ejecutarComando = function(cmd, e) {
-  if (e && typeof e.preventDefault === 'function') {
-    e.preventDefault();
-  }
-
-  if (cmd && typeof cmd.preventDefault === 'function') {
-    cmd.preventDefault();
-    return;
-  }
-
-  if (!cmd || typeof cmd !== 'string') {
-    return;
-  }
+window.ejecutarComando = function(cmd) {
+  // Validar que sea un texto no vacío
+  if (!cmd || typeof cmd !== 'string') return;
 
   const terminalOutput = document.getElementById('terminal-output');
   const terminalInput = document.getElementById('terminal-input');
 
+  // Imprimir línea en la consola
   if (terminalOutput) {
     const linea = document.createElement('div');
     linea.className = 'term-line';
@@ -101,13 +92,14 @@ window.ejecutarComando = function(cmd, e) {
     terminalOutput.scrollTop = terminalOutput.scrollHeight;
   }
 
+  // Limpiar el campo de texto
   if (terminalInput) {
     terminalInput.value = '';
   }
 
-  procesarComandoLogica(cmd);
+  // Procesar la lógica
+  window.procesarComandoLogica(cmd);
 };
-
 function procesarEntrada() {
   const terminalInput = document.getElementById('terminal-input');
   if (!terminalInput) return;
