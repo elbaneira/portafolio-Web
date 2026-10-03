@@ -48,7 +48,6 @@
           Tu navegador no soporta videos HTML5.
         </video>
       </div>
-
     </div> <!-- Cierre correcto de hero-container -->
   </section>
 
@@ -89,9 +88,11 @@
 
       <!-- Barra de entrada (Input + Botón de Flecha) -->
       <div class="terminal-input-row">
-        <span class="prompt">elba@tech:~$</span>
-        <button id="terminal-submit-btn" type="button" aria-label="Enviar comando">➔</button>
+          <span class="prompt">elba@tech:~$</span>
+        <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off" spellcheck="false">
+        <button id="terminal-submit-btn">→</button>
       </div>
+      
     </div>
   </section>
 
