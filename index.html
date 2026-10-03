@@ -337,7 +337,7 @@
 
   <div class="project-actions">
     <a href="https://youtu.be/p6C7HDa6u8U" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-      🎥 Ver Demo en YouTube
+      🎥 Ver Demo 
     </a>
   </div>
 </article>
@@ -477,6 +477,23 @@
       <img src="img/Dante.jpg" alt="Elba Neira" class="avatar-img">
       <div class="avatar-widget"></div>
     </div>
+
+   <div class="terminal-container">
+  <!-- Nueva sección para el historial de comandos y respuestas -->
+  <div id="terminal-history" class="terminal-history">
+    <div id="terminal-output">
+      <!-- Aquí se imprimirán las líneas por JS -->
+    </div>
+  </div>
+
+  <!-- Línea de entrada fija en la parte inferior -->
+  <div class="terminal-input-row">
+    <span class="prompt">$</span>
+    <input type="text" id="terminal-input" placeholder="Escribe 'help'..." autocomplete="off">
+    <!-- El botón con la flecha -->
+    <button id="terminal-submit-btn" type="button" aria-label="Enviar comando">➔</button>
+  </div>
+</div>
   </aside>
 
   <!-- Google tag (gtag.js) -->
