@@ -62,11 +62,10 @@
     <button type="button" class="console-btn btn-clear" onclick="ejecutarComando('clear')">🧹 clear</button>
   </div>
 
-  <!-- Ventana de la Terminal -->
- <section class="terminal-section">
+  <!-- Ventana Única de la Terminal -->
   <div class="terminal-window" style="position: relative;">
     
-    <!-- Header de la consola -->
+    <!-- Header de la consola con luces -->
     <div class="terminal-topbar">
       <div class="terminal-dots">
         <span class="dot red"></span>
@@ -76,29 +75,32 @@
       <span class="terminal-title">bash -- 80x24</span>
     </div>
 
-    <!-- Salida de comandos -->
-    <div id="terminal-output">
-      <p>🤖 <span class="term-accent">[DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.</p>
-      <p>👉 Escribe 'help' abajo o usa los botones de acceso rápido para comenzar.</p>
+    <!-- Único cuerpo donde se imprimen las respuestas -->
+    <div id="terminal-output" class="terminal-body">
+      <p class="term-line">
+        🤖 <span class="term-accent">[DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.
+      </p>
+      <p class="term-line">
+        👉 Escribe <span class="term-cmd">'help'</span> abajo o usa los botones de acceso rápido para comenzar.
+      </p>
     </div>
 
-    <!-- Barra de entrada fija abajo (Input + Botón) -->
+    <!-- Única barra de entrada fija abajo (Input + Botón Flecha) -->
     <div class="terminal-input-row">
       <span class="prompt">elba@tech:~$</span>
       <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off">
       <button id="terminal-submit-btn" type="button" aria-label="Enviar comando">➔</button>
     </div>
 
-    <!-- Avatar de Dante y su burbuja flotante -->
-    <div class="dante-container">
-      <div class="chat-bubble">
-        👋 ¡Hola! Soy el asistente de Elba. Pasa el cursor sobre sus proyectos para contarte la historia técnica de cada uno.
-      </div>
-      <img src="tu-imagen-de-dante.png" alt="Dante Debugger" class="dante-avatar">
-    </div>
-
   </div>
 </section>
+
+<main>
+  <div class="hero-actions">
+    <a class="button primary" href="#proyectos">Ver proyectos</a>
+    <a class="button secondary" href="https://github.com/elbaneira" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</main>
     <!-- Cuerpo donde habla Dante y se imprimen las respuestas -->
     <div class="terminal-body" id="terminal-output">
       <p class="term-line">
