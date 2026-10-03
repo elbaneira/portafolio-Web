@@ -896,19 +896,21 @@ avatar-bubble {
 }
 
 .prompt {
-  color: #38bdf8;
-  margin-right: 8px;
-  font-size: 0.88rem;
-  font-weight: 600;
+  color: #88ee88; /* Color verde o tu color de prompt */
+  margin-right: 0.5rem;
+  font-family: monospace;
 }
 
 #terminal-input {
+  flex: 1; /* Ocupa todo el ancho restante */
   background: transparent;
   border: none;
-  color: #ffffff;
-  font-family: inherit;
-  font-size: 0.9rem;
-  width: 100%;
+  color: #fff;
+  font-family: monospace;
+  font-size: 16px; /* Para evitar zoom en móviles */
+  padding: 0.25rem;
+}
+#terminal-input:focus {
   outline: none;
 }
 /* Contenedor de la línea de entrada (fijo abajo) */
@@ -918,6 +920,24 @@ avatar-bubble {
   padding: 0.5rem 1rem;
   background-color: #2d2d2d; /* Un color ligeramente diferente para diferenciarlo */
   border-top: 1px solid #444;
+}
+/* El botón de la flecha - MÁS ANCHO Y VISIBLE */
+#terminal-submit-btn {
+  background-color: #444; /* Color de fondo del botón */
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #fff;
+  padding: 0.5rem 1rem; /* MÁS RELLENO PARA HACERLO MÁS GRANDE */
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font-size: 1.2rem; /* Flecha más grande */
+  transition: background-color 0.3s;
+  /* Ancho mínimo para asegurar que sea cliqueable fácilmente en móviles */
+  min-width: 50px; 
+}
+
+#terminal-submit-btn:hover {
+  background-color: #555;
 }
 
 /* 5. Avatar Dante flotante (Corregido para que baje un poco más) */
