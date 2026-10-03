@@ -684,14 +684,56 @@ footer {
     border: none;
     border-radius: 6px;
   }
+   /* ==========================================
+   WIDGET FLOTANTE DANTE (FIXED)
+   ========================================== */
 
-  /* Desactivar elementos flotantes desalineados en pantallas pequeñas */
-  .avatar-widget,
-  .dante-avatar-container,
-  .dante-bubble,
-  .chat-bubble {
+.avatar-widget {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  gap: 10px !important;
+  max-width: 320px !important;
+  pointer-events: auto !important;
+}
+
+/* Burbuja de texto */
+.avatar-bubble {
+  background-color: #0d1527 !important;
+  color: #f8fafc !important;
+  padding: 10px 14px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(56, 189, 248, 0.5) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.4 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Contenedor e Imagen del Personaje */
+.avatar-character {
+  flex-shrink: 0 !important;
+}
+
+.avatar-img {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  border: 2px solid #38bdf8 !important;
+  object-fit: cover !important;
+  display: block !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Ocultar avatar únicamente en móviles si estorba */
+@media (max-width: 768px) {
+  .avatar-widget {
     display: none !important;
   }
+
+
 
   footer { display: block; }
   footer p + p { margin-top: 5px; }
