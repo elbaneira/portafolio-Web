@@ -234,32 +234,124 @@ ${estiloHtml} Sentencia grabada en la consola.<br>
   // 4. RESTO DE COMANDOS GENERALES
   } else {
     switch (cmdLimpio) {
-     case 'help':
-  imprimirLineaTerminal(`
-    <div class="help-container">
-      <p class="term-accent" style="margin-bottom: 8px; font-weight: bold;">Comandos disponibles (haz clic en cualquiera para ejecutar):</p>
-      <ul class="help-list" style="list-style: none; padding-left: 0; margin: 0;">
-        <li style="margin-bottom: 6px;">
-          <span class="term-cmd clickable-cmd" onclick="ejecutarComando('cat sobre_mi.py')">cat sobre_mi.py</span>
-          <span style="color: #94a3b8;"> : Perfil profesional de Elba.</span>
-        </li>
-        <li style="margin-bottom: 6px;">
-          <span class="term-cmd clickable-cmd" onclick="ejecutarComando('ls proyectos/')">ls proyectos/</span>
-          <span style="color: #94a3b8;"> : Lista de desarrollos y soluciones.</span>
-        </li>
-        <li style="margin-bottom: 6px;">
-          <span class="term-cmd clickable-cmd" onclick="ejecutarComando('python3 auditoria.py')">python3 auditoria.py</span>
-          <span style="color: #94a3b8;"> : Calidad de datos y lógica backend.</span>
-        </li>
-        <li style="margin-bottom: 6px;">
-          <span class="term-cmd clickable-cmd" onclick="ejecutarComando('clear')">clear</span>
-          <span style="color: #94a3b8;"> : Limpia la terminal.</span>
-        </li>
-      </ul>
-    </div>
-  `);
-  hablarDante("Te muestro el mapa para navegar el código. Puedes tocar cualquiera para ejecutarlo.");
-  break;
+     function procesarComando(comando) {
+  const cmd = comando.trim().toLowerCase();
+
+  switch (cmd) {
+    case 'help':
+      imprimirLineaTerminal(`
+        <div class="term-response">
+          <p class="term-accent" style="margin-bottom: 8px; font-weight: bold;">💡 Comandos disponibles (haz clic para ejecutar):</p>
+          <ul style="list-style: none; padding-left: 0; margin: 0;">
+            <li style="margin-bottom: 6px;">
+              <span class="term-cmd clickable-cmd" onclick="ejecutarComando('cat sobre_mi.py')">📄 cat sobre_mi.py</span>
+              <span style="color: #94a3b8;"> : Perfil profesional y trayectoria.</span>
+            </li>
+            <li style="margin-bottom: 6px;">
+              <span class="term-cmd clickable-cmd" onclick="ejecutarComando('ls proyectos/')">📁 ls proyectos/</span>
+              <span style="color: #94a3b8;"> : Lista de desarrollos y soluciones.</span>
+            </li>
+            <li style="margin-bottom: 6px;">
+              <span class="term-cmd clickable-cmd" onclick="ejecutarComando('python3 auditoria.py')">🔍 python3 auditoria.py</span>
+              <span style="color: #94a3b8;"> : Calidad de datos y lógica backend.</span>
+            </li>
+            <li style="margin-bottom: 6px;">
+              <span class="term-cmd clickable-cmd" onclick="ejecutarComando('contacto')">✉️ contacto</span>
+              <span style="color: #94a3b8;"> : Formas de comunicación directa.</span>
+            </li>
+            <li style="margin-bottom: 6px;">
+              <span class="term-cmd clickable-cmd" onclick="ejecutarComando('clear')">🧹 clear</span>
+              <span style="color: #94a3b8;"> : Limpia la consola.</span>
+            </li>
+          </ul>
+        </div>
+      `);
+      hablarDante("Selecciona cualquier opción o escribe un comando abajo.");
+      break;
+
+    case 'cat sobre_mi.py':
+      imprimirLineaTerminal(`
+        <div class="term-response">
+          <p><span class="term-accent">👤 PERFIL:</span> Elba Neira — Administración, Datos & Desarrollo.</p>
+          <p style="color: #94a3b8; margin: 6px 0;">Especializada en automatización de procesos, gestión operativa e integración de sistemas.</p>
+          <p style="margin-top: 8px;">
+            📌 Ver más detalles: 
+            <span class="term-cmd clickable-cmd" onclick="desplazarA('sobre-mi')">Ir a sección 'Sobre mí' ➔</span>
+          </p>
+        </div>
+      `);
+      hablarDante("Ahí tienes un resumen de mi perfil. Puedes tocar el enlace para ir a la sección.");
+      break;
+
+    case 'ls proyectos/':
+      imprimirLineaTerminal(`
+        <div class="term-response">
+          <p class="term-accent" style="margin-bottom: 6px;">📂 Proyectos destacados (haz clic para ir al proyecto):</p>
+          <ul style="list-style: none; padding-left: 0;">
+            <li style="margin-bottom: 6px;">
+              <span class="term-cmd clickable-cmd" onclick="desplazarA('proyectos')">📊 SGMO</span> 
+              <span style="color: #94a3b8;"> — Sistema de Gestión de Mano de Obra</span>
+            </li>
+            <li style="margin-bottom: 6px;">
+              <span class="term-cmd clickable-cmd" onclick="desplazarA('proyectos')">📜 CertiManager ORM</span> 
+              <span style="color: #94a3b8;"> — Gestión de certificados en Django</span>
+            </li>
+            <li style="margin-bottom: 6px;">
+              <span class="term-cmd clickable-cmd" onclick="desplazarA('proyectos')">💳 Alke Wallet</span> 
+              <span style="color: #94a3b8;"> — Billetera digital interactiva</span>
+            </li>
+          </ul>
+        </div>
+      `);
+      hablarDante("Haz clic en cualquier proyecto para desplazarte directamente a su tarjeta.");
+      break;
+
+    case 'python3 auditoria.py':
+      imprimirLineaTerminal(`
+        <div class="term-response">
+          <p><span class="term-accent">⚙️ EJECUTANDO AUDITORÍA...</span></p>
+          <p style="color: #22c55e;">[OK] Estructura de código verificada.</p>
+          <p style="color: #22c55e;">[OK] Validaciones de base de datos y optimización de flujo activas.</p>
+          <p style="margin-top: 8px;">
+            👉 <span class="term-cmd clickable-cmd" onclick="ejecutarComando('ls proyectos/')">Ver los proyectos analizados ➔</span>
+          </p>
+        </div>
+      `);
+      hablarDante("Auditoría completada sin errores de sintaxis.");
+      break;
+
+    case 'contacto':
+      imprimirLineaTerminal(`
+        <div class="term-response">
+          <p><span class="term-accent">✉️ CONTACTO RÁPIDO:</span></p>
+          <p style="margin-top: 6px;">
+            🔗 <span class="term-cmd clickable-cmd" onclick="desplazarA('contacto')">Ir al formulario de contacto ➔</span>
+          </p>
+        </div>
+      `);
+      hablarDante("Te dejo el acceso directo al pie de página para escribirme.");
+      break;
+
+    case 'clear':
+      document.getElementById('terminal-output').innerHTML = '';
+      break;
+
+    default:
+      imprimirLineaTerminal(`
+        <p style="color: #ef4444;">Comando no reconocido: '${comando}'. Escribe <span class="term-cmd clickable-cmd" onclick="ejecutarComando('help')">'help'</span> para ver la lista.</p>
+      `);
+      hablarDante("Ups, ese comando no existe. Prueba escribiendo o tocando 'help'.");
+      break;
+  }
+}
+
+// Función auxiliar para desplazarse suavemente a secciones del HTML
+function desplazarA(idSeccion) {
+  const el = document.getElementById(idSeccion);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 
       case 'cat sobre_mi.py':
         imprimirLineaTerminal(`
