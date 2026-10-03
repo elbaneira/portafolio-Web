@@ -63,31 +63,42 @@
   </div>
 
   <!-- Ventana de la Terminal -->
- <aside class="terminal-section">
- <div class="terminal-window">
+ <section class="terminal-section">
+  <div class="terminal-window" style="position: relative;">
+    
+    <!-- Header de la consola -->
     <div class="terminal-topbar">
       <div class="terminal-dots">
         <span class="dot red"></span>
         <span class="dot yellow"></span>
         <span class="dot green"></span>
       </div>
-      <span class="terminal-title">dante_debugger@elba-tech:~ (python3)</span>
+      <span class="terminal-title">bash -- 80x24</span>
     </div>
 
-    <!-- Área de salida donde van las respuestas -->
-    <div id="terminal-output"></div>
-<!-- Barra de entrada de comandos (fija abajo) -->
+    <!-- Salida de comandos -->
+    <div id="terminal-output">
+      <p>🤖 <span class="term-accent">[DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.</p>
+      <p>👉 Escribe 'help' abajo o usa los botones de acceso rápido para comenzar.</p>
+    </div>
+
+    <!-- Barra de entrada fija abajo (Input + Botón) -->
     <div class="terminal-input-row">
       <span class="prompt">elba@tech:~$</span>
-      <input type="text" id="terminal-input" placeholder="Escribe 'help'..." autocomplete="off">
+      <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off">
       <button id="terminal-submit-btn" type="button" aria-label="Enviar comando">➔</button>
     </div>
 
+    <!-- Avatar de Dante y su burbuja flotante -->
+    <div class="dante-container">
+      <div class="chat-bubble">
+        👋 ¡Hola! Soy el asistente de Elba. Pasa el cursor sobre sus proyectos para contarte la historia técnica de cada uno.
+      </div>
+      <img src="tu-imagen-de-dante.png" alt="Dante Debugger" class="dante-avatar">
+    </div>
 
-    
   </div>
-</aside>
-
+</section>
     <!-- Cuerpo donde habla Dante y se imprimen las respuestas -->
     <div class="terminal-body" id="terminal-output">
       <p class="term-line">
