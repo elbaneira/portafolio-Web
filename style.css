@@ -308,8 +308,6 @@ blockquote {
 
     border-color: #d7c2ca;
 }
-
-
 /* =========================================
    PROYECTO FUTURO
 ========================================= */
@@ -318,12 +316,9 @@ blockquote {
     background: #f5f3ed;
     border-style: dashed;
 }
-
-
 /* =========================================
    DETALLE DE SGMO
 ========================================= */
-
 .card-corner {
     position: absolute;
     right: 28px;
@@ -340,8 +335,6 @@ blockquote {
 
     background: rgba(255,255,255,.55);
 }
-
-
 /* =========================================
    TECNOLOGÍAS
 ========================================= */
@@ -367,8 +360,6 @@ blockquote {
 
     border-radius: 4px;
 }
-
-
 /* =========================================
    ENLACES
 ========================================= */
@@ -395,8 +386,6 @@ blockquote {
     color: var(--accent-dark);
     font-weight: 600;
 }
-
-
 /* =========================================
    SOLUCIONES EXPRESS
 ========================================= */
@@ -577,8 +566,6 @@ avatar-bubble {
     height: 42px !important;
   }
 }
-
-
 
 /* Contenedor principal centrado y limpio */
 .navbar-container {
@@ -824,14 +811,21 @@ avatar-bubble {
 }
 /* Altura fija y scroll interno para que la terminal no estire la pantalla */
 .terminal-container {
-  max-width: 850px;
-  max-height: 380px; /* Limita la altura */
-  margin: 2rem auto; /* Reduce márgenes excesivos */
-  border-radius: 8px;
-  overflow-y: auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  height: 400px; /* O la altura que prefieras para la terminal */
+  border: 1px solid #444;
+  border-radius: 5px;
+  overflow: hidden; /* Importante para que no se salga nada */
 }
-
+.terminal-history {
+  flex: 1; /* Ocupa todo el espacio disponible arriba */
+  padding: 1rem;
+  overflow-y: auto; /* Muestra scroll vertical solo aquí */
+  background-color: #1e1e1e; /* Fondo de la terminal */
+  display: flex;
+  flex-direction: column-reverse; /* ESTO ES CLAVE: Mantiene el scroll abajo al añadir texto */
+}
 /* Reducir espacios verticales entre secciones generales */
 .section {
   padding: 60px 8vw; /* Antes estaba en 110px 10vw */
@@ -917,6 +911,15 @@ avatar-bubble {
   width: 100%;
   outline: none;
 }
+/* Contenedor de la línea de entrada (fijo abajo) */
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #2d2d2d; /* Un color ligeramente diferente para diferenciarlo */
+  border-top: 1px solid #444;
+}
+
 /* 5. Avatar Dante flotante (Corregido para que baje un poco más) */
 .avatar-widget {
   position: fixed;
