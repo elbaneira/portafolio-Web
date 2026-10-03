@@ -74,24 +74,18 @@ window.copiarCorreoDirecto = function(e) {
 };
 
 // ====================================================
-// 3. FUNCIÓN GLOBAL DE EJECUCIÓN (ACCESIBLE VÍA ONCLICK)
-// ====================================================
-// ====================================================
-// FUNCIÓN GLOBAL DE EJECUCIÓN (COMPATIBLE CON PC Y MÓVIL)
+// 3. FUNCIÓN GLOBAL DE EJECUCIÓN (COMPATIBLE CON PC Y MÓVIL)
 // ====================================================
 window.ejecutarComando = function(cmd, e) {
-  // 1. Manejo seguro del evento si viene en 'e'
   if (e && typeof e.preventDefault === 'function') {
     e.preventDefault();
   }
 
-  // 2. Si por error el evento se pasó en 'cmd'
   if (cmd && typeof cmd.preventDefault === 'function') {
     cmd.preventDefault();
     return;
   }
 
-  // 3. Validación de que 'cmd' sea texto real
   if (!cmd || typeof cmd !== 'string') {
     return;
   }
@@ -111,7 +105,6 @@ window.ejecutarComando = function(cmd, e) {
     terminalInput.value = '';
   }
 
-  // 4. Se ejecuta la lógica de comandos
   procesarComandoLogica(cmd);
 };
 
@@ -125,8 +118,22 @@ function procesarEntrada() {
   }
 }
 
+// ====================================================
+// 4. LÓGICA PRINCIPAL DE PROCESAMIENTO DE COMANDOS
+// ====================================================
+function procesarComandoLogica(cmd) {
+  const cmdLimpio = cmd.trim().toLowerCase();
+  const terminalOutput = document.getElementById('terminal-output');
+
+  // --- A. LÓGICA DE JUICIO ---
+  if (cmdLimpio.startsWith('juicio')) {
+    const partes = cmd.trim().split(/\s+/);
+    const nota = partes[1];
+    const comentario = partes.slice(2).join(' ') || 'Sin comentario';
+
+    if (!nota || !['1', '2', '3'].includes(nota)) {
       imprimirLineaTerminal(`
-        ${mensajePrevio}<span class="term-accent">⚖️ [TRIBUNAL DE LA COMEDIA - EMITE TU JUICIO]:</span><br>
+        <span class="term-accent">⚖️ [TRIBUNAL DE LA COMEDIA - EMITE TU JUICIO]:</span><br>
         Escribe el comando con el número y tu comentario opcional en un solo paso:<br><br>
         🔥 <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('juicio 1')">juicio 1 [mensaje]</span> : Infierno (Bugs / Oportunidad de mejora)<br>
         🌀 <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('juicio 2')">juicio 2 [mensaje]</span> : Purgatorio (En proceso de optimización)<br>
@@ -268,7 +275,7 @@ function procesarEntrada() {
                 <span style="color: #94a3b8;"> : Tribunal de la Comedia (evalúa este portafolio).</span>
               </li>
               <li style="margin-bottom: 6px;">
-                <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('contacto')">✉️️ contacto</span>
+                <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('contacto')">✉ contacto</span>
                 <span style="color: #94a3b8;"> : Canales de comunicación directa.</span>
               </li>
               <li style="margin-bottom: 6px;">
