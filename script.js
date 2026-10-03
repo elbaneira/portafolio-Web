@@ -1,9 +1,8 @@
 // ====================================================
-// EFECTO MÁQUINA DE ESCRIBIR PARA DANTE
+// 1. EFECTO MÁQUINA DE ESCRIBIR PARA DANTE
 // ====================================================
 let timerEscribir;
 
-// 1. LÓGICA DE DANTE (Efecto máquina de escribir)
 function hablarDante(texto) {
   const bubbleText = document.getElementById('avatar-text');
   if (!bubbleText) return;
@@ -22,104 +21,109 @@ function hablarDante(texto) {
   }, 25);
 }
 
-// 2. AUXILIARES DE LA TERMINAL
-const terminalInput = document.getElementById('terminal-input');
-const terminalOutput = document.getElementById('terminal-output');
-const submitBtn = document.getElementById('terminal-submit-btn');
-
-// Imprimir líneas en pantalla
+// ====================================================
+// 2. FUNCIONES AUXILIARES Y NAVEGACIÓN GLOBAL
+// ====================================================
 function imprimirLineaTerminal(htmlContent) {
+  const terminalOutput = document.getElementById('terminal-output');
   if (!terminalOutput) return;
+
   const p = document.createElement('div');
   p.className = 'term-line';
   p.innerHTML = htmlContent;
   terminalOutput.appendChild(p);
-  
-  // Mantiene el scroll siempre abajo cuando entra texto nuevo
+
+  // Mantiene el scroll siempre abajo
   terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 
-// Función para desplazar la pantalla a un proyecto o sección
-function desplazarASeccion(idElemento) {
+window.desplazarASeccion = function(idElemento) {
   const elemento = document.getElementById(idElemento);
   if (elemento) {
     elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
   } else {
     console.warn(`No se encontró el elemento con id: ${idElemento}`);
   }
-}
+};
 
-// 3. PROCESAR COMANDOS
-function procesarEntrada() {
-  if (!terminalInput) return;
-  
-  const command = terminalInput.value.trim();
-  if (command !== '') {
-    // Imprime la entrada del usuario
-    imprimirLineaTerminal(`<span class="prompt">elba@tech:~$</span> ${command}`);
-    
-    // Ejecuta el comando (asegúrate de tener definidos tus 'if/switch' dentro de ejecutarComando)
-    if (typeof ejecutarComando === 'function') {
-      ejecutarComando(command);
-    }
-    
-    terminalInput.value = ''; // Limpia la caja
+window.copiarCorreoDirecto = function(e) {
+  if (e) e.preventDefault();
+  const correo = 'elbatech7@gmail.com';
+
+  const temp = document.createElement('textarea');
+  temp.value = correo;
+  temp.style.position = 'fixed';
+  temp.style.opacity = '0';
+  document.body.appendChild(temp);
+  temp.select();
+  temp.setSelectionRange(0, 99999);
+
+  try {
+    document.execCommand('copy');
+    imprimirLineaTerminal(`
+      <span style="color: #22c55e; font-weight: bold;">📋 [COPIADO]:</span> La dirección <b>${correo}</b> se copió al portapapeles.
+    `);
+    hablarDante("¡Correo copiado! Ya lo tienes listo en tu portapapeles.");
+  } catch (err) {
+    imprimirLineaTerminal(`
+      <span class="term-accent">📧 Correo de Elba:</span> <b>${correo}</b>
+    `);
+    hablarDante("Aquí tienes la dirección de correo de Elba.");
   }
-}
 
-// 4. EVENTOS E INICIALIZACIÓN
-document.addEventListener('DOMContentLoaded', () => {
-  // Saludo inicial de Dante
-  hablarDante("¡Hola! Soy Dante, tu guía en el entorno de Elba. Escribe 'help' para iniciar el recorrido.");
+  document.body.removeChild(temp);
+};
 
-  // Escuchar tecla Enter en el input
-  if (terminalInput) {
-    terminalInput.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        procesarEntrada();
-      }
-    });
-  }
-// Aseguramos que la función esté disponible de forma global
-window.ejecutarComando = function(comando) {
+// ====================================================
+// 3. FUNCIÓN GLOBAL DE EJECUCIÓN (ACCESIBLE VÍA ONCLICK)
+// ====================================================
+window.ejecutarComando = function(cmd) {
+  if (!cmd) return;
   const terminalOutput = document.getElementById('terminal-output');
-  
-  // 1. Imprime el comando simulando que el usuario lo escribió
+  const terminalInput = document.getElementById('terminal-input');
+
+  // 1. Imprime la entrada del usuario en la pantalla
   if (terminalOutput) {
-    const linea = document.createElement('p');
+    const linea = document.createElement('div');
     linea.className = 'term-line';
-    linea.innerHTML = `<span class="prompt">elba@tech:~$</span> ${comando}`;
+    linea.innerHTML = `<span class="prompt">elba@tech:~$</span> ${cmd}`;
     terminalOutput.appendChild(linea);
   }
 
-  // 2. Procesa la respuesta
-  procesarComando(comando);
+  // 2. Limpia la caja de entrada de texto
+  if (terminalInput) {
+    terminalInput.value = '';
+  }
 
-  // 3. Scroll automático hacia el final del historial
-  if (terminalOutput) {
-    terminalOutput.scrollTop = terminalOutput.scrollHeight;
-  }
+  // 3. Evalúa la lógica del comando
+  procesarComandoLogica(cmd);
 };
-  // Escuchar clic en el botón con la flecha
-  if (submitBtn) {
-    submitBtn.addEventListener('click', function () {
-      procesarEntrada();
-    });
+
+function procesarEntrada() {
+  const terminalInput = document.getElementById('terminal-input');
+  if (!terminalInput) return;
+
+  const command = terminalInput.value.trim();
+  if (command !== '') {
+    window.ejecutarComando(command);
   }
-});
-// Función principal de la terminal
-function ejecutarComando(cmd) {
+}
+
+// ====================================================
+// 4. LÓGICA PRINCIPAL DE COMANDOS
+// ====================================================
+function procesarComandoLogica(cmd) {
   const cmdLimpio = cmd.trim().toLowerCase();
   if (!cmdLimpio) return;
 
-  // 1. BLOQUE ÚNICO PARA JUICIO / VEREDICTO / EVALUAR
+  const terminalOutput = document.getElementById('terminal-output');
+
+  // --- A. EVALUACIONES / JUICIO ---
   if (cmdLimpio.startsWith('juicio') || cmdLimpio.startsWith('veredicto') || cmdLimpio.startsWith('evaluar')) {
     const partes = cmdLimpio.split(' ');
-    const nota = partes[1]; // Captura '1', '2' o '3'
+    const nota = partes[1];
     const comentario = partes.slice(2).join(' ') || 'Sin comentario escrito.';
 
-    // CASO A: Escribió sólo "juicio" o un número no válido
     if (!nota || !['1', '2', '3'].includes(nota)) {
       const guardado = localStorage.getItem('dante_veredicto');
       let mensajePrevio = '';
@@ -130,18 +134,17 @@ function ejecutarComando(cmd) {
       }
 
       imprimirLineaTerminal(`
-${mensajePrevio}<span class="term-accent">⚖️ [TRIBUNAL DE LA COMEDIA - EMITE TU JUICIO]:</span><br>
-Escribe el comando con el número y tu comentario opcional en un solo paso:<br><br>
-  🔥 <span class="term-cmd">juicio 1 [tu mensaje]</span> : Infierno (Bugs / Oportunidad de mejora)<br>
-  🌀 <span class="term-cmd">juicio 2 [tu mensaje]</span> : Purgatorio (En proceso de optimización)<br>
-  ✨ <span class="term-cmd">juicio 3 [tu mensaje]</span> : Paraíso (¡Excelente! Listo para colaborar)<br><br>
-<span style="color: #9ca3af;">Ejemplos: <b>juicio 1</b> o <b>juicio 3 Excelente trabajo con la terminal</b></span>
+        ${mensajePrevio}<span class="term-accent">⚖️ [TRIBUNAL DE LA COMEDIA - EMITE TU JUICIO]:</span><br>
+        Escribe el comando con el número y tu comentario opcional en un solo paso:<br><br>
+        🔥 <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('juicio 1')">juicio 1 [mensaje]</span> : Infierno (Bugs / Oportunidad de mejora)<br>
+        🌀 <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('juicio 2')">juicio 2 [mensaje]</span> : Purgatorio (En proceso de optimización)<br>
+        ✨ <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('juicio 3')">juicio 3 [mensaje]</span> : Paraíso (¡Excelente! Listo para colaborar)<br><br>
+        <span style="color: #9ca3af;">Ejemplo: <b>juicio 3 Excelente trabajo con la terminal</b></span>
       `);
       hablarDante("Dime, viajero... ¿en cuál de los tres reinos situarás este código?");
       return;
     }
 
-    // CASO B: Escribió "juicio 1", "juicio 2" o "juicio 3" (con o sin mensaje)
     let reino = '';
     let mensajeDante = '';
     let estiloHtml = '';
@@ -160,339 +163,248 @@ Escribe el comando con el número y tu comentario opcional en un solo paso:<br><
       mensajeDante = 'E quindi uscimmo a riveder le stelle... ¡Nos vemos entre las estrellas del desarrollo!';
     }
 
-    // Guardar veredicto en localStorage
     const registro = { reino, comentario: `"${comentario}"`, fecha: new Date().toLocaleDateString() };
     localStorage.setItem('dante_veredicto', JSON.stringify(registro));
 
     imprimirLineaTerminal(`
-${estiloHtml} Sentencia grabada en la consola.<br>
-• <span class="term-cmd">Reino:</span> ${reino}<br>
-• <span class="term-cmd">Comentario:</span> "${comentario}"<br>
-<span style="color: #22c55e;">> [ESTADO]: Veredicto guardado con éxito.</span>
+      ${estiloHtml} Sentencia grabada en la consola.<br>
+      • <span class="term-cmd">Reino:</span> ${reino}<br>
+      • <span class="term-cmd">Comentario:</span> "${comentario}"<br>
+      <span style="color: #22c55e;">> [ESTADO]: Veredicto guardado con éxito.</span>
     `);
     hablarDante(mensajeDante);
     return;
   }
 
-  // 2. PROYECTOS DESTACADOS (1 al 5)
+  // --- B. PROYECTOS POR NÚMERO O NOMBRE ---
   if (cmdLimpio === '1' || cmdLimpio.includes('sgmo') || cmdLimpio.includes('mano de obra')) {
     imprimirLineaTerminal(`
-<span class="term-accent">📂 [PROYECTO 1]: SGMO - Gestión de Mano de Obra</span>
-• <span class="term-cmd">Tecnologías:</span> Python (POO), Lógica Algorítmica.
-• <span class="term-cmd">Propósito:</span> Clasificación y distribución de mano de obra por obra.
-• <span class="term-cmd">Demostración:</span> <a href="#card-sgmo" onclick="desplazarASeccion('card-sgmo'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a>
-<span style="color: #22c55e;">> Enfocando tarjeta SGMO...</span>
+      <span class="term-accent">📂 [PROYECTO 1]: SGMO - Gestión de Mano de Obra</span><br>
+      • <span class="term-cmd">Tecnologías:</span> Python (POO), Lógica Algorítmica.<br>
+      • <span class="term-cmd">Propósito:</span> Clasificación y distribución de mano de obra por obra.<br>
+      • <span class="term-cmd">Demostración:</span> <a href="#card-sgmo" onclick="window.desplazarASeccion('card-sgmo'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a><br>
+      <span style="color: #22c55e;">> Enfocando tarjeta SGMO...</span>
     `);
-    hablarDante("Te guío al módulo de SGMO: control y separación de mano de obra calificada y no calificada por obra.");
-    desplazarASeccion('card-sgmo');
+    hablarDante("Te guío al módulo de SGMO: control y separación de mano de obra.");
+    window.desplazarASeccion('card-sgmo');
 
-  } else if (cmdLimpio === '2' || cmdLimpio.includes('django') || cmdLimpio.includes('web app')) {
+  } else if (cmdLimpio === '2' || cmdLimpio.includes('django') || cmdLimpio.includes('certimanager')) {
     imprimirLineaTerminal(`
-<span class="term-accent">📂 [PROYECTO 2]: Django Web App</span>
-• <span class="term-cmd">Tecnologías:</span> Python, Django ORM, PostgreSQL, Bootstrap.
-• <span class="term-cmd">Propósito:</span> Sistema de gestión e historial de gestión de Proyectos y Tareas.
-• <span class="term-cmd">Demostración:</span> <a href="#card-django" onclick="desplazarASeccion('card-django'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a>
-<span style="color: #22c55e;">> Enfocando tarjeta Django Web App...</span>
+      <span class="term-accent">📂 [PROYECTO 2]: CertiManager ORM</span><br>
+      • <span class="term-cmd">Tecnologías:</span> Python, Django ORM, PostgreSQL, Bootstrap.<br>
+      • <span class="term-cmd">Propósito:</span> Sistema de gestión de certificados e historial.<br>
+      • <span class="term-cmd">Demostración:</span> <a href="#card-django" onclick="window.desplazarASeccion('card-django'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a><br>
+      <span style="color: #22c55e;">> Enfocando tarjeta CertiManager...</span>
     `);
-    hablarDante("Django Web App al descubierto: arquitectura backend en Django y consultas ORM eficientes.");
-    desplazarASeccion('card-django');
+    hablarDante("CertiManager al descubierto: arquitectura backend en Django.");
+    window.desplazarASeccion('card-django');
 
   } else if (cmdLimpio === '3' || cmdLimpio.includes('alke') || cmdLimpio.includes('wallet')) {
     imprimirLineaTerminal(`
-<span class="term-accent">📂 [PROYECTO 3]: Alke Wallet</span>
-• <span class="term-cmd">Tecnologías:</span> JavaScript, jQuery, HTML5, CSS3, Bootstrap.
-• <span class="term-cmd">Propósito:</span> Billetera digital e interfaz interactiva para transacciones.
-• <span class="term-cmd">Demostración:</span> <a href="#card-alke" onclick="desplazarASeccion('card-alke'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a>
-<span style="color: #22c55e;">> Enfocando tarjeta Alke Wallet...</span>
+      <span class="term-accent">📂 [PROYECTO 3]: Alke Wallet</span><br>
+      • <span class="term-cmd">Tecnologías:</span> JavaScript, jQuery, HTML5, CSS3, Bootstrap.<br>
+      • <span class="term-cmd">Propósito:</span> Billetera digital e interfaz interactiva.<br>
+      • <span class="term-cmd">Demostración:</span> <a href="#card-alke" onclick="window.desplazarASeccion('card-alke'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a><br>
+      <span style="color: #22c55e;">> Enfocando tarjeta Alke Wallet...</span>
     `);
-    hablarDante("Alke Wallet en inspección: experiencia de usuario ágil y JavaScript dinámico.");
-    desplazarASeccion('card-alke');
+    hablarDante("Alke Wallet en inspección: experiencia de usuario e interfaz dinámicas.");
+    window.desplazarASeccion('card-alke');
 
   } else if (cmdLimpio === '4' || cmdLimpio.includes('clientes') || cmdLimpio.includes('poo')) {
     imprimirLineaTerminal(`
-<span class="term-accent">📂 [PROYECTO 4]: Sistema de Gestión de Clientes</span>
-• <span class="term-cmd">Enfoque:</span> Programación Orientada a Objetos y persistencia de datos.
-• <span class="term-cmd">Demostración:</span> <a href="#card-clientes" onclick="desplazarASeccion('card-clientes'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a>
-<span style="color: #22c55e;">> Enfocando tarjeta de Gestión de Clientes...</span>
+      <span class="term-accent">📂 [PROYECTO 4]: Gestión de Clientes</span><br>
+      • <span class="term-cmd">Enfoque:</span> Programación Orientada a Objetos.<br>
+      • <span class="term-cmd">Demostración:</span> <a href="#card-clientes" onclick="window.desplazarASeccion('card-clientes'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a><br>
+      <span style="color: #22c55e;">> Enfocando tarjeta de Gestión de Clientes...</span>
     `);
-    hablarDante("Módulo de Gestión de Clientes: lógica sólida con POO en Python.");
-    desplazarASeccion('card-clientes');
+    hablarDante("Módulo de Gestión de Clientes: lógica sólida en Python.");
+    window.desplazarASeccion('card-clientes');
 
   } else if (cmdLimpio === '5' || cmdLimpio.includes('power bi') || cmdLimpio.includes('dashboards')) {
     imprimirLineaTerminal(`
-<span class="term-accent">📂 [PROYECTO 5]: Dashboards en Power BI</span>
-• <span class="term-cmd">Enfoque:</span> Modelamiento de datos y métricas clave para toma de decisiones.
-• <span class="term-cmd">Demostración:</span> <a href="#card-power bi" onclick="desplazarASeccion('card-power bi'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a>
-<span style="color: #22c55e;">> Enfocando área de Business Intelligence...</span>
+      <span class="term-accent">📂 [PROYECTO 5]: Dashboards en Power BI</span><br>
+      • <span class="term-cmd">Enfoque:</span> Modelamiento de datos y métricas clave.<br>
+      • <span class="term-cmd">Demostración:</span> <a href="#card-powerbi" onclick="window.desplazarASeccion('card-powerbi'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a><br>
+      <span style="color: #22c55e;">> Enfocando área de Business Intelligence...</span>
     `);
-    hablarDante("Business Intelligence en acción: de los datos crudos a decisiones estratégicas.");
-    desplazarASeccion('card-power bi');
+    hablarDante("Business Intelligence en acción: datos clave para decisiones.");
+    window.desplazarASeccion('card-powerbi');
 
-  // 3. SOLUCIONES EXPRESS (E1 y E2)
   } else if (cmdLimpio === 'e1' || cmdLimpio.includes('terra') || cmdLimpio.includes('alfajor')) {
     imprimirLineaTerminal(`
-<span class="term-accent">⚡ [EXPRESS 1]: Terra Alfajor (POS & Pedidos)</span>
-• <span class="term-cmd">Enfoque:</span> Automatización comercial y cálculo de pedidos para repostería.
-• <span class="term-cmd">Demostración:</span> <a href="#card-e1" onclick="desplazarASeccion('card-e1'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a>
-<span style="color: #22c55e;">> Enfocando tarjeta Terra Alfajor...</span>
+      <span class="term-accent">⚡ [EXPRESS 1]: Terra Alfajor (POS & Pedidos)</span><br>
+      • <span class="term-cmd">Enfoque:</span> Automatización comercial y cálculo de pedidos.<br>
+      • <span class="term-cmd">Demostración:</span> <a href="#card-e1" onclick="window.desplazarASeccion('card-e1'); return false;" style="color: #60a5fa; text-decoration: underline;">▶ Ver tarjeta en pantalla</a><br>
+      <span style="color: #22c55e;">> Enfocando tarjeta Terra Alfajor...</span>
     `);
-    hablarDante("Solución Express Terra Alfajor: control rápido para optimizar pedidos y ventas.");
-    desplazarASeccion('card-e1');
+    hablarDante("Solución Express Terra Alfajor: control para optimizar pedidos.");
+    window.desplazarASeccion('card-e1');
 
-  } else if (cmdLimpio === 'e2' || cmdLimpio.includes('fiestas') || cmdLimpio.includes('anticuchos') || cmdLimpio.includes('logistica')) {
+  } else if (cmdLimpio === 'e2' || cmdLimpio.includes('fiestas') || cmdLimpio.includes('anticuchos')) {
     imprimirLineaTerminal(`
-<span class="term-accent">⚡ [EXPRESS 2]: Fiestas Dieciocheras (Logística, Anticuchos & Cajas)</span>
-• <span class="term-cmd">Enfoque:</span> Presupuesto, insumos, cálculo de pedidos y armado modular.
-• <span class="term-cmd">Demostración en Video:</span> <a href="https://youtu.be/p6C7HDa6u8U" target="_blank" style="color: #60a5fa; text-decoration: underline;">▶ Ver demo en YouTube (1 min)</a>
-• <span class="term-cmd">Código fuente:</span> <a href="https://github.com/elbaneira" target="_blank" style="color: #60a5fa; text-decoration: underline;">GitHub Repository</a>
-• <span class="term-cmd">Vista en pantalla:</span> <a href="#card-e2" onclick="desplazarASeccion('card-e2'); return false;" style="color: #60a5fa; text-decoration: underline;">Enfocar tarjeta del proyecto</a>
-<span style="color: #22c55e;">> Cargando demostración y detalles de logística...</span>
+      <span class="term-accent">⚡ [EXPRESS 2]: Fiestas Dieciocheras</span><br>
+      • <span class="term-cmd">Enfoque:</span> Logística, cálculo de insumos y armado modular.<br>
+      • <span class="term-cmd">Video:</span> <a href="https://youtu.be/p6C7HDa6u8U" target="_blank" style="color: #60a5fa; text-decoration: underline;">▶ Ver demo en YouTube (1 min)</a><br>
+      • <span class="term-cmd">Código:</span> <a href="https://github.com/elbaneira" target="_blank" style="color: #60a5fa; text-decoration: underline;">GitHub Repository</a><br>
+      • <span class="term-cmd">Pantalla:</span> <a href="#card-e2" onclick="window.desplazarASeccion('card-e2'); return false;" style="color: #60a5fa; text-decoration: underline;">Enfocar tarjeta del proyecto</a>
     `);
-    hablarDante("Solución Express Fiestas Dieciocheras: mira el video de demostración rápida o revisa el repositorio en GitHub.");
-    desplazarASeccion('card-e2');
-  // 4. RESTO DE COMANDOS GENERALES
+    hablarDante("Solución Express Fiestas Dieciocheras: revisa la logística o el video demo.");
+    window.desplazarASeccion('card-e2');
+
+  // --- C. SWITCH GENERAL DE COMANDOS (HELP, CAT, LS, ETC.) ---
   } else {
     switch (cmdLimpio) {
-     function procesarComando(comando) {
-  const cmd = comando.trim().toLowerCase();
-} else {
-  switch (cmd) {
-    ccase 'help':
-  imprimirLineaTerminal(`
-    <div class="term-response">
-      <p class="term-accent" style="margin-bottom: 8px; font-weight: bold;">💡 Comandos disponibles (haz clic para ejecutar):</p>
-      <ul style="list-style: none; padding-left: 0; margin: 0;">
-        <li style="margin-bottom: 6px;">
-          <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('cat sobre_mi.py')">📄 cat sobre_mi.py</span>
-          <span style="color: #94a3b8;"> : Perfil profesional y trayectoria.</span>
-        </li>
-        <li style="margin-bottom: 6px;">
-          <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('ls proyectos/')">📁 ls proyectos/</span>
-          <span style="color: #94a3b8;"> : Lista de desarrollos y soluciones.</span>
-        </li>
-        <li style="margin-bottom: 6px;">
-          <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('python3 auditoria.py')">🔍 python3 auditoria.py</span>
-          <span style="color: #94a3b8;"> : Calidad de datos y lógica backend.</span>
-        </li>
-        <li style="margin-bottom: 6px;">
-          <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('clear')">🧹 clear</span>
-          <span style="color: #94a3b8;"> : Limpia la consola.</span>
-        </li>
-      </ul>
-    </div>
-  `);
-  if (typeof hablarDante === 'function') {
-    hablarDante("Selecciona cualquier opción o escribe un comando abajo.");
-  }
-  break;
-    case 'cat sobre_mi.py':
-      imprimirLineaTerminal(`
-        <div class="term-response">
-          <p><span class="term-accent">👤 PERFIL:</span> Elba Neira — Administración, Datos & Desarrollo.</p>
-          <p style="color: #94a3b8; margin: 6px 0;">Especializada en automatización de procesos, gestión operativa e integración de sistemas.</p>
-          <p style="margin-top: 8px;">
-            📌 Ver más detalles: 
-            <span class="term-cmd clickable-cmd" onclick="desplazarA('sobre-mi')">Ir a sección 'Sobre mí' ➔</span>
-          </p>
-        </div>
-      `);
-      hablarDante("Ahí tienes un resumen de mi perfil. Puedes tocar el enlace para ir a la sección.");
-      break;
-
-    case 'ls proyectos/':
-      imprimirLineaTerminal(`
-        <div class="term-response">
-          <p class="term-accent" style="margin-bottom: 6px;">📂 Proyectos destacados (haz clic para ir al proyecto):</p>
-          <ul style="list-style: none; padding-left: 0;">
-            <li style="margin-bottom: 6px;">
-              <span class="term-cmd clickable-cmd" onclick="desplazarA('proyectos')">📊 SGMO</span> 
-              <span style="color: #94a3b8;"> — Sistema de Gestión de Mano de Obra</span>
-            </li>
-            <li style="margin-bottom: 6px;">
-              <span class="term-cmd clickable-cmd" onclick="desplazarA('proyectos')">📜 CertiManager ORM</span> 
-              <span style="color: #94a3b8;"> — Gestión de certificados en Django</span>
-            </li>
-            <li style="margin-bottom: 6px;">
-              <span class="term-cmd clickable-cmd" onclick="desplazarA('proyectos')">💳 Alke Wallet</span> 
-              <span style="color: #94a3b8;"> — Billetera digital interactiva</span>
-            </li>
-          </ul>
-        </div>
-      `);
-      hablarDante("Haz clic en cualquier proyecto para desplazarte directamente a su tarjeta.");
-      break;
-
-    case 'python3 auditoria.py':
-      imprimirLineaTerminal(`
-        <div class="term-response">
-          <p><span class="term-accent">⚙️ EJECUTANDO AUDITORÍA...</span></p>
-          <p style="color: #22c55e;">[OK] Estructura de código verificada.</p>
-          <p style="color: #22c55e;">[OK] Validaciones de base de datos y optimización de flujo activas.</p>
-          <p style="margin-top: 8px;">
-            👉 <span class="term-cmd clickable-cmd" onclick="ejecutarComando('ls proyectos/')">Ver los proyectos analizados ➔</span>
-          </p>
-        </div>
-      `);
-      hablarDante("Auditoría completada sin errores de sintaxis.");
-      break;
-
-    case 'contacto':
-      imprimirLineaTerminal(`
-        <div class="term-response">
-          <p><span class="term-accent">✉️ CONTACTO RÁPIDO:</span></p>
-          <p style="margin-top: 6px;">
-            🔗 <span class="term-cmd clickable-cmd" onclick="desplazarA('contacto')">Ir al formulario de contacto ➔</span>
-          </p>
-        </div>
-      `);
-      hablarDante("Te dejo el acceso directo al pie de página para escribirme.");
-      break;
-
-    case 'clear':
-      document.getElementById('terminal-output').innerHTML = '';
-      break;
-
-    default:
-      imprimirLineaTerminal(`
-        <p style="color: #ef4444;">Comando no reconocido: '${comando}'. Escribe <span class="term-cmd clickable-cmd" onclick="ejecutarComando('help')">'help'</span> para ver la lista.</p>
-      `);
-      hablarDante("Ups, ese comando no existe. Prueba escribiendo o tocando 'help'.");
-      break;
-  }
-}
-
-// Función auxiliar para desplazarse suavemente a secciones del HTML
-function desplazarA(idSeccion) {
-  const el = document.getElementById(idSeccion);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' });
-  }
-}
+      case 'help':
+        imprimirLineaTerminal(`
+          <div class="term-response">
+            <p class="term-accent" style="margin-bottom: 8px; font-weight: bold;">💡 Comandos disponibles (haz clic en cualquiera para ejecutar):</p>
+            <ul style="list-style: none; padding-left: 0; margin: 0;">
+              <li style="margin-bottom: 6px;">
+                <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('cat sobre_mi.py')">📄 cat sobre_mi.py</span>
+                <span style="color: #94a3b8;"> : Perfil profesional de Elba.</span>
+              </li>
+              <li style="margin-bottom: 6px;">
+                <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('ls proyectos/')">📁 ls proyectos/</span>
+                <span style="color: #94a3b8;"> : Lista de desarrollos y soluciones.</span>
+              </li>
+              <li style="margin-bottom: 6px;">
+                <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('python3 auditoria.py')">🔍 python3 auditoria.py</span>
+                <span style="color: #94a3b8;"> : Calidad de datos y lógica backend.</span>
+              </li>
+              <li style="margin-bottom: 6px;">
+                <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('contacto')">✉️ contacto</span>
+                <span style="color: #94a3b8;"> : Canales de comunicación directa.</span>
+              </li>
+              <li style="margin-bottom: 6px;">
+                <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('clear')">🧹 clear</span>
+                <span style="color: #94a3b8;"> : Limpia la pantalla.</span>
+              </li>
+            </ul>
+          </div>
+        `);
+        hablarDante("Selecciona cualquier opción o escribe un comando abajo.");
+        break;
 
       case 'cat sobre_mi.py':
         imprimirLineaTerminal(`
-<span class="term-accent"># Perfil de Elba Neira</span>
-• Especialidad: Python, Django, PostgreSQL & Análisis de Datos SQL, Power BI.
-• Enfoque: Optimización de procesos administrativos con código backend.
+          <span class="term-accent"># Perfil de Elba Neira</span><br>
+          • <b>Especialidad:</b> Python, Django, PostgreSQL & Análisis de Datos SQL, Power BI.<br>
+          • <b>Enfoque:</b> Optimización de procesos administrativos con código backend.<br>
+          📌 <span class="term-cmd clickable-cmd" onclick="window.desplazarASeccion('sobre-mi')">Ir a sección 'Sobre mí' ➔</span>
         `);
         hablarDante("Elba transforma el caos en orden, uniendo la gestión con Python.");
         break;
 
       case 'ls proyectos/':
         imprimirLineaTerminal(`
-<div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 0.5rem 0;">
-  <div style="flex: 1; min-width: 220px;">
-    <span class="term-accent" style="font-weight: bold; color: #f59e0b;">📂 PROYECTOS DESTACADOS</span><br>
-    [1] <span class="term-cmd">SGMO</span> (Mano de Obra)<br>
-    [2] <span class="term-cmd">Django Web App</span> (Django Web)<br>
-    [3] <span class="term-cmd">Alke Wallet</span> (Billetera Digital)<br>
-    [4] <span class="term-cmd">Gestión Clientes</span> (Python POO)<br>
-    [5] <span class="term-cmd">Power BI</span> (Dashboards)
-  </div>
-  <div style="flex: 1; min-width: 220px;">
-    <span class="term-accent" style="font-weight: bold; color: #3b82f6;">⚡ SOLUCIONES EXPRESS</span><br>
-    [E1] <span class="term-cmd">Terra Alfajor</span> (POS & Pedidos)<br>
-    [E2] <span class="term-cmd">Fiestas Dieciocheras</span> (Logística)
-  </div>
-</div>
-<div style="margin-top: 0.75rem; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 0.5rem;">
-  <span style="color: #ec4899; font-weight: bold;">🚀 EN EL RADAR:</span> Escribe <span class="term-cmd">'futuro'</span> para ver los próximos desarrollos en camino.
-</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 0.5rem 0;">
+            <div style="flex: 1; min-width: 200px;">
+              <span class="term-accent" style="font-weight: bold; color: #f59e0b;">📂 PROYECTOS DESTACADOS</span><br>
+              • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('1')">[1] SGMO</span> (Mano de Obra)<br>
+              • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('2')">[2] CertiManager</span> (Django Web)<br>
+              • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('3')">[3] Alke Wallet</span> (Billetera Digital)<br>
+              • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('4')">[4] Gestión Clientes</span> (Python POO)<br>
+              • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('5')">[5] Power BI</span> (Dashboards)
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+              <span class="term-accent" style="font-weight: bold; color: #3b82f6;">⚡ SOLUCIONES EXPRESS</span><br>
+              • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('E1')">[E1] Terra Alfajor</span> (POS & Pedidos)<br>
+              • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('E2')">[E2] Fiestas Dieciocheras</span> (Logística)
+            </div>
+          </div>
+          <div style="margin-top: 0.75rem; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 0.5rem;">
+            🚀 Escribe o toca <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('futuro')">'futuro'</span> para ver los próximos desarrollos.
+          </div>
         `);
-        hablarDante("Elige una opción para explorar en detalle o mira lo que viene a futuro.");
+        hablarDante("Haz clic en cualquier opción para explorarla en detalle.");
         break;
 
       case 'futuro':
       case 'radar':
       case 'proximos':
         imprimirLineaTerminal(`
-<span class="term-accent">🚀 [PRÓXIMOS DESAFÍOS / EN EL RADAR]:</span>
-• <span class="term-cmd">🏢 App para Condominios:</span> Administración de espacios, comunicación interna y gastos comunes.
-• <span class="term-cmd">🥖 Inventario para Panaderías:</span> Control de mermas, insumos y cálculo automático de recetas.
-• <span class="term-cmd">🤝 Redes Comunitarias:</span> Plataforma modular para organización de juntas de vecinos y agrupaciones.
-
-<span style="color: #22c55e;">> [ESTADO]: Diseñando arquitecturas y modelos de datos en Python.</span>
+          <span class="term-accent">🚀 [PRÓXIMOS DESAFÍOS / EN EL RADAR]:</span><br>
+          • <span class="term-cmd">🏢 App para Condominios:</span> Administración de espacios y gastos comunes.<br>
+          • <span class="term-cmd">🥖 Inventario para Panaderías:</span> Control de mermas y recetas.<br>
+          • <span class="term-cmd">🤝 Redes Comunitarias:</span> Plataforma modular para juntas de vecinos.<br>
+          <span style="color: #22c55e;">> [ESTADO]: Diseñando arquitecturas y modelos de datos en Python.</span>
         `);
-        hablarDante("La mente de Elba no descansa: siempre detectando problemas reales para transformarlos en código.");
+        hablarDante("Siempre detectando problemas reales para transformarlos en código.");
         break;
 
       case 'python3 auditoria.py':
         imprimirLineaTerminal(`
-<span class="term-accent">[EJECUTANDO AUDITORÍA DE DATOS...]</span>
-> Verificando lógica backend... OK
-> Validando consistencia de datos... OK
-<span style="color: #22c55e;">> Diagnóstico: Código optimizado y listo para producción.</span>
+          <span class="term-accent">[EJECUTANDO AUDITORÍA DE DATOS...]</span><br>
+          > Verificando lógica backend... OK<br>
+          > Validando consistencia de datos... OK<br>
+          <span style="color: #22c55e;">> Diagnóstico: Código optimizado y listo para producción.</span>
         `);
         hablarDante("Auditoría aprobada. Sistema 100% operativo sin errores.");
         break;
 
-      case 'exit':
-      case 'salir':
-        imprimirLineaTerminal(`
-<span class="term-accent">🤖 [DANTE]:</span> Diagnóstico final: Portafolio inspeccionado con éxito.<br>
-<span style="color: #9ca3af;">Recuerda que no todo en la vida es Python, SQL y terminales. Sal a respirar aire puro, camina un poco y, si quieres contratar a Elba, los botones de contacto están arriba.</span>
-        `);
-        hablarDante("¡Misión cumplida! Nos vemos en el mundo real.");
-        break;
-
       case 'contacto':
         imprimirLineaTerminal(`
-<span class="term-accent">📬 [CONTACTO DIRECTO CON ELBA]:</span><br>
-  • <span class="term-cmd">Email:</span> <a href="mailto:elbatech7@gmail.com" style="color: #60a5fa; text-decoration: underline;">elbatech7@gmail.com</a> <a href="#" onclick="copiarCorreoDirecto(event);" style="color: #38bdf8; text-decoration: none; font-size: 0.85em;">[copiar]</a><br>
-  • <span class="term-cmd">LinkedIn:</span> <a href="https://www.linkedin.com/in/elba-neira-tech" target="_blank" style="color: #60a5fa; text-decoration: underline;">linkedin.com/in/elba-neira-tech</a><br>
-  • <span class="term-cmd">GitHub:</span> <a href="https://github.com/elbaneira" target="_blank" style="color: #60a5fa; text-decoration: underline;">github.com/elbaneira</a>
+          <span class="term-accent">📬 [CONTACTO DIRECTO CON ELBA]:</span><br>
+          • <span class="term-cmd">Email:</span> <a href="mailto:elbatech7@gmail.com" style="color: #60a5fa; text-decoration: underline;">elbatech7@gmail.com</a> <a href="#" onclick="window.copiarCorreoDirecto(event);" style="color: #38bdf8; text-decoration: none; font-size: 0.85em;">[copiar]</a><br>
+          • <span class="term-cmd">LinkedIn:</span> <a href="https://www.linkedin.com/in/elba-neira-tech" target="_blank" style="color: #60a5fa; text-decoration: underline;">linkedin.com/in/elba-neira-tech</a><br>
+          • <span class="term-cmd">GitHub:</span> <a href="https://github.com/elbaneira" target="_blank" style="color: #60a5fa; text-decoration: underline;">github.com/elbaneira</a>
         `);
-        hablarDante("Aquí tienes las vías de contacto. Puedes hacer clic en el correo o usar [copiar].");
+        hablarDante("Aquí tienes las vías de contacto. Puedes tocar el correo para copiarlo.");
         break;
 
       case 'clear':
         if (terminalOutput) {
           terminalOutput.innerHTML = `
-            <p class="term-line"><span class="term-accent">🤖 [DANTE]:</span> Consola limpia. Escribe <span class="term-cmd">'help'</span> para continuar.</p>
+            <div class="term-line"><span class="term-accent">🤖 [DANTE]:</span> Consola limpia. Escribe o toca <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('help')">'help'</span> para continuar.</div>
           `;
         }
         hablarDante("Pergamino limpio. Listo para una nueva consulta.");
         break;
 
-// Función para abrir el cliente de correo sin expone la dirección en el HTML
-// Función directa y confiable para copiar el correo al portapapeles
-  function copiarCorreoDirecto(e) {
-    if (e) e.preventDefault();
-    
-    const correo = 'elbatech7@gmail.com';
+      case 'exit':
+      case 'salir':
+        imprimirLineaTerminal(`
+          <span class="term-accent">🤖 [DANTE]:</span> Diagnóstico final: Portafolio inspeccionado con éxito.<br>
+          <span style="color: #9ca3af;">Recuerda que no todo en la vida es código. Sal a respirar aire puro, camina un poco y los botones de contacto están listos.</span>
+        `);
+        hablarDante("¡Misión cumplida! Nos vemos en el mundo real.");
+        break;
 
-    // Crear un área de texto temporal para asegurar el copiado en cualquier dispositivo
-    const temp = document.createElement('textarea');
-    temp.value = correo;
-    temp.style.position = 'fixed';
-    temp.style.opacity = '0';
-    document.body.appendChild(temp);
-    temp.select();
-    temp.setSelectionRange(0, 99999);
-
-    try {
-      document.execCommand('copy');
-      imprimirLineaTerminal(`
-  <span style="color: #22c55e; font-weight: bold;">📋 [COPIADO]:</span> La dirección <b>${correo}</b> se copió al portapapeles.
-      `);
-      hablarDante("¡Correo copiado! Ya lo tienes listo en tu portapapeles.");
-    } catch (err) {
-      imprimirLineaTerminal(`
-  <span class="term-accent">📧 Correo de Elba:</span> <b>${correo}</b>
-      `);
-      hablarDante("Aquí tienes la dirección de correo de Elba.");
+      default:
+        imprimirLineaTerminal(`
+          <span style="color: #ef4444;">Comando no reconocido: '${cmdLimpio}'</span><br>
+          Escribe o toca <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('help')">'help'</span>, un número del <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('1')">1</span> al <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('5')">5</span>, o <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('futuro')">'futuro'</span>.
+        `);
+        hablarDante("Comando no reconocido. Prueba escribiendo o tocando 'help'.");
+        break;
     }
-
-    document.body.removeChild(temp);
   }
+}
 
-        default:
-          imprimirLineaTerminal(`
-  <span style="color: #ef4444;">Comando no reconocido: '${cmdLimpio}'</span><br>
-  Escribe <span class="term-cmd">'help'</span>, un número (<span class="term-cmd">1</span> al <span class="term-cmd">5</span>), <span class="term-cmd">E1</span> / <span class="term-cmd">E2</span>, o <span class="term-cmd">'futuro'</span>.
-          `);
-          hablarDante("Comando no reconocido. Prueba escribiendo help o 'futuro'.");
-          break;
+// ====================================================
+// 5. INICIALIZACIÓN DE EVENTOS (DOM CONTENT LOADED)
+// ====================================================
+document.addEventListener('DOMContentLoaded', () => {
+  // Saludo inicial de Dante
+  hablarDante("¡Hola! Soy Dante, tu guía en el entorno de Elba. Escribe 'help' para iniciar el recorrido.");
+
+  const terminalInput = document.getElementById('terminal-input');
+  const submitBtn = document.getElementById('terminal-submit-btn');
+
+  // Escuchar tecla Enter
+  if (terminalInput) {
+    terminalInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        procesarEntrada();
       }
-    }
+    });
   }
+
+  // Escuchar clic en la flecha
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function () {
+      procesarEntrada();
+    });
+  }
+});
