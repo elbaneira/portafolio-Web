@@ -9,96 +9,95 @@
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <header class="navbar">
     <a class="brand" href="#inicio">Elba Neira</a>
     <nav class="navbar-container">
-  <div class="nav-pills">
-    <a href="#sobre-mi" class="nav-pill active">Sobre mí</a>
-    <a href="#proyectos" class="nav-pill">Proyectos</a>
-    <a href="#mi-forma-de-trabajar" class="nav-pill">Mi forma de trabajar</a>
-    <a href="#contacto" class="nav-pill">Contacto</a>
-  </div>
-</nav>
+      <div class="nav-pills">
+        <a href="#sobre-mi" class="nav-pill active">Sobre mí</a>
+        <a href="#proyectos" class="nav-pill">Proyectos</a>
+        <a href="#mi-forma-de-trabajar" class="nav-pill">Mi forma de trabajar</a>
+        <a href="#contacto" class="nav-pill">Contacto</a>
+      </div>
+    </nav>
   </header>
-<!-- 1. SECCIÓN HERO (Texto a la izquierda, Video a la derecha) -->
-<section class="hero-section">
-  <div class="hero-container">
 
-    <!-- Columna Izquierda: Texto de Presentación -->
-    <div class="hero-text">
-      <p class="eyebrow">ADMINISTRACIÓN · ANÁLISIS DE DATOS · AUTOMATIZACIÓN · PROGRAMACIÓN</p>
-      <h1>Optimizando procesos<br>con <em>código y datos.</em></h1>
-      <p class="hero-description">
-        Transformo la gestión operativa y el papeleo manual en soluciones digitales eficientes, automatizadas y basadas en datos.
-      </p>
-     
+  <!-- 1. SECCIÓN HERO (Texto y Video) -->
+  <section class="hero-section">
+    <div class="hero-container">
 
-    <!-- Columna Derecha: Solo el Video -->
-    <div class="hero-video-wrapper">
-      <video autoplay loop muted playsinline class="hero-video">
-        <source src="img/intro.mp4" type="video/mp4">
-        Tu navegador no soporta videos HTML5.
-      </video>
-    </div>
+      <!-- Columna Izquierda: Texto de Presentación -->
+      <div class="hero-text">
+        <p class="eyebrow">ADMINISTRACIÓN · ANÁLISIS DE DATOS · AUTOMATIZACIÓN · PROGRAMACIÓN</p>
+        <h1>Optimizando procesos<br>con <em>código y datos.</em></h1>
+        <p class="hero-description">
+          Transformo la gestión operativa y el papeleo manual en soluciones digitales eficientes, automatizadas y basadas en datos.
+        </p>
+        
+        <!-- Botones de Acción -->
+        <div class="hero-actions">
+          <a class="button primary" href="#proyectos">Ver proyectos</a>
+          <a class="button secondary" href="https://github.com/elbaneira" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div> <!-- Cierre correcto de hero-text -->
 
-  </div>
-</section>
- 
-<!-- CONSOLA INTERACTIVA UNIFICADA -->
-<section class="console-section container">
-  <div class="console-intro">
-    <h2>Consola de Exploración</h2>
-  </div>
-
-  <!-- Botones de comandos rápidos -->
-  <div class="console-buttons">
-    <button type="button" class="console-btn" onclick="ejecutarComando('cat sobre_mi.py')">📄 cat sobre_mi.py</button>
-    <button type="button" class="console-btn" onclick="ejecutarComando('ls proyectos/')">📁 ls proyectos/</button>
-    <button type="button" class="console-btn" onclick="ejecutarComando('python3 auditoria.py')">🔍 python3 auditoria.py</button>
-    <button type="button" class="console-btn btn-clear" onclick="ejecutarComando('clear')">🧹 clear</button>
-  </div>
-
-  <!-- Ventana de la Terminal -->
-  <div class="terminal-window">
-    <div class="terminal-topbar">
-      <div class="terminal-dots">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
+      <!-- Columna Derecha: Video -->
+      <div class="hero-video-wrapper">
+        <video autoplay loop muted playsinline class="hero-video">
+          <source src="img/intro.mp4" type="video/mp4">
+          Tu navegador no soporta videos HTML5.
+        </video>
       </div>
-      <span class="terminal-title">dante_debugger@elba-tech:~ (python3)</span>
+
+    </div> <!-- Cierre correcto de hero-container -->
+  </section>
+
+  <!-- 2. CONSOLA INTERACTIVA UNIFICADA -->
+  <section class="console-section container">
+    <div class="console-intro">
+      <h2>Consola de Exploración</h2>
     </div>
 
-    <!-- Cuerpo donde habla Dante y se imprimen las respuestas -->
-    <div class="terminal-body" id="terminal-output">
-      <p class="term-line">
-        <span class="term-accent">🤖 [DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.
-      </p>
-      <p class="term-line">
-        👉 Escribe <span class="term-cmd">'help'</span> abajo o usa los botones de acceso rápido para comenzar.
-      </p>
+    <!-- Botones de comandos rápidos -->
+    <div class="console-buttons">
+      <button type="button" class="console-btn" onclick="ejecutarComando('cat sobre_mi.py')">📄 cat sobre_mi.py</button>
+      <button type="button" class="console-btn" onclick="ejecutarComando('ls proyectos/')">📁 ls proyectos/</button>
+      <button type="button" class="console-btn" onclick="ejecutarComando('python3 auditoria.py')">🔍 python3 auditoria.py</button>
+      <button type="button" class="console-btn btn-clear" onclick="ejecutarComando('clear')">🧹 clear</button>
     </div>
 
-    <!-- Línea de entrada fija abajo -->
-    <div class="terminal-input-line">
-      <span class="prompt">elba@tech:~$</span>
-      <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off">
+    <!-- Única Ventana de la Terminal -->
+    <div class="terminal-window">
+      <div class="terminal-topbar">
+        <div class="terminal-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <span class="terminal-title">dante_debugger@elba-tech:~ (python3)</span>
+      </div>
+
+      <!-- Historial de respuestas de Dante -->
+      <div class="terminal-body" id="terminal-output">
+        <p class="term-line">
+          <span class="term-accent">🤖 [DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.
+        </p>
+        <p class="term-line">
+          👉 Escribe <span class="term-cmd">'help'</span> abajo o usa los botones de acceso rápido para comenzar.
+        </p>
+      </div>
+
+      <!-- Barra de entrada (Input + Botón de Flecha) -->
+      <div class="terminal-input-row">
+        <span class="prompt">elba@tech:~$</span>
+        <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off">
+        <button id="terminal-submit-btn" type="button" aria-label="Enviar comando">➔</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- 3. SECCIÓN SOBRE MÍ -->
   <main>
-
-
-<!-- Botones dentro de la columna de texto -->
-      <div class="hero-actions">
-        <a class="button primary" href="#proyectos">Ver proyectos</a>
-        <a class="button secondary" href="https://github.com/elbaneira" target="_blank" rel="noopener">GitHub ↗</a>
-      </div>
-    </div>
-
-   
-  </div>
-</section>
     <section class="intro section" id="sobre-mi">
       <div class="section-label">01 — SOBRE MÍ</div>
       <div class="intro-grid">
@@ -123,7 +122,10 @@
         </div>
       </div>
     </section>
+  </main>
 
+</body>
+</html>
     <section class="quote-section">
       <div class="quote-mark">“</div>
       <blockquote>
