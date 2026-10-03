@@ -234,20 +234,32 @@ ${estiloHtml} Sentencia grabada en la consola.<br>
   // 4. RESTO DE COMANDOS GENERALES
   } else {
     switch (cmdLimpio) {
-      case 'help':
-        imprimirLineaTerminal(`
-<span class="term-accent">Comandos disponibles:</span>
-  • <span class="term-cmd">cat sobre_mi.py</span>     : Perfil profesional de Elba.
-  • <span class="term-cmd">ls proyectos/</span>       : Lista de desarrollos y soluciones.
-  • <span class="term-cmd">futuro / radar</span>      : Próximos desarrollos en camino.
-  • <span class="term-cmd">juicio / veredicto</span>  : Emite tu sentencia (Infierno, Purgatorio, Paraíso).
-  • <span class="term-cmd">python3 auditoria.py</span> : Calidad de datos y lógica backend.
-  • <span class="term-cmd">contacto</span>            : Enlaces de contacto directo.
-  • <span class="term-cmd">exit / salir</span>        : Mensaje final de cierre.
-  • <span class="term-cmd">clear</span>               : Limpia la terminal.
-        `);
-        hablarDante("Te muestro el mapa para navegar la página. Elige tu rumbo.");
-        break;
+     case 'help':
+  imprimirLineaTerminal(`
+    <div class="help-container">
+      <p class="term-accent" style="margin-bottom: 8px; font-weight: bold;">Comandos disponibles (haz clic en cualquiera para ejecutar):</p>
+      <ul class="help-list" style="list-style: none; padding-left: 0; margin: 0;">
+        <li style="margin-bottom: 6px;">
+          <span class="term-cmd clickable-cmd" onclick="ejecutarComando('cat sobre_mi.py')">cat sobre_mi.py</span>
+          <span style="color: #94a3b8;"> : Perfil profesional de Elba.</span>
+        </li>
+        <li style="margin-bottom: 6px;">
+          <span class="term-cmd clickable-cmd" onclick="ejecutarComando('ls proyectos/')">ls proyectos/</span>
+          <span style="color: #94a3b8;"> : Lista de desarrollos y soluciones.</span>
+        </li>
+        <li style="margin-bottom: 6px;">
+          <span class="term-cmd clickable-cmd" onclick="ejecutarComando('python3 auditoria.py')">python3 auditoria.py</span>
+          <span style="color: #94a3b8;"> : Calidad de datos y lógica backend.</span>
+        </li>
+        <li style="margin-bottom: 6px;">
+          <span class="term-cmd clickable-cmd" onclick="ejecutarComando('clear')">clear</span>
+          <span style="color: #94a3b8;"> : Limpia la terminal.</span>
+        </li>
+      </ul>
+    </div>
+  `);
+  hablarDante("Te muestro el mapa para navegar el código. Puedes tocar cualquiera para ejecutarlo.");
+  break;
 
       case 'cat sobre_mi.py':
         imprimirLineaTerminal(`
