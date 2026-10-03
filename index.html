@@ -49,6 +49,7 @@
 </section>
  
 <!-- CONSOLA INTERACTIVA UNIFICADA -->
+<!-- CONSOLA INTERACTIVA UNIFICADA -->
 <section class="console-section container">
   <div class="console-intro">
     <h2>Consola de Exploración</h2>
@@ -62,10 +63,10 @@
     <button type="button" class="console-btn btn-clear" onclick="ejecutarComando('clear')">🧹 clear</button>
   </div>
 
-  <!-- Única Ventana de la Terminal -->
+  <!-- Ventana ÚNICA de la Terminal -->
   <div class="terminal-window">
     
-    <!-- Header con lucecitas -->
+    <!-- Header con luces -->
     <div class="terminal-topbar">
       <div class="terminal-dots">
         <span class="dot red"></span>
@@ -75,7 +76,7 @@
       <span class="terminal-title">bash -- 80x24</span>
     </div>
 
-    <!-- Único historial de respuestas -->
+    <!-- Salida de comandos -->
     <div id="terminal-output" class="terminal-body">
       <p class="term-line">
         🤖 <span class="term-accent">[DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.
@@ -85,17 +86,24 @@
       </p>
     </div>
 
-    <!-- Única barra de entrada fija abajo (Input + Flecha) -->
+    <!-- Entrada fija abajo (Input + Flecha) -->
     <div class="terminal-input-row">
       <span class="prompt">elba@tech:~$</span>
       <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off">
       <button id="terminal-submit-btn" type="button" aria-label="Enviar comando">➔</button>
     </div>
 
-  </div>
-</section>
+  </div> <!-- Cierre de terminal-window -->
 
-<main>
+</section> <!-- Cierre de console-section -->
+
+<!-- Botones de acción principales (AQUÍ AFUERA DE LA TERMINAL) -->
+<main class="container">
+  <div class="hero-actions">
+    <a class="button primary" href="#proyectos">Ver proyectos</a>
+    <a class="button secondary" href="https://github.com/elbaneira" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</main>
   <div class="hero-actions">
     <a class="button primary" href="#proyectos">Ver proyectos</a>
     <a class="button secondary" href="https://github.com/elbaneira" target="_blank" rel="noopener">GitHub ↗</a>
