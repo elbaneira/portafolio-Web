@@ -3,6 +3,7 @@
 // ====================================================
 let timerEscribir;
 
+// 1. LÓGICA DE DANTE (Efecto máquina de escribir)
 function hablarDante(texto) {
   const bubbleText = document.getElementById('avatar-text');
   if (!bubbleText) return;
@@ -18,69 +19,27 @@ function hablarDante(texto) {
     } else {
       clearInterval(timerEscribir);
     }
-   }, 25);
+  }, 25);
 }
 
-// Saludo inicial al cargar
-document.addEventListener('DOMContentLoaded', () => {
-  hablarDante("¡Hola! Soy Dante, tu guía en el entorno de Elba. Escribe 'help' para iniciar el recorrido.");
-});
-
-// ====================================================
-// LÓGICA DE LA CONSOLA INTERACTIVA
-// ====================================================
+// 2. AUXILIARES DE LA TERMINAL
 const terminalInput = document.getElementById('terminal-input');
 const terminalOutput = document.getElementById('terminal-output');
-const submitBtn = document.getElementById('terminal-submit-btn'); // Captura el nuevo botón
+const submitBtn = document.getElementById('terminal-submit-btn');
 
-// Función centralizada para procesar el comando
-function procesarEntrada() {
-  if (!terminalInput) return;
-  
-  const command = terminalInput.value.trim();
-  if (command) {
-
-    
-   function imprimirLineaTerminal(htmlContent) {
-  const terminalOutput = document.getElementById('terminal-output');
-  if (!terminalOutput) return;
-
-  const nuevaLinea = document.createElement('div');
-  nuevaLinea.className = 'terminal-line';
-  nuevaLinea.innerHTML = htmlContent;
-
-  // Usamos prepend() en lugar de appendChild() 
-  // para que funcione con column-reverse
-  terminalOutput.prepend(nuevaLinea); 
-}
-if (terminalInput) {
-  // 1. Evento al presionar Enter en PC o teclado móvil
-  terminalInput.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-      e.preventDefault(); // Evita comportamientos no deseados en móviles
-      procesarEntrada();
-    }
-  });
-}
-
-// 2. Evento al hacer clic o tocar el botón
-if (submitBtn) {
-  submitBtn.addEventListener('click', function () {
-    procesarEntrada();
-  });
-}
-
-// Auxiliar para imprimir líneas en la terminal
+// Imprimir líneas en pantalla
 function imprimirLineaTerminal(htmlContent) {
   if (!terminalOutput) return;
   const p = document.createElement('div');
   p.className = 'term-line';
   p.innerHTML = htmlContent;
   terminalOutput.appendChild(p);
+  
+  // Mantiene el scroll siempre abajo cuando entra texto nuevo
   terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 
-// Función para desplazarse suavemente al centro de la tarjeta
+// Función para desplazar la pantalla a un proyecto o sección
 function desplazarASeccion(idElemento) {
   const elemento = document.getElementById(idElemento);
   if (elemento) {
@@ -90,6 +49,46 @@ function desplazarASeccion(idElemento) {
   }
 }
 
+// 3. PROCESAR COMANDOS
+function procesarEntrada() {
+  if (!terminalInput) return;
+  
+  const command = terminalInput.value.trim();
+  if (command !== '') {
+    // Imprime la entrada del usuario
+    imprimirLineaTerminal(`<span class="prompt">elba@tech:~$</span> ${command}`);
+    
+    // Ejecuta el comando (asegúrate de tener definidos tus 'if/switch' dentro de ejecutarComando)
+    if (typeof ejecutarComando === 'function') {
+      ejecutarComando(command);
+    }
+    
+    terminalInput.value = ''; // Limpia la caja
+  }
+}
+
+// 4. EVENTOS E INICIALIZACIÓN
+document.addEventListener('DOMContentLoaded', () => {
+  // Saludo inicial de Dante
+  hablarDante("¡Hola! Soy Dante, tu guía en el entorno de Elba. Escribe 'help' para iniciar el recorrido.");
+
+  // Escuchar tecla Enter en el input
+  if (terminalInput) {
+    terminalInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        procesarEntrada();
+      }
+    });
+  }
+
+  // Escuchar clic en el botón con la flecha
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function () {
+      procesarEntrada();
+    });
+  }
+});
 // Función principal de la terminal
 function ejecutarComando(cmd) {
   const cmdLimpio = cmd.trim().toLowerCase();
