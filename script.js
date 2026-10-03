@@ -76,18 +76,25 @@ window.copiarCorreoDirecto = function(e) {
 // ====================================================
 // 3. FUNCIÓN GLOBAL DE EJECUCIÓN (ACCESIBLE VÍA ONCLICK)
 // ====================================================
+// ====================================================
+// FUNCIÓN GLOBAL DE EJECUCIÓN (COMPATIBLE CON PC Y MÓVIL)
+// ====================================================
 window.ejecutarComando = function(cmd, e) {
-  // 1. Manejo seguro del evento e
+  // 1. Manejo seguro del evento si viene en 'e'
   if (e && typeof e.preventDefault === 'function') {
     e.preventDefault();
-  } else if (cmd && typeof cmd.preventDefault === 'function') {
-    // Si por error se pasó el evento como primer parámetro
+  }
+
+  // 2. Si por error el evento se pasó en 'cmd'
+  if (cmd && typeof cmd.preventDefault === 'function') {
     cmd.preventDefault();
     return;
   }
 
-  // 2. Validación de que 'cmd' sea realmente un texto
-  if (!cmd || typeof cmd !== 'string') return;
+  // 3. Validación de que 'cmd' sea texto real
+  if (!cmd || typeof cmd !== 'string') {
+    return;
+  }
 
   const terminalOutput = document.getElementById('terminal-output');
   const terminalInput = document.getElementById('terminal-input');
@@ -104,9 +111,10 @@ window.ejecutarComando = function(cmd, e) {
     terminalInput.value = '';
   }
 
-  // 3. Ejecutar la lógica con un string garantizado
+  // 4. Se ejecuta la lógica de comandos
   procesarComandoLogica(cmd);
 };
+
 function procesarEntrada() {
   const terminalInput = document.getElementById('terminal-input');
   if (!terminalInput) return;
