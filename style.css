@@ -792,12 +792,6 @@ avatar-bubble {
 /* ==========================================
    TERMINAL Y AVATAR DANTE (CÓDIGO UNIFICADO)
    ========================================== */
-
-/* 1. Ventana principal de la Terminal - Container */
-/* ==========================================
-   TERMINAL INTERACTIVA - ESTILOS UNIFICADOS
-   ========================================== */
-
 /* 1. Contenedor principal estilo ventana */
 .terminal-window {
   background-color: #090d16;
@@ -918,7 +912,14 @@ avatar-bubble {
   background-color: #38bdf8;
   color: #090d16;
 }
-
+/* Asegura que el aside no compita en espacio con otros elementos */
+aside.terminal-section, 
+.terminal-section {
+  grid-column: 1 / -1; /* Si usas CSS Grid, ocupa todo el ancho */
+  width: 100%;         /* Ocupa el 100% disponible */
+  clear: both;         /* Evita que se ponga al lado de elementos flotantes */
+  margin: 20px auto;
+}
 /* 5. Avatar Dante flotante (Corregido para que baje un poco más) */
 .avatar-widget {
   position: fixed;
