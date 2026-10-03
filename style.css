@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
 
+/* ==========================================
+   1. VARIABLES Y BASE GENERAL
+   ========================================== */
 :root {
   --ink: #26252a;
   --muted: #716f76;
@@ -11,9 +14,15 @@
   --white: #ffffff;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
 
-html { scroll-behavior: smooth; }
+html { 
+  scroll-behavior: smooth; 
+}
 
 body {
   background: var(--paper);
@@ -22,8 +31,14 @@ body {
   line-height: 1.7;
 }
 
-a { color: inherit; text-decoration: none; }
+a { 
+  color: inherit; 
+  text-decoration: none; 
+}
 
+/* ==========================================
+   2. NAVBAR Y PÍLDORAS DE NAVEGACIÓN
+   ========================================== */
 .navbar {
   position: sticky;
   top: 0;
@@ -42,15 +57,58 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
   letter-spacing: .08em;
 }
-.brand span { color: var(--accent); }
 
-.navbar nav {
-  display: flex;
-  gap: 28px;
-  font-size: .82rem;
+.brand span { 
+  color: var(--accent); 
 }
-.navbar nav a:hover { color: var(--accent-dark); }
 
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.nav-pills {
+  display: inline-flex;
+  gap: 4px;
+  background-color: #f7f6f2;
+  padding: 4px;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.nav-pill {
+  text-decoration: none;
+  color: #4a4a4a;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-pill:hover,
+.nav-pill.active:hover {
+  color: #1a1a1a !important;
+  background-color: #ffffff !important;
+  border-color: #d4af37 !important;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.45), 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+  transform: translateY(-1px);
+}
+
+.nav-pill.active {
+  background-color: #ffffff;
+  color: #111111;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+/* ==========================================
+   3. SECCIÓN HERO (TEXTO Y VIDEO)
+   ========================================== */
 .hero {
   min-height: 88vh;
   padding: 9vh 10vw 8vh;
@@ -71,6 +129,7 @@ a { color: inherit; text-decoration: none; }
   right: -120px;
   top: 80px;
 }
+
 .hero::after {
   content: "";
   position: absolute;
@@ -82,7 +141,23 @@ a { color: inherit; text-decoration: none; }
   top: 180px;
 }
 
-.hero-content { max-width: 850px; position: relative; z-index: 1; }
+.hero-container {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 300px;
+  padding-right: 1.5rem;
+}
 
 .eyebrow, .section-label, .project-type {
   font-size: .72rem;
@@ -105,574 +180,76 @@ h1 em, h2 span {
   font-weight: 500;
 }
 
-.hero-text {
-  max-width: 640px;
-  color: var(--muted);
-  font-size: 1.08rem;
+.hero-video-wrapper {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.hero-actions { display: flex; gap: 14px; margin-top: 34px; }
+.hero-video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
+.hero-actions {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.8rem;
+  padding-left: 0.2rem;
+}
+
+/* Botones */
 .button {
-  padding: 13px 24px;
-  border: 1px solid var(--ink);
-  font-size: .86rem;
-  transition: .25s ease;
-}
-.button.primary {
-  background: var(--accent-dark);
-  color: var(--white);
-  border-color: var(--accent-dark);
-}
-
-.button.primary:hover {
-  background: #5a3f4a;
-  transform: translateY(-2px);
-}
-.button.secondary:hover { background: var(--ink); color: var(--white); }
-
-.section { padding: 110px 10vw; }
-.section-label { margin-bottom: 55px; }
-
-.intro { border-top: 1px solid var(--line); }
-.intro-grid, .process-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 9vw;
-}
-h2 {
-  font-size: clamp(2.4rem, 5vw, 4.7rem);
-  line-height: 1.05;
-  letter-spacing: -.04em;
-  font-weight: 600;
-}
-.intro-copy { color: var(--muted); max-width: 560px; }
-.intro-copy p + p { margin-top: 20px; }
-
-.quote-section {
-  padding: 120px 15vw;
-  background: var(--soft);
-  text-align: center;
-}
-.quote-mark {
-  font-family: "Playfair Display", serif;
-  font-size: 6rem;
-  line-height: .5;
-  color: var(--accent);
-}
-blockquote {
-  max-width: 1000px;
-  margin: 20px auto 25px;
-  font-family: "Playfair Display", serif;
-  font-size: clamp(2rem, 4vw, 4rem);
-  line-height: 1.15;
-  font-style: italic;
-}
-.quote-section > p {
-  max-width: 720px;
-  margin: auto;
-  color: var(--muted);
-}
-/* =========================================
-   SECCIÓN DE PROYECTOS
-========================================= */
-
-.projects {
-    background: #f0ece6;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-}
-
-.projects-intro {
-    display: grid;
-    grid-template-columns: 1.1fr .9fr;
-    gap: 8vw;
-    align-items: end;
-    margin-bottom: 65px;
-}
-
-.projects-intro > p {
-    max-width: 520px;
-    color: var(--muted);
-}
-
-
-/* =========================================
-   CATEGORÍAS
-========================================= */
-
-.project-category {
-    margin-top: 42px;
-    padding-bottom: 55px;
-}
-
-.project-category + .project-category {
-    margin-top: 30px;
-    padding-top: 72px;
-    border-top: 1px solid var(--line);
-}
-
-
-/* Encabezado de cada categoría */
-
-.project-category {
-    width: 100%;
-    margin-top: 42px;
-    padding-bottom: 55px;
-}
-
-.project-category + .project-category {
-    margin-top: 30px;
-    padding-top: 72px;
-    border-top: 1px solid var(--line);
-}
-
-.category-header {
-    width: 100%;
-    margin-bottom: 32px;
-}
-
-.category-index {
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .18em;
-    color: var(--accent-dark);
-    margin-bottom: 10px;
-}
-
-.category-header h3 {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(2.2rem, 4vw, 3.7rem);
-    line-height: 1.05;
-    font-weight: 500;
-    margin-bottom: 12px;
-}
-
-.category-header p {
-    max-width: 760px;
-    color: var(--muted);
-}
-
-/* =========================================
-   TARJETAS
-========================================= */
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-.project-card {
-    background: #fffdf9;
-    padding: 38px;
-    min-height: 360px;
-    position: relative;
-
-    border: 1px solid var(--line);
-    border-radius: 2px;
-
-    box-shadow: 0 8px 24px rgba(49, 42, 45, .08);
-
-    transition:
-        transform .3s ease,
-        box-shadow .3s ease,
-        border-color .3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 16px 34px rgba(49, 42, 45, .12);
-
-    border-color: #c6b8bd;
-}
-
-
-/* =========================================
-   PROYECTO PRINCIPAL
-========================================= */
-
-.project-card.featured {
-    grid-column: span 2;
-
-    min-height: 390px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fffdf9 0%,
-            #f5ecef 100%
-        );
-
-    border-color: #d7c2ca;
-}
-/* =========================================
-   PROYECTO FUTURO
-========================================= */
-
-.project-card.future {
-    background: #f5f3ed;
-    border-style: dashed;
-}
-/* =========================================
-   DETALLE DE SGMO
-========================================= */
-.card-corner {
-    position: absolute;
-    right: 28px;
-    top: 28px;
-
-    padding: 6px 10px;
-
-    font-size: .62rem;
-    letter-spacing: .12em;
-
-    color: var(--accent-dark);
-
-    border: 1px solid #d5c1c9;
-
-    background: rgba(255,255,255,.55);
-}
-/* =========================================
-   TECNOLOGÍAS
-========================================= */
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 24px 0;
-}
-
-.tags span {
-    padding: 6px 12px;
-
-    border: 1px solid #d8c4cc;
-
-    background: #eadce2;
-
-    color: var(--accent-dark);
-
-    font-size: .72rem;
-    font-weight: 600;
-
-    border-radius: 4px;
-}
-/* =========================================
-   ENLACES
-========================================= */
-
-.project-card a {
-    font-size: .8rem;
-    font-weight: 700;
-    color: var(--accent-dark);
-}
-
-.project-card a:hover {
-    text-decoration: underline;
-}
-
-.project-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 22px;
-    margin-top: 14px;
-}
-
-.coming {
-    font-size: .75rem;
-    color: var(--accent-dark);
-    font-weight: 600;
-}
-/* =========================================
-   SOLUCIONES EXPRESS
-========================================= */
-
-.category-express .category-index {
-    color: #657465;
-}
-
-.category-express .category-header h3 {
-    color: #4f5d52;
-}
-
-.express-grid .project-card {
-    background: #fbfcf8;
-    border-color: #cfd8ce;
-}
-
-.express-grid .project-card:hover {
-    border-color: #aab8aa;
-}
-
-.express-grid .project-number,
-.express-grid .project-card a {
-    color: #657465;
-}
-
-.express-grid .tags span {
-    background: #e1e7df;
-    border-color: #c6d0c4;
-    color: #566457;
-}
-.coming { font-size: .75rem; color: var(--accent-dark); font-weight: 600; }
-
-.process { border-top: 1px solid var(--line); background: #f3f0eb; }
-.steps { border-top: 1px solid var(--line); }
-.step {
-  display: grid;
-  grid-template-columns: 55px 1fr;
-  gap: 20px;
-  padding: 25px 0;
-  border-bottom: 1px solid var(--line);
-}
-.step > span { color: var(--accent); font-weight: 700; font-size: .75rem; }
-.step h3 { font-size: 1rem; margin-bottom: 5px; }
-.step p { color: var(--muted); font-size: .88rem; }
-
-.stack { border-top: 1px solid var(--line); }
-.stack-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.stack-list span {
-  padding: 13px 20px;
-  border: 1px solid var(--line);
-  background: var(--white);
-  font-size: .84rem;
-}
-
-.contact {
-  background: var(--ink);
-  color: var(--white);
-}
-.contact .section-label { color: #d5abb9; }
-.contact h2 span { color: #d5abb9; }
-.contact > p { color: #bbb8bb; max-width: 520px; margin: 25px 0 35px; }
-.contact-links { display: flex; gap: 30px; }
-.contact-links a { border-bottom: 1px solid #aaa; padding-bottom: 5px; }
-.contact-links a:hover { color: #d5abb9; }
-
-footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 25px 10vw;
-  background: var(--ink);
-  border-top: 1px solid #48464a;
-  color: #99969a;
-  font-size: .72rem;
-}
-
-@media (max-width: 800px) {
-  .navbar nav { display: none; }
-  .hero { padding: 80px 7vw; min-height: 80vh; }
-  .hero-note { display: none; }
-  .section { padding: 80px 7vw; }
-  .intro-grid, .process-grid, .project-grid { grid-template-columns: 1fr; }
-  .project-card.featured { grid-column: span 1; }
-  .section-heading { display: block; }
-  .section-heading p { margin-top: 25px; }
-  .quote-section { padding: 90px 8vw; }
-  .hero h1 { font-size: clamp(3.1rem, 15vw, 5rem); }
-  footer { display: block; }
-  footer p + p { margin-top: 5px; }
-  .tab-buttons { flex-direction: column; }
-  .tab-btn { width: 100%; justify-content: space-between; }
-}
-.projects-intro {
-    grid-template-columns: 1fr;
-}
-
-.project-grid {
-    grid-template-columns: 1fr;
-}
-
-.project-card.featured {
-    grid-column: span 1;
-}
-
-.category-header {
-    grid-template-columns: 1fr;
-    gap: 8px;
-}
-
-.category-index {
-    padding-top: 0;
-}
-
-/* Widget Flotante del Avatar */
-.avatar-widget {
-  position: fixed !important;
-  bottom: 70px !important;
-  right: 20px !important;
-  display: flex !important;
-  align-items: flex-end !important;
-  gap: 12px !important;
-  z-index: 9999 !important;
-  max-width: 320px !important;
-}
-
-avatar-bubble {
-  background: #1e293b !important; /* Tarjeta oscura elegante */
-  color: #f8fafc !important;        /* Texto blanco legibles */
-  padding: 10px 14px !important;
-  border-radius: 12px !important;
-  border: 1px solid #38bdf8 !important; /* Borde cian técnico */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
-  font-size: 0.82rem !important;
-  line-height: 1.4 !important;
-  margin: 0 !important;
-  text-align: left !important;
-}
-
-
-.avatar-character {
-  flex-shrink: 0;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
-.avatar-character:hover {
-  transform: scale(1.1);
+.button.primary {
+  background-color: #614352;
+  color: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
-.avatar-img {
-  width: 52px !important;
-  height: 52px !important;
-  border-radius: 50% !important;
-  border: 2px solid #38bdf8 !important;
-  object-fit: cover !important;
+.button.primary:hover {
+  background-color: #724f61;
+  border-color: #ffd700;
+  color: #fff8dc;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.45), 0 0 30px rgba(212, 175, 55, 0.2);
+  transform: translateY(-2px);
 }
 
-/* Corrección para que el avatar no tape la lectura en celulares */
-/* Adaptación para celulares */
-/* Ajuste móvil */
-@media (max-width: 768px) {
-  .avatar-widget {
-    bottom: 60px !important;
-    right: 15px !important;
-    max-width: 220px !important;
-  }
-  .avatar-bubble {
-    font-size: 0.75rem !important;
-  }
-  .avatar-img {
-    width: 42px !important;
-    height: 42px !important;
-  }
+.button.secondary {
+  background: transparent;
+  color: #2c2c2c;
+  border: 1.5px solid #2c2c2c;
 }
 
-/* Contenedor principal centrado y limpio */
-.navbar-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0;
-  background-color: transparent;
+.button.secondary:hover {
+  border-color: #d4af37;
+  color: #a67c00;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+  transform: translateY(-3px);
 }
 
-/* Grupo de píldoras flotantes con fondo suave y elegante */
-.nav-pills {
-  display: inline-flex;
-  gap: 8px;
-  background-color: #f7f6f2; /* Tono crema sutil y refinado */
-  padding: 6px;
-  border-radius: 50px;       /* Forma ovalada fluida */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); /* Sombra muy suave */
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-/* Enlaces individuales con estilo de píldora */
-.nav-pill {
-  text-decoration: none;
-  color: #333333;            /* Texto oscuro elegante */
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 10px 22px;
-  border-radius: 50px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  white-space: nowrap;
-}
-
-/* Efecto al pasar el cursor por encima */
-.nav-pill:hover {
-  color: #0a0a0a;
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-/* Píldora activa (sección actual) */
-.nav-pill.active {
-  background-color: #ffffff;
-  color: #1a1a1a;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  font-weight: 600;
-}
-/* Contenedor principal sin márgenes altos sobrantes */
-.navbar-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 0; /* Espaciado vertical reducido */
-}
-
-/* Barra compacta y contenida */
-.nav-pills {
-  display: inline-flex;
-  gap: 4px;                  /* Espacio mínimo entre pestañas */
-  background-color: #f7f6f2; /* Tono crema sutil */
-  padding: 4px;              /* Borde interior estrecho */
-  border-radius: 50px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-/* Enlaces compactos y estilizados */
-.nav-pill {
-  text-decoration: none;
-  color: #4a4a4a;
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 0.85rem;        /* Texto ligeramente más pequeño y elegante */
-  font-weight: 500;
-  padding: 6px 14px;         /* Padding muy ajustado */
-  border-radius: 50px;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-/* Efecto hover con un toque y brillo dorado sofisticado */
-.nav-pill:hover {
-  color: #1a1a1a;
-  background-color: #ffffff;
-  border-color: #d4af37; /* Borde dorado fino */
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4), 0 2px 6px rgba(0, 0, 0, 0.05); /* Resplandor sutil dorado */
-  transform: translateY(-1px); /* Elevación ligera muy suave */
-}
-
-
-/* Elemento seleccionado */
-.nav-pill.active {
-  background-color: #ffffff;
-  color: #111111;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  font-weight: 600;
-}
-
-/* Brillo dorado sofisticado al pasar el cursor para TODAS las píldoras (incluida la activa) */
-.nav-pill:hover,
-.nav-pill.active:hover {
-  color: #1a1a1a !important;
-  background-color: #ffffff !important;
-  border-color: #d4af37 !important; /* Borde dorado fino */
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.45), 0 2px 6px rgba(0, 0, 0, 0.05) !important; /* Resplandor dorado */
-  transform: translateY(-1px);
-}
-
-/* Contenedor principal que oculta el desborde */
+/* ==========================================
+   4. CARRUSEL INFINITO DE TECNOLOGÍAS
+   ========================================== */
 .tech-slider {
   width: 100%;
   overflow: hidden;
@@ -682,65 +259,41 @@ avatar-bubble {
   position: relative;
 }
 
-/* Pista que se mueve infinitamente */
 .tech-slide-track {
   display: inline-flex;
   gap: 15px;
   animation: scrollInfinito 25s linear infinite;
 }
 
-/* Se pausa la animación al pasar el mouse */
 .tech-slider:hover .tech-slide-track {
   animation-play-state: paused;
 }
 
-/* Estilo elegante para las etiquetas (sin cajas pesadas) */
-.tech-badge {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 30px; /* Bordes suaves estilo píldora */
-  padding: 8px 20px;
-  font-size: 0.95rem;
-  color: #333;
-  font-weight: 500;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
-}
-
-.tech-badge:hover {
-  background: #111; /* Cambia a contraste al pasar el cursor */
-  color: #fff;
-  transform: translateY(-2px);
-}
-
-/* Keyframes de la animación continua */
-@keyframes scrollInfinito {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Estilo elegante para las etiquetas del carrusel con toque dorado */
 .tech-badge {
   background: #ffffff;
-  border: 1px solid #d4af37; /* Borde dorado elegante */
+  border: 1px solid #d4af37;
   border-radius: 20px;
   padding: 8px 18px;
   font-size: 0.9rem;
   color: #2c2c2c;
   font-weight: 500;
-  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.15); /* Sombra dorada sutil */
+  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.15);
   transition: all 0.3s ease;
 }
 
-/* Efecto al pasar el cursor: elevación sutil sin cambiar a negro */
 .tech-badge:hover {
-  border-color: #b8860b; /* Dorado más cálido al posar el cursor */
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); /* Resplandor dorado */
+  border-color: #b8860b;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
   transform: translateY(-2px);
 }
 
+@keyframes scrollInfinito {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* ==========================================
-   MÓDULO: CONSOLA INTERACTIVA (Sobria y Elegante)
+   5. SECCIÓN CONSOLA INTERACTIVA Y TERMINAL
    ========================================== */
 .console-section {
   margin: 35px auto;
@@ -752,13 +305,6 @@ avatar-bubble {
   margin-bottom: 4px;
 }
 
-.console-intro p {
-  color: #94a3b8;
-  font-size: 0.92rem;
-  margin-bottom: 15px;
-}
-
-/* Botones de comandos rápidos */
 .console-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -789,13 +335,6 @@ avatar-bubble {
   opacity: 0.8;
 }
 
-/* ==========================================
-   TERMINAL Y AVATAR DANTE (CÓDIGO UNIFICADO)
-   ========================================== */
-/* ==========================================
-   ESTILOS DE LA TERMINAL UNIFICADA
-   ========================================== */
-
 .terminal-window {
   background-color: #090d16;
   border-radius: 12px;
@@ -805,8 +344,8 @@ avatar-bubble {
   margin: 20px 0 40px;
   display: flex;
   flex-direction: column;
-  height: 400px;         /* Altura fija para la consola */
-  overflow: hidden;      /* Mantiene el input fijo abajo */
+  height: 400px;
+  overflow: hidden;
   width: 100%;
 }
 
@@ -833,7 +372,6 @@ avatar-bubble {
   color: #94a3b8;
 }
 
-/* Área donde van saliendo los comandos (Scroll interno) */
 #terminal-output.terminal-body {
   flex: 1;
   background-color: #090d16;
@@ -842,27 +380,27 @@ avatar-bubble {
   overflow-y: auto;
   font-size: 0.88rem;
   line-height: 1.5;
-  box-sizing: border-box;
 }
 
 .term-line { color: #f8fafc; margin-bottom: 8px; line-height: 1.5; }
 .term-accent { color: #f59e0b; }
 .term-cmd { color: #38bdf8; }
 
-/* Barra de entrada de comandos fija abajo */
 .terminal-input-row {
   background-color: #111827;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 8px 16px;
+  padding: 6px 10px;
   display: flex;
   align-items: center;
+  gap: 6px;
 }
 
 .prompt {
   color: #38bdf8;
-  margin-right: 0.5rem;
   font-family: 'Fira Code', Consolas, monospace;
   font-weight: bold;
+  font-size: 0.85rem;
+  margin-right: 2px;
 }
 
 #terminal-input {
@@ -871,8 +409,9 @@ avatar-bubble {
   border: none;
   color: #f8fafc;
   font-family: 'Fira Code', Consolas, monospace;
-  font-size: 16px;
-  padding: 0.25rem;
+  font-size: 14px;
+  padding: 4px;
+  min-width: 0;
 }
 
 #terminal-input:focus { outline: none; }
@@ -888,202 +427,266 @@ avatar-bubble {
   font-size: 1.1rem;
   min-width: 48px;
 }
-/* Asegura que el aside no compita en espacio con otros elementos */
-aside.terminal-section, 
-.terminal-section {
-  grid-column: 1 / -1; /* Si usas CSS Grid, ocupa todo el ancho */
-  width: 100%;         /* Ocupa el 100% disponible */
-  clear: both;         /* Evita que se ponga al lado de elementos flotantes */
-  margin: 20px auto;
-}
-/* 5. Avatar Dante flotante (Corregido para que baje un poco más) */
-.avatar-widget {
-  position: fixed;
-  bottom: 12px; /* Cambiado de 25px a 12px para bajarlo */
-  right: 20px;
-  display: flex;
-  align-items: flex-end;
-  gap: 12px;
-  z-index: 9999;
-  max-width: 320px;
-}
-
-/* Ajuste para bajar a Dante respecto a la terminal */
-.dante-avatar-container, 
-#dante-debugger {
-  position: absolute;
-  bottom: -20px; /* Bajar aquí altura de dante (ej. -10px o 0px) */
-  right: 20px;
-  z-index: 10;
-}
-
-/* Ajuste para la burbuja del asistente Dante */
-.dante-bubble, .chat-bubble { /* Reemplaza por la clase que tengas */
-  position: absolute;
-  bottom: 80px;            /* Ubicación sobre el avatar */
-  right: 20px;
-  width: 260px;            /* ANCHO FIJO para que no se comprima verticalmente */
-  max-width: 85vw;
-  background-color: #0d1527;
-  border: 1px solid rgba(56, 189, 248, 0.4);
-  border-radius: 12px;
-  padding: 12px 16px;
-  color: #f8fafc;
-  font-size: 0.85rem;
-  line-height: 1.4;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  z-index: 100;
-}
-
-.avatar-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px solid #38bdf8;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-@media (max-width: 600px) {
-  .terminal-title { display: none; }
-}
-
-
 
 /* ==========================================
-   SECCIÓN HERO (2 Columnas: Texto + Video)
+   6. SECCIÓN SOBRE MÍ Y PROCESO
    ========================================== */
+.section { padding: 110px 10vw; }
+.section-label { margin-bottom: 55px; }
 
-/* Contenedor principal de 2 columnas */
-.hero-container {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2.5rem;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+.intro { border-top: 1px solid var(--line); }
+.intro-grid, .process-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9vw;
 }
-/* 1. Limita el tamaño del contenedor del video */
-.hero-video-wrapper {
-  flex: 1;
-  min-width: 300px;
-  max-width: 500px; /* Limita el ancho máximo para que no crezca tanto */
+
+h2 {
+  font-size: clamp(2.4rem, 5vw, 4.7rem);
+  line-height: 1.05;
+  letter-spacing: -.04em;
+  font-weight: 600;
+}
+
+.intro-copy { color: var(--muted); max-width: 560px; }
+.intro-copy p + p { margin-top: 20px; }
+
+.quote-section {
+  padding: 120px 15vw;
+  background: var(--soft);
+  text-align: center;
+}
+
+.quote-mark {
+  font-family: "Playfair Display", serif;
+  font-size: 6rem;
+  line-height: .5;
+  color: var(--accent);
+}
+
+blockquote {
+  max-width: 1000px;
+  margin: 20px auto 25px;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.15;
+  font-style: italic;
+}
+
+/* ==========================================
+   7. SECCIÓN PROYECTOS Y TARJETAS
+   ========================================== */
+.projects {
+  background: #f0ece6;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.projects-intro {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 8vw;
+  align-items: end;
+  margin-bottom: 65px;
+}
+
+.project-category {
+  width: 100%;
+  margin-top: 42px;
+  padding-bottom: 55px;
+}
+
+.project-category + .project-category {
+  margin-top: 30px;
+  padding-top: 72px;
+  border-top: 1px solid var(--line);
+}
+
+.category-header {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.category-index {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--accent-dark);
+  margin-bottom: 10px;
+}
+
+.category-header h3 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.2rem, 4vw, 3.7rem);
+  line-height: 1.05;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.project-card {
+  background: #fffdf9;
+  padding: 38px;
+  min-height: 360px;
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  box-shadow: 0 8px 24px rgba(49, 42, 45, .08);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 34px rgba(49, 42, 45, .12);
+  border-color: #c6b8bd;
+}
+
+.project-card.featured {
+  grid-column: span 2;
+  min-height: 390px;
+  background: linear-gradient(135deg, #fffdf9 0%, #f5ecef 100%);
+  border-color: #d7c2ca;
+}
+
+.project-card.future {
+  background: #f5f3ed;
+  border-style: dashed;
+}
+
+.tags {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0;
 }
 
-/* 2. Fuerza al video a ajustarse dentro de su contenedor */
-.hero-video {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.tags span {
+  padding: 6px 12px;
+  border: 1px solid #d8c4cc;
+  background: #eadce2;
+  color: var(--accent-dark);
+  font-size: .72rem;
+  font-weight: 600;
+  border-radius: 4px;
 }
 
-/* Ventana estilo Terminal (Va en su propia sección más abajo) */
-.terminal-window {
-  background: #090d16;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-  font-family: 'Fira Code', Consolas, monospace;
+.project-card a {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--accent-dark);
 }
 
-/* Adaptación para Celulares */
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 14px;
+}
+
+/* ==========================================
+   8. FOOTER Y CONTACTO
+   ========================================== */
+.contact {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.contact .section-label, .contact h2 span { color: #d5abb9; }
+
+.contact-links { display: flex; gap: 30px; }
+.contact-links a { border-bottom: 1px solid #aaa; padding-bottom: 5px; }
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 10vw;
+  background: var(--ink);
+  border-top: 1px solid #48464a;
+  color: #99969a;
+  font-size: .72rem;
+}
+
+/* ==========================================
+   9. ADAPTACIÓN EXCLUSIVA PARA MÓVILES (@media)
+   ========================================== */
 @media (max-width: 768px) {
+  /* Ocultar barra de navegación de escritorio */
+  .navbar nav { display: none; }
+
+  /* Hero responsive */
   .hero-container {
     flex-direction: column !important;
     text-align: center;
   }
-  
-  .hero-video {
-    max-width: 100%;
+  .hero-text {
+    padding-right: 0;
+  }
+  .hero-actions {
+    justify-content: center;
+    padding-left: 0;
+  }
+  .hero h1 { font-size: clamp(3.1rem, 15vw, 5rem); }
+
+  /* Disposición en 1 sola columna */
+  .intro-grid, 
+  .process-grid, 
+  .project-grid,
+  .projects-intro { 
+    grid-template-columns: 1fr; 
   }
 
-}
+  .project-card.featured { 
+    grid-column: span 1; 
+  }
 
-/* Contenedor de botones con buen margen interno */
-.hero-actions {
-  display: flex;
-  gap: 1.2rem;
-  margin-top: 1.8rem;
-  padding-left: 0.2rem; /* Separa ligeramente el botón del borde extremo */
-}
-/* Ajuste del contenedor principal para que no pegue el texto al margen */
-.hero-text {
-  flex: 1;
-  min-width: 300px;
-  padding-right: 1.5rem; /* Crea un espacio entre el texto/botones y el video */
-}
-/* Base común de botones */
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 1.6rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
+  /* Ajustes para la Terminal y la Entrada de Comandos */
+  .terminal-title { 
+    display: none; 
+  }
 
-/* Botón Primario (Ver Proyectos) */
-.button.primary {
-  background-color: #614352; /* Tono vino/marrón actual */
-  color: #ffffff;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-}
+  .terminal-input-row {
+    padding: 6px 10px;
+    gap: 6px;
+  }
 
-/* Hover: Brillo y resplandor dorado */
-.button.primary:hover {
-  background-color: #724f61;
-  border-color: #ffd700;
-  color: #fff8dc;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.45), 0 0 30px rgba(212, 175, 55, 0.2);
-  transform: translateY(-2px);
-}
+  .prompt {
+    font-size: 0.85rem;
+    margin-right: 2px;
+  }
 
-/* Clic (Active): Destello dorado intenso */
-.button.primary:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
-}
-/* Contenedor que mueve ambos botones juntos respecto a la orilla */
-.hero-actions {
-  display: flex;
-  gap: 1.2rem;            /* Espacio entre botón y botón */
-  margin-top: 1.8rem;     /* Distancia con el texto de arriba */
-  padding-left: 1.5rem;   /* LÍNEA que despega el botón de la orilla */
-}
-/* Botón Secundario (GitHub ↗) */
-.button.secondary {
-  background: transparent;
-  color: #2c2c2c;
-  border: 1.5px solid #2c2c2c;
-}
+  #terminal-input {
+    font-size: 14px;
+    padding: 4px;
+    min-width: 0;
+  }
 
-/* Hover Secundario: Borde y sombra dorada */
-.button.secondary:hover {
-  border-color: #d4af37;
-  color: #a67c00;
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
-  transform: translateY(-3px);
-}
+  /* Botón de envío (Flecha) perfectamente visible y corrido a la izquierda */
+  #terminal-submit-btn {
+    min-width: 40px;
+    height: 38px;
+    padding: 0 8px;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-left: 4px;
+    background-color: #38bdf8;
+    color: #090d16;
+    border: none;
+    border-radius: 6px;
+  }
 
-/* Clic Secundario */
-.button.secondary:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+  /* Desactivar elementos flotantes desalineados en pantallas pequeñas */
+  .avatar-widget,
+  .dante-avatar-container,
+  .dante-bubble,
+  .chat-bubble {
+    display: none !important;
+  }
+
+  footer { display: block; }
+  footer p + p { margin-top: 5px; }
 }
