@@ -18,7 +18,7 @@ function hablarDante(texto) {
     } else {
       clearInterval(timerEscribir);
     }
-  }, 25);
+   }, 25);
 }
 
 // Saludo inicial al cargar
