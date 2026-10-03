@@ -76,7 +76,13 @@ window.copiarCorreoDirecto = function(e) {
 // ====================================================
 // 3. FUNCIÓN GLOBAL DE EJECUCIÓN (ACCESIBLE VÍA ONCLICK)
 // ====================================================
-window.ejecutarComando = function(cmd) {
+window.ejecutarComando = function(cmd, e) {
+  // Evita que el navegador en PC capture el clic y lo anule
+  if (e) {
+    if (e.preventDefault) e.preventDefault();
+    if (e.stopPropagation) e.stopPropagation();
+  }
+  
   if (!cmd) return;
   const terminalOutput = document.getElementById('terminal-output');
   const terminalInput = document.getElementById('terminal-input');
@@ -104,30 +110,6 @@ function procesarEntrada() {
     window.ejecutarComando(command);
   }
 }
-
-// ====================================================
-// 4. LÓGICA PRINCIPAL DE COMANDOS
-// ====================================================
-function procesarComandoLogica(cmd) {
-  const cmdLimpio = cmd.trim().toLowerCase();
-  if (!cmdLimpio) return;
-
-  const terminalOutput = document.getElementById('terminal-output');
-
-  // --- A. EVALUACIONES / JUICIO ---
-  if (cmdLimpio === 'juicio' || cmdLimpio.startsWith('juicio') || cmdLimpio.startsWith('veredicto') || cmdLimpio.startsWith('evaluar')) {
-    const partes = cmdLimpio.split(' ');
-    const nota = partes[1];
-    const comentario = partes.slice(2).join(' ') || 'Sin comentario escrito.';
-
-    if (!nota || !['1', '2', '3'].includes(nota)) {
-      const guardado = localStorage.getItem('dante_veredicto');
-      let mensajePrevio = '';
-      
-      if (guardado) {
-        const v = JSON.parse(guardado);
-        mensajePrevio = `<div style="margin-bottom: 0.5rem; color: #22c55e;">📜 <b>TU VEREDICTO ANTERIOR:</b> ${v.reino} (${v.fecha}) - ${v.comentario}</div>`;
-      }
 
       imprimirLineaTerminal(`
         ${mensajePrevio}<span class="term-accent">⚖️ [TRIBUNAL DE LA COMEDIA - EMITE TU JUICIO]:</span><br>
