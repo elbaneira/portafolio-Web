@@ -76,7 +76,19 @@
         <span class="terminal-title">dante_debugger@elba-tech:~ (python3)</span>
       </div>
 
-      <!-- Historial de respuestas de Dante -->
+     <!-- ==========================================
+           1. AQUÍ COLOCAS EL AVATAR DE DANTE
+      =========================================== -->
+      <aside class="avatar-widget" id="avatar-widget">
+        <div class="avatar-character">
+          <img src="img/Dante.jpg" alt="Dante" class="avatar-img">
+        </div>
+        <div id="avatar-text" class="avatar-bubble">
+          👋 ¡Hola! Soy el asistente de Elba. Escribe 'help' en la consola para comenzar.
+        </div>
+      </aside>
+
+      <!-- 2. Historial de respuestas de Dante -->
       <div class="terminal-body" id="terminal-output">
         <p class="term-line">
           <span class="term-accent">🤖 [DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.
@@ -86,9 +98,9 @@
         </p>
       </div>
 
-      <!-- Barra de entrada (Input + Botón de Flecha) -->
+      <!-- 3. Barra de entrada (Input + Botón de Flecha) -->
       <div class="terminal-input-row">
-          <span class="prompt">elba@tech:~$</span>
+        <span class="prompt">elba@tech:~$</span>
         <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off" spellcheck="false">
         <button id="terminal-submit-btn">→</button>
       </div>
