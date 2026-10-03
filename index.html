@@ -463,35 +463,34 @@
     <!-- =========================================
        AVATAR INTERACTIVO
   ========================================== -->
- <aside class="avatar-widget" id="avatar-widget">
-    <div class="avatar-bubble" id="avatar-bubble">
-      
-     <!-- Widget Flotante de Dante -->
-<!-- WIDGET FLOTANTE DANTE -->
-<div class="avatar-widget">
+ <!-- CONTENEDOR PRINCIPAL WIDGET DANTE -->
+<aside class="avatar-widget" id="avatar-widget">
+
+  <!-- 1. Burbuja de mensaje flotante/superior -->
   <div id="avatar-text" class="avatar-bubble">
     👋 ¡Hola! Soy el asistente de Elba. Escribe 'help' en la consola para comenzar.
   </div>
+
+  <!-- 2. Imagen del Personaje -->
   <div class="avatar-character">
     <img src="img/Dante.jpg" alt="Dante" class="avatar-img">
   </div>
-</div>
-  <!-- Nueva sección para el historial de comandos y respuestas -->
+
+  <!-- 3. Historial e Impresión de Terminal -->
   <div id="terminal-history" class="terminal-history">
     <div id="terminal-output">
-      <!-- Aquí se imprimirán las líneas por JS -->
+      <!-- Las líneas se imprimen dinámicamente aquí -->
     </div>
   </div>
 
-  <!-- Línea de entrada fija en la parte inferior -->
+  <!-- 4. Entrada de comandos (Input + Botón) -->
   <div class="terminal-input-row">
     <span class="prompt">$</span>
     <input type="text" id="terminal-input" placeholder="Escribe 'help'..." autocomplete="off">
-    <!-- El botón con la flecha -->
     <button id="terminal-submit-btn" type="button" aria-label="Enviar comando">➔</button>
   </div>
-</div>
-  </aside>
+
+</aside>
 
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G-EW4MVT949B"></script>
