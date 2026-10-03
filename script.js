@@ -296,7 +296,7 @@ function procesarComandoLogica(cmd) {
             <div style="flex: 1; min-width: 200px;">
               <span class="term-accent" style="font-weight: bold; color: #f59e0b;">📂 PROYECTOS DESTACADOS</span><br>
               • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('1')">[1] SGMO</span> (Mano de Obra)<br>
-              • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('2')">[2] CertiManager</span> (Django Web)<br>
+              • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('2')">[2] Gestión Proyectos (Python)</span> (Django Web)<br>
               • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('3')">[3] Alke Wallet</span> (Billetera Digital)<br>
               • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('4')">[4] Gestión Clientes</span> (Python POO)<br>
               • <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('5')">[5] Power BI</span> (Dashboards)
