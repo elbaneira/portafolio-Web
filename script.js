@@ -33,7 +33,6 @@ function imprimirLineaTerminal(htmlContent) {
   p.innerHTML = htmlContent;
   terminalOutput.appendChild(p);
 
-  // Mantiene el scroll siempre abajo
   terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 
@@ -82,7 +81,6 @@ window.ejecutarComando = function(cmd) {
   const terminalOutput = document.getElementById('terminal-output');
   const terminalInput = document.getElementById('terminal-input');
 
-  // 1. Imprime la entrada del usuario en la pantalla
   if (terminalOutput) {
     const linea = document.createElement('div');
     linea.className = 'term-line';
@@ -90,12 +88,10 @@ window.ejecutarComando = function(cmd) {
     terminalOutput.appendChild(linea);
   }
 
-  // 2. Limpia la caja de entrada de texto
   if (terminalInput) {
     terminalInput.value = '';
   }
 
-  // 3. Evalúa la lógica del comando
   procesarComandoLogica(cmd);
 };
 
@@ -119,18 +115,11 @@ function procesarComandoLogica(cmd) {
   const terminalOutput = document.getElementById('terminal-output');
 
   // --- A. EVALUACIONES / JUICIO ---
-  if (cmdLimpio.startsWith('juicio') || cmdLimpio.startsWith('veredicto') || cmdLimpio.startsWith('evaluar')) {
-    const partes = cmdLimpio.split(' ');
-    const nota = partes[1];
-    const comentario = partes.slice(2).join(' ') || 'Sin comentario escrito.';
-
-    // --- A. EVALUACIONES / JUICIO ---
   if (cmdLimpio === 'juicio' || cmdLimpio.startsWith('juicio') || cmdLimpio.startsWith('veredicto') || cmdLimpio.startsWith('evaluar')) {
     const partes = cmdLimpio.split(' ');
     const nota = partes[1];
     const comentario = partes.slice(2).join(' ') || 'Sin comentario escrito.';
 
-    // Si solo escribieron 'juicio' o no pusieron una nota válida (1, 2 o 3)
     if (!nota || !['1', '2', '3'].includes(nota)) {
       const guardado = localStorage.getItem('dante_veredicto');
       let mensajePrevio = '';
@@ -151,6 +140,7 @@ function procesarComandoLogica(cmd) {
       hablarDante("Dime, viajero... ¿en cuál de los tres reinos situarás este código?");
       return;
     }
+
     let reino = '';
     let mensajeDante = '';
     let estiloHtml = '';
@@ -276,13 +266,13 @@ function procesarComandoLogica(cmd) {
               <li style="margin-bottom: 6px;">
                 <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('python3 auditoria.py')">🔍 python3 auditoria.py</span>
                 <span style="color: #94a3b8;"> : Calidad de datos y lógica backend.</span>
-                </li>
-                <li style="margin-bottom: 6px;">
+              </li>
+              <li style="margin-bottom: 6px;">
                 <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('juicio')">⚖️ juicio</span>
                 <span style="color: #94a3b8;"> : Tribunal de la Comedia (evalúa este portafolio).</span>
-                </li>
-                <li style="margin-bottom: 6px;">
-                <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('contacto')">✉️ contacto</span>
+              </li>
+              <li style="margin-bottom: 6px;">
+                <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('contacto')">✉️️ contacto</span>
                 <span style="color: #94a3b8;"> : Canales de comunicación directa.</span>
               </li>
               <li style="margin-bottom: 6px;">
@@ -390,18 +380,16 @@ function procesarComandoLogica(cmd) {
     }
   }
 }
-    
+
 // ====================================================
 // 5. INICIALIZACIÓN DE EVENTOS (DOM CONTENT LOADED)
 // ====================================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Saludo inicial de Dante
   hablarDante("¡Hola! Soy Dante, tu guía en el entorno de Elba. Escribe 'help' para iniciar el recorrido.");
 
   const terminalInput = document.getElementById('terminal-input');
   const submitBtn = document.getElementById('terminal-submit-btn');
 
-  // Escuchar tecla Enter
   if (terminalInput) {
     terminalInput.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') {
@@ -411,7 +399,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Escuchar clic en la flecha
   if (submitBtn) {
     submitBtn.addEventListener('click', function () {
       procesarEntrada();
