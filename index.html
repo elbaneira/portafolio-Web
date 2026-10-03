@@ -62,10 +62,10 @@
     <button type="button" class="console-btn btn-clear" onclick="ejecutarComando('clear')">🧹 clear</button>
   </div>
 
-  <!-- Ventana Única de la Terminal -->
-  <div class="terminal-window" style="position: relative;">
+  <!-- Única Ventana de la Terminal -->
+  <div class="terminal-window">
     
-    <!-- Header de la consola con luces -->
+    <!-- Header con lucecitas -->
     <div class="terminal-topbar">
       <div class="terminal-dots">
         <span class="dot red"></span>
@@ -75,7 +75,7 @@
       <span class="terminal-title">bash -- 80x24</span>
     </div>
 
-    <!-- Único cuerpo donde se imprimen las respuestas -->
+    <!-- Único historial de respuestas -->
     <div id="terminal-output" class="terminal-body">
       <p class="term-line">
         🤖 <span class="term-accent">[DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.
@@ -85,7 +85,7 @@
       </p>
     </div>
 
-    <!-- Única barra de entrada fija abajo (Input + Botón Flecha) -->
+    <!-- Única barra de entrada fija abajo (Input + Flecha) -->
     <div class="terminal-input-row">
       <span class="prompt">elba@tech:~$</span>
       <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off">
