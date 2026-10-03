@@ -8,20 +8,21 @@
   <link rel="stylesheet" href="style.css">
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G-EW4MVT949B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G-EW4MVT949B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-EW4MVT949B');
-</script>
+    gtag('config', 'G-EW4MVT949B');
+  </script>
 
+  <!-- GoatCounter -->
   <script 
-  data-goatcounter="https://elbatech.goatcounter.com/count"
-  async 
-  src="https://gc.zgo.at/count.js">
-</script>
+    data-goatcounter="https://elbatech.goatcounter.com/count"
+    async 
+    src="https://gc.zgo.at/count.js">
+  </script>
 </head>
 <body>
 
@@ -39,7 +40,7 @@
   </header>
 
   <!-- 1. SECCIÓN HERO (Texto y Video) -->
-  <section class="hero-section">
+  <section class="hero-section" id="inicio">
     <div class="hero-container">
 
       <!-- Columna Izquierda: Texto de Presentación -->
@@ -55,7 +56,7 @@
           <a class="button primary" href="#proyectos">Ver proyectos</a>
           <a class="button secondary" href="https://github.com/elbaneira" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
-      </div> <!-- Cierre correcto de hero-text -->
+      </div>
 
       <!-- Columna Derecha: Video -->
       <div class="hero-video-wrapper">
@@ -64,26 +65,8 @@
           Tu navegador no soporta videos HTML5.
         </video>
       </div>
+
     </div> 
-      
-    <!-- 1. Historial de respuestas de Dante en la Terminal -->
-      <div class="terminal-body" id="terminal-output">
-        <p class="term-line">
-          <span class="term-accent">🤖 [DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.
-        </p>
-        <p class="term-line">
-          👉 Escribe <span class="term-cmd">'help'</span> abajo o usa los botones de acceso rápido para comenzar.
-        </p>
-      </div>
-
-      <!-- 2. Barra de entrada (Input + Botón de Flecha) -->
-      <div class="terminal-input-row">
-        <span class="prompt">elba@tech:~$</span>
-        <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off" spellcheck="false">
-        <button id="terminal-submit-btn">→</button>
-      </div>
-
-  -- Cierre de terminal-window --><!-- Cierre correcto de hero-container -->
   </section>
 
   <!-- 2. CONSOLA INTERACTIVA UNIFICADA -->
@@ -100,7 +83,7 @@
       <button type="button" class="console-btn btn-clear" onclick="ejecutarComando('clear')">🧹 clear</button>
     </div>
 
-    <!-- Única Ventana de la Terminal -->
+    <!-- Ventana de la Terminal -->
     <div class="terminal-window">
       <div class="terminal-topbar">
         <div class="terminal-dots">
@@ -110,10 +93,30 @@
         </div>
         <span class="terminal-title">dante_debugger@elba-tech:~ (python3)</span>
       </div>
+
+      <!-- Historial de respuestas de Dante en la Terminal -->
+      <div class="terminal-body" id="terminal-output">
+        <p class="term-line">
+          <span class="term-accent">🤖 [DANTE DEBUGGER]:</span> ¡Hola! Bienvenido al entorno de Elba.
+        </p>
+        <p class="term-line">
+          👉 Escribe <span class="term-cmd">'help'</span> abajo o usa los botones de acceso rápido para comenzar.
+        </p>
+      </div>
+
+      <!-- Barra de entrada (Input + Botón de Flecha) -->
+      <div class="terminal-input-row">
+        <span class="prompt">elba@tech:~$</span>
+        <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off" spellcheck="false">
+        <button id="terminal-submit-btn" type="button">→</button>
+      </div>
+    </div>
   </section>
 
-  <!-- 3. SECCIÓN SOBRE MÍ -->
+  <!-- CONTENIDO PRINCIPAL -->
   <main>
+
+    <!-- 3. SECCIÓN SOBRE MÍ -->
     <section class="intro section" id="sobre-mi">
       <div class="section-label">01 — SOBRE MÍ</div>
       <div class="intro-grid">
@@ -138,10 +141,7 @@
         </div>
       </div>
     </section>
-  </main>
 
-</body>
-</html>
     <section class="quote-section">
       <div class="quote-mark">“</div>
       <blockquote>
@@ -152,209 +152,200 @@
       </p>
     </section>
 
-   <!-- ========================================== -->
-<!-- SECCIÓN DE PROYECTOS -->
-<!-- ========================================== -->
-<section class="projects section" id="proyectos">
-  <div class="section-label">02 — PROYECTOS</div>
+    <!-- SECCIÓN DE PROYECTOS -->
+    <section class="projects section" id="proyectos">
+      <div class="section-label">02 — PROYECTOS</div>
 
-  <div class="projects-intro">
-    <div>
-      <h2>Dos formas de <span>resolver.</span></h2>
-    </div>
-    <p>
-      No todos los problemas requieren el mismo tipo de desarrollo.
-      En mi portafolio conviven proyectos construidos con mayor
-      profundidad y soluciones más ágiles, creadas para responder
-      a una necesidad concreta.
-    </p>
-  </div>
-
-  <!-- CATEGORÍA 01: PROYECTOS DE DESARROLLO (1 AL 5) -->
-  <section class="project-category category-deep">
-    <div class="category-header">
-      <div>
-        <h3>Proyectos de desarrollo</h3>
+      <div class="projects-intro">
+        <div>
+          <h2>Dos formas de <span>resolver.</span></h2>
+        </div>
         <p>
-          Soluciones trabajadas con mayor profundidad, donde la lógica, los datos,
-          la estructura y la evolución del sistema son parte central del proyecto.
+          No todos los problemas requieren el mismo tipo de desarrollo.
+          En mi portafolio conviven proyectos construidos con mayor
+          profundidad y soluciones más ágiles, creadas para responder
+          a una necesidad concreta.
         </p>
       </div>
-    </div>
 
-    <div class="project-grid">
-
-      <!-- PROYECTO 1 -->
-      <article class="project-card featured" id="card-sgmo">
-        <div class="project-number">01</div>
-        <div class="project-content">
-          <p class="project-type">PROYECTO PROPIO · CONSTRUCCIÓN</p>
-          <h3>SGMO</h3>
-          <p>
-            Sistema de Gestión de Mano de Obra pensado para la construcción y
-            administración de personal, con el desafío de evolucionar hacia un ciclo
-            completo de gestión, asistencia, datos y reportes.
-          </p>
-          <div class="tags">
-            <span>Python</span>
-            <span>SQL</span>
-            <span>Datos</span>
-            <span>Automatización</span>
+      <!-- CATEGORÍA 01: PROYECTOS DE DESARROLLO -->
+      <section class="project-category category-deep">
+        <div class="category-header">
+          <div>
+            <h3>Proyectos de desarrollo</h3>
+            <p>
+              Soluciones trabajadas con mayor profundidad, donde la lógica, los datos,
+              la estructura y la evolución del sistema son parte central del proyecto.
+            </p>
           </div>
-          <a href="https://github.com/elbaneira/Bootcamp-Full-Stack-Python-grupo-1/tree/main/AYUDANTIA/Proyecto%20-M%C3%B3dulo%203/mano_obra_nomina" target="_blank" rel="noopener">
-            Ver en GitHub ↗
-          </a>
         </div>
-        <span class="card-corner">PROYECTO EN EVOLUCIÓN</span>
-      </article>
 
-      <!-- PROYECTO 2 -->
-      <article class="project-card" id="card-django">
-        <div class="project-number">02</div>
-        <div class="project-content">
-          <p class="project-type">DESARROLLO WEB · DJANGO</p>
-          <h3>Django Web App</h3>
-          <p>
-            Aplicación web desarrollada en Django de una plataforma de gestión de Proyectos y Tareas.
-          </p>
-          <div class="tags">
-            <span>Python</span>
-            <span>Django</span>
-            <span>HTML</span>
+        <div class="project-grid">
+
+          <!-- PROYECTO 1 -->
+          <article class="project-card featured" id="card-sgmo">
+            <div class="project-number">01</div>
+            <div class="project-content">
+              <p class="project-type">PROYECTO PROPIO · CONSTRUCCIÓN</p>
+              <h3>SGMO</h3>
+              <p>
+                Sistema de Gestión de Mano de Obra pensado para la construcción y
+                administración de personal, con el desafío de evolucionar hacia un ciclo
+                completo de gestión, asistencia, datos y reportes.
+              </p>
+              <div class="tags">
+                <span>Python</span>
+                <span>SQL</span>
+                <span>Datos</span>
+                <span>Automatización</span>
+              </div>
+              <a href="https://github.com/elbaneira/Bootcamp-Full-Stack-Python-grupo-1/tree/main/AYUDANTIA/Proyecto%20-M%C3%B3dulo%203/mano_obra_nomina" target="_blank" rel="noopener">
+                Ver en GitHub ↗
+              </a>
+            </div>
+            <span class="card-corner">PROYECTO EN EVOLUCIÓN</span>
+          </article>
+
+          <!-- PROYECTO 2 -->
+          <article class="project-card" id="card-django">
+            <div class="project-number">02</div>
+            <div class="project-content">
+              <p class="project-type">DESARROLLO WEB · DJANGO</p>
+              <h3>Django Web App</h3>
+              <p>
+                Aplicación web desarrollada en Django de una plataforma de gestión de Proyectos y Tareas.
+              </p>
+              <div class="tags">
+                <span>Python</span>
+                <span>Django</span>
+                <span>HTML</span>
+              </div>
+              <a href="https://github.com/elbaneira/DjangoWebApp-.git" target="_blank" rel="noopener">
+                Ver proyecto ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- PROYECTO 3 -->
+          <article class="project-card" id="card-alke">
+            <div class="project-number">03</div>
+            <div class="project-content">
+              <p class="project-type">BASES DE DATOS · SQL</p>
+              <h3>Alke Wallet</h3>
+              <p>
+                Modelo de gestión financiera relacional para transacciones, usuarios, monedas y reglas de integridad.
+              </p>
+              <div class="tags">
+                <span>SQL</span>
+                <span>MySQL</span>
+                <span>BD Relacional</span>
+              </div>
+              <a href="https://github.com/elbaneira/Alke-Wallet.git" target="_blank" rel="noopener">
+                Ver proyecto ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- PROYECTO 4 -->
+          <article class="project-card" id="card-clientes">
+            <div class="project-number">04</div>
+            <div class="project-content">
+              <p class="project-type">PROGRAMACIÓN ORIENTADA A OBJETOS</p>
+              <h3>Gestión de Clientes</h3>
+              <p>
+                Proyecto en Python centrado en POO, validaciones, CRUD y organización lógica de la aplicación.
+              </p>
+              <div class="tags">
+                <span>Python</span>
+                <span>POO</span>
+                <span>CRUD</span>
+              </div>
+              <a href="https://github.com/elbaneira/Bootcamp-Full-Stack-Python-grupo-1/tree/main/AYUDANTIA/Proyecto%20-%20M%C3%B3dulo%204" target="_blank" rel="noopener">
+                Ver proyecto ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- PROYECTO 5 -->
+          <article class="project-card" id="card-powerbi">
+            <div class="project-number">05</div>
+            <div class="project-content">
+              <p class="project-type">ANÁLISIS DE DATOS</p>
+              <h3>Power BI Dashboards</h3>
+              <p>
+                Visualización e indicadores clave para facilitar la toma de decisiones basada en datos.
+              </p>
+              <div class="tags">
+                <span>Power BI</span>
+                <span>DAX</span>
+                <span>Datos</span>
+              </div>
+              <a href="https://youtu.be/Q9QxNap9yDg" target="_blank" rel="noopener noreferrer">
+                Ver video demo ↗
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- CATEGORÍA 02: SOLUCIONES EXPRESS -->
+      <section class="project-category category-express" id="seccion-express">
+        <div class="category-header">
+          <div>
+            <h3>Soluciones Express</h3>
+            <p>
+              Desarrollos de respuesta rápida, creados para resolver necesidades concretas en eventos,
+              ventas o gestión, con foco en utilidad y tiempos de implementación.
+            </p>
           </div>
-          <a href="https://github.com/elbaneira/DjangoWebApp-.git" target="_blank" rel="noopener">
-            Ver proyecto ↗
-          </a>
         </div>
-      </article>
 
-      <!-- PROYECTO 3 -->
-      <article class="project-card" id="card-alke">
-        <div class="project-number">03</div>
-        <div class="project-content">
-          <p class="project-type">BASES DE DATOS · SQL</p>
-          <h3>Alke Wallet</h3>
-          <p>
-            Modelo de gestión financiera relacional para transacciones, usuarios, monedas y reglas de integridad.
-          </p>
-          <div class="tags">
-            <span>SQL</span>
-            <span>MySQL</span>
-            <span>BD Relacional</span>
-          </div>
-          <a href="https://github.com/elbaneira/Alke-Wallet.git" target="_blank" rel="noopener">
-            Ver proyecto ↗
-          </a>
-        </div>
-      </article>
+        <div class="project-grid express-grid">
 
-      <!-- PROYECTO 4 -->
-      <article class="project-card" id="card-clientes">
-        <div class="project-number">04</div>
-        <div class="project-content">
-          <p class="project-type">PROGRAMACIÓN ORIENTADA A OBJETOS</p>
-          <h3>Gestión de Clientes</h3>
-          <p>
-            Proyecto en Python centrado en POO, validaciones, CRUD y organización lógica de la aplicación.
-          </p>
-          <div class="tags">
-            <span>Python</span>
-            <span>POO</span>
-            <span>CRUD</span>
-          </div>
-          <a href="https://github.com/elbaneira/Bootcamp-Full-Stack-Python-grupo-1/tree/main/AYUDANTIA/Proyecto%20-%20M%C3%B3dulo%204" target="_blank" rel="noopener">
-            Ver proyecto ↗
-          </a>
-        </div>
-      </article>
+          <!-- SOLUCIÓN EXPRESS 1 -->
+          <article class="project-card express" id="card-e1">
+            <div class="project-header">
+              <span class="badge badge-express">⚡ Solución Express 1</span>
+              <h3>Sin Caña (POS & Pedidos)</h3>
+            </div>
+            <p class="project-description">
+              Sistema de automatización comercial enfocado en optimizar el cálculo de insumos, gestión de pedidos y control de ventas para emprendimientos en fiesta de la chilenidad.
+            </p>
+            <div class="project-techs">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Lógica Comercial</span>
+              <span class="tech-tag">Control de Insumos</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/elbaneira/concana-django.git" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                📁 Repositorio GitHub
+              </a>
+            </div>
+          </article>
 
-      <!-- PROYECTO 5 -->
-      <article class="project-card" id="card-power bi">
-        <div class="project-number">05</div>
-        <div class="project-content">
-          <p class="project-type">ANÁLISIS DE DATOS</p>
-          <h3>Power BI Dashboards</h3>
-          <p>
-            Visualización e indicadores clave para facilitar la toma de decisiones basada en datos.
-          </p>
-          <div class="tags">
-            <span>Power BI</span>
-            <span>DAX</span>
-            <span>Datos</span>
-          </div>
-         <a href="https://youtu.be/Q9QxNap9yDg" target="_blank" rel="noopener noreferrer">Ver Proyecto Power BI en YouTube</a>
-            Ver video demo ↗
-          </a>
-        </div>
-      </article>
+          <!-- SOLUCIÓN EXPRESS 2 -->
+          <article class="project-card express" id="card-e2">
+            <div class="project-header">
+              <span class="badge badge-express">⚡ Solución Express 2</span>
+              <h3>Kermesse Dieciochera (Logística & Cajas)</h3>
+            </div>
+            <p class="project-description">
+              Herramienta de presupuestación y control de flujo de caja e inventario en tiempo real durante la Kermesse escolar.
+            </p>
+            <div class="project-techs">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Análisis de Costos</span>
+              <span class="tech-tag">Gestión de Inventario</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://youtu.be/p6C7HDa6u8U" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                🎥 Ver Demo ↗
+              </a>
+            </div>
+          </article>
 
-    </div>
-  </section>
-
-  <!-- CATEGORÍA 02: SOLUCIONES EXPRESS (E1 Y E2) -->
-  <section class="project-category category-express" id="seccion-express">
-    <div class="category-header">
-      <div>
-        <h3>Soluciones Express</h3>
-        <p>
-          Desarrollos de respuesta rápida, creados para resolver necesidades concretas en eventos,
-          ventas o gestión, con foco en utilidad y tiempos de implementación.
-        </p>
-      </div>
-    </div>
-
-    <div class="project-grid express-grid">
-
-      <!-- EXPRESS E1 -->
-      <!-- SOLUCIÓN EXPRESS 1: SIN CAÑA -->
-<article class="project-card express" id="card-e1">
-  <div class="project-header">
-    <span class="badge badge-express">⚡ Solución Express 1</span>
-    <h3>Sin Caña (POS & Pedidos)</h3>
-  </div>
-  
-  <p class="project-description">
-    Sistema de automatización comercial enfocado en optimizar el cálculo de insumos, gestión de pedidos y control de ventas para emprendimientos en fiesta de la chilenidad.
-  </p>
-
-  <div class="project-techs">
-    <span class="tech-tag">Python</span>
-    <span class="tech-tag">Lógica Comercial</span>
-    <span class="tech-tag">Control de Insumos</span>
-  </div>
-
-  <div class="project-actions">
-    <a href="https://github.com/elbaneira/concana-django.git" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-      📁 Repositorio GitHub
-    </a>
-  </div>
-</article>
-
-<!-- SOLUCIÓN EXPRESS 2: FIESTAS DIECIOCHERAS -->
-<article class="project-card express" id="card-e2">
-  <div class="project-header">
-    <span class="badge badge-express">⚡ Solución Express 2</span>
-    <h3>Kermesse Dieciochera (Logística & Cajas)</h3>
-  </div>
-  
-  <p class="project-description">
-    Herramienta de presupuestación y control de flujo de caja e inventario en tiempo real durante la Kermesse escolar.
-  </p>
-
-  <div class="project-techs">
-    <span class="tech-tag">Python</span>
-    <span class="tech-tag">Análisis de Costos</span>
-    <span class="tech-tag">Gestión de Inventario</span>
-  </div>
-
-  <div class="project-actions">
-    <a href="https://youtu.be/p6C7HDa6u8U" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-      🎥 Ver Demo 
-    </a>
-  </div>
-</article>
-
-          <!-- COMUNIDAD (PRÓXIMO DESAFÍO) -->
+          <!-- PRÓXIMO DESAFÍO -->
           <article class="project-card future">
             <div class="project-number">03</div>
             <div class="project-content">
@@ -379,79 +370,78 @@
     </section>
 
     <!-- METODOLOGÍA -->
-<section class="process section" id="mi-forma-de-trabajar">
-  <div class="section-label">03 — MI METODOLOGÍA</div>
-  <div class="process-grid">
-    <div>
-      <h2>Mi forma de trabajar</h2>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <span>01</span>
+    <section class="process section" id="mi-forma-de-trabajar">
+      <div class="section-label">03 — MI METODOLOGÍA</div>
+      <div class="process-grid">
         <div>
-          <h3>— Entender</h3>
-          <p>Comprender el problema antes de escribir código.</p>
+          <h2>Mi forma de trabajar</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <span>01</span>
+            <div>
+              <h3>— Entender</h3>
+              <p>Comprender el problema antes de escribir código.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span>02</span>
+            <div>
+              <h3>— Diseñar</h3>
+              <p>Pensar la lógica, los datos y la estructura.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span>03</span>
+            <div>
+              <h3>— Construir</h3>
+              <p>Convertir la idea en una solución funcional.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span>04</span>
+            <div>
+              <h3>— Mejorar</h3>
+              <p>Probar, detectar errores y volver a construir.</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="step">
-        <span>02</span>
-        <div>
-          <h3>— Diseñar</h3>
-          <p>Pensar la lógica, los datos y la estructura.</p>
-        </div>
-      </div>
-      <div class="step">
-        <span>03</span>
-        <div>
-          <h3>— Construir</h3>
-          <p>Convertir la idea en una solución funcional.</p>
-        </div>
-      </div>
-      <div class="step">
-        <span>04</span>
-        <div>
-          <h3>— Mejorar</h3>
-          <p>Probar, detectar errores y volver a construir.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- TECNOLOGÍAS -->
     <div class="tech-slider">
-  <div class="tech-slide-track">
-    <!-- Bloque de etiquetas -->
-    <span class="tech-badge">Python</span>
-    <span class="tech-badge">Django</span>
-    <span class="tech-badge">PostgreSQL</span>
-    <span class="tech-badge">MySQL</span>
-    <span class="tech-badge">SQL</span>
-    <span class="tech-badge">Power BI</span>
-    <span class="tech-badge">DAX</span>
-    <span class="tech-badge">Lenguaje M</span>
-    <span class="tech-badge">JavaScript</span>
-    <span class="tech-badge">HTML / CSS</span>
-    <span class="tech-badge">Git & GitHub</span>
-    <span class="tech-badge">Render</span>
-    <span class="tech-badge">PythonAnywhere</span>
+      <div class="tech-slide-track">
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Django</span>
+        <span class="tech-badge">PostgreSQL</span>
+        <span class="tech-badge">MySQL</span>
+        <span class="tech-badge">SQL</span>
+        <span class="tech-badge">Power BI</span>
+        <span class="tech-badge">DAX</span>
+        <span class="tech-badge">Lenguaje M</span>
+        <span class="tech-badge">JavaScript</span>
+        <span class="tech-badge">HTML / CSS</span>
+        <span class="tech-badge">Git & GitHub</span>
+        <span class="tech-badge">Render</span>
+        <span class="tech-badge">PythonAnywhere</span>
 
-    <!-- Duplicamos el bloque para lograr el efecto de bucle infinito sin cortes -->
-    <span class="tech-badge">Python</span>
-    <span class="tech-badge">Django</span>
-    <span class="tech-badge">PostgreSQL</span>
-    <span class="tech-badge">MySQL</span>
-    <span class="tech-badge">SQL</span>
-    <span class="tech-badge">Power BI</span>
-    <span class="tech-badge">DAX</span>
-    <span class="tech-badge">Lenguaje M</span>
-    <span class="tech-badge">JavaScript</span>
-    <span class="tech-badge">HTML / CSS</span>
-    <span class="tech-badge">Git & GitHub</span>
-    <span class="tech-badge">Render</span>
-    <span class="tech-badge">PythonAnywhere</span>
-  </div>
-</div>
+        <!-- Duplicados para bucle de animación -->
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Django</span>
+        <span class="tech-badge">PostgreSQL</span>
+        <span class="tech-badge">MySQL</span>
+        <span class="tech-badge">SQL</span>
+        <span class="tech-badge">Power BI</span>
+        <span class="tech-badge">DAX</span>
+        <span class="tech-badge">Lenguaje M</span>
+        <span class="tech-badge">JavaScript</span>
+        <span class="tech-badge">HTML / CSS</span>
+        <span class="tech-badge">Git & GitHub</span>
+        <span class="tech-badge">Render</span>
+        <span class="tech-badge">PythonAnywhere</span>
+      </div>
+    </div>
 
     <!-- CONTACTO -->
     <section class="contact section" id="contacto">
@@ -464,27 +454,27 @@
       <div class="contact-links">
         <a href="https://github.com/elbaneira" target="_blank" rel="noopener">GitHub ↗</a>
         <a href="https://www.linkedin.com/in/elba-neira-tech" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a href="mailto:elbatech7@gmail.com" class="contact-link">
-  ✉️ elbatech7@gmail.com
-</a>
-     
+        <a href="mailto:elbatech7@gmail.com" class="contact-link">✉️ elbatech7@gmail.com</a>
       </div>
     </section>
+
   </main>
-    
+
+  <!-- FOOTER -->
   <footer>
     <p>© 2026 Elba Neira</p>
     <p>Hecho con intención, detalle y código.</p>
   </footer>
-      <!-- 2. Tu widget flotante de Dante (si va fijo al final) -->
-    <aside class="avatar-widget" id="avatar-widget">
-      <div id="avatar-text" class="avatar-bubble">
-        👋 ¡Hola! Soy el asistente de Elba.
-      </div>
-      <img src="img/Dante.jpg" alt="Dante" class="avatar-img">
-    </aside>
 
-    <!-- 3. Scripts de JavaScript -->
-    <script src="js/script.js"></script>
+  <!-- WIDGET FLOTANTE DANTE -->
+  <aside class="avatar-widget" id="avatar-widget">
+    <div id="avatar-text" class="avatar-bubble">
+      👋 ¡Hola! Soy el asistente de Elba.
+    </div>
+    <img src="img/Dante.jpg" alt="Dante" class="avatar-img">
+  </aside>
+
+  <!-- SCRIPTS -->
+  <script src="script.js"></script>
 </body>
 </html>
