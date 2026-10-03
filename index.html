@@ -64,15 +64,31 @@
   </div>
 
   <!-- Ventana de la Terminal -->
+ <aside class="terminal-section">
   <div class="terminal-window">
+    
+    <!-- Encabezado con botones -->
     <div class="terminal-topbar">
       <div class="terminal-dots">
         <span class="dot red"></span>
         <span class="dot yellow"></span>
         <span class="dot green"></span>
       </div>
-      <span class="terminal-title">dante_debugger@elba-tech:~ (python3)</span>
+      <span class="terminal-title">bash -- 80x24</span>
     </div>
+
+    <!-- Área de salida donde van las respuestas -->
+    <div id="terminal-output"></div>
+
+    <!-- Barra de entrada de comandos (fija abajo) -->
+    <div class="terminal-input-row">
+      <span class="prompt">elba@tech:~$</span>
+      <input type="text" id="terminal-input" placeholder="Escribe 'help'..." autocomplete="off">
+      <button id="terminal-submit-btn" type="button" aria-label="Enviar comando">➔</button>
+    </div>
+
+  </div>
+</aside>
 
     <!-- Cuerpo donde habla Dante y se imprimen las respuestas -->
     <div class="terminal-body" id="terminal-output">
