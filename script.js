@@ -77,13 +77,18 @@ window.copiarCorreoDirecto = function(e) {
 // 3. FUNCIÓN GLOBAL DE EJECUCIÓN (ACCESIBLE VÍA ONCLICK)
 // ====================================================
 window.ejecutarComando = function(cmd, e) {
-  // Evita que el navegador en PC capture el clic y lo anule
-  if (e) {
-    if (e.preventDefault) e.preventDefault();
-    if (e.stopPropagation) e.stopPropagation();
+  // 1. Manejo seguro del evento e
+  if (e && typeof e.preventDefault === 'function') {
+    e.preventDefault();
+  } else if (cmd && typeof cmd.preventDefault === 'function') {
+    // Si por error se pasó el evento como primer parámetro
+    cmd.preventDefault();
+    return;
   }
-  
-  if (!cmd) return;
+
+  // 2. Validación de que 'cmd' sea realmente un texto
+  if (!cmd || typeof cmd !== 'string') return;
+
   const terminalOutput = document.getElementById('terminal-output');
   const terminalInput = document.getElementById('terminal-input');
 
@@ -92,15 +97,16 @@ window.ejecutarComando = function(cmd, e) {
     linea.className = 'term-line';
     linea.innerHTML = `<span class="prompt">elba@tech:~$</span> ${cmd}`;
     terminalOutput.appendChild(linea);
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
   }
 
   if (terminalInput) {
     terminalInput.value = '';
   }
 
+  // 3. Ejecutar la lógica con un string garantizado
   procesarComandoLogica(cmd);
 };
-
 function procesarEntrada() {
   const terminalInput = document.getElementById('terminal-input');
   if (!terminalInput) return;
