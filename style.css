@@ -691,11 +691,11 @@ footer {
 /* 5. Avatar Dante flotante (Corregido para que baje un poco más) */
 .avatar-widget {
   position: fixed;
-  bottom: 12px; /* Cambiado de 25px a 12px para bajarlo */
+  bottom: 20px; /* Cambiado de 25px a 12px para bajarlo */
   right: 20px;
   display: flex;
-  align-items: flex-end;
-  gap: 12px;
+  align-items: flex-center;
+  gap: 10px;
   z-index: 9999;
   max-width: 320px;
 }
@@ -722,12 +722,13 @@ footer {
 }
 
 .avatar-img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: 2px solid #38bdf8;
   object-fit: cover;
   flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 /* Asegurar que las opciones de la terminal sean cliqueables en PC y móvil */
 .clickable-cmd {
