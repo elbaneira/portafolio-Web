@@ -726,7 +726,21 @@ footer {
   display: block !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
 }
+/* Asegurar que las opciones de la terminal sean cliqueables en PC y móvil */
+.clickable-cmd {
+  cursor: pointer !important;
+  user-select: none !important;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
 
+.clickable-cmd:hover {
+  opacity: 0.8;
+  text-decoration: underline !important;
+}
+
+#terminal-output {
+  pointer-events: auto !important;
+}
 /* Ocultar avatar únicamente en móviles si estorba */
 @media (max-width: 768px) {
   .avatar-widget {
