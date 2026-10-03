@@ -124,6 +124,13 @@ function procesarComandoLogica(cmd) {
     const nota = partes[1];
     const comentario = partes.slice(2).join(' ') || 'Sin comentario escrito.';
 
+    // --- A. EVALUACIONES / JUICIO ---
+  if (cmdLimpio === 'juicio' || cmdLimpio.startsWith('juicio') || cmdLimpio.startsWith('veredicto') || cmdLimpio.startsWith('evaluar')) {
+    const partes = cmdLimpio.split(' ');
+    const nota = partes[1];
+    const comentario = partes.slice(2).join(' ') || 'Sin comentario escrito.';
+
+    // Si solo escribieron 'juicio' o no pusieron una nota válida (1, 2 o 3)
     if (!nota || !['1', '2', '3'].includes(nota)) {
       const guardado = localStorage.getItem('dante_veredicto');
       let mensajePrevio = '';
@@ -144,7 +151,6 @@ function procesarComandoLogica(cmd) {
       hablarDante("Dime, viajero... ¿en cuál de los tres reinos situarás este código?");
       return;
     }
-
     let reino = '';
     let mensajeDante = '';
     let estiloHtml = '';
@@ -270,8 +276,12 @@ function procesarComandoLogica(cmd) {
               <li style="margin-bottom: 6px;">
                 <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('python3 auditoria.py')">🔍 python3 auditoria.py</span>
                 <span style="color: #94a3b8;"> : Calidad de datos y lógica backend.</span>
-              </li>
-              <li style="margin-bottom: 6px;">
+                </li>
+                <li style="margin-bottom: 6px;">
+                <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('juicio')">⚖️ juicio</span>
+                <span style="color: #94a3b8;"> : Tribunal de la Comedia (evalúa este portafolio).</span>
+                </li>
+                <li style="margin-bottom: 6px;">
                 <span class="term-cmd clickable-cmd" onclick="window.ejecutarComando('contacto')">✉️ contacto</span>
                 <span style="color: #94a3b8;"> : Canales de comunicación directa.</span>
               </li>
@@ -380,7 +390,7 @@ function procesarComandoLogica(cmd) {
     }
   }
 }
-
+    
 // ====================================================
 // 5. INICIALIZACIÓN DE EVENTOS (DOM CONTENT LOADED)
 // ====================================================
