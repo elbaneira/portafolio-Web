@@ -146,17 +146,18 @@ a {
   flex-direction: row !important;
   align-items: center;
   justify-content: space-between;
-  gap: 2.5rem;
+  gap: 2rem;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
 
+./* Ajuste en el texto */
 .hero-text {
-  flex: 1;
-  min-width: 300px;
+  flex: 1 1 0; /* Permite que el texto se reduzca flexiblemente */
   padding-right: 1.5rem;
+  box-sizing: border-box;
 }
 
 .eyebrow, .section-label, .project-type {
@@ -180,13 +181,15 @@ h1 em, h2 span {
   font-weight: 500;
 }
 
+/* regla corregida para el wrapper del video */
 .hero-video-wrapper {
-  flex: 1;
-  min-width: 300px;
+  flex: 1 1 0; /* En lugar de flex: 1 con min-width rígido */
   max-width: 500px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .hero-video {
