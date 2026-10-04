@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
 
 :root {
   --ink: #26252a;
@@ -131,7 +131,7 @@ h1 em, h2 span {
 }
 .button.secondary:hover { background: var(--ink); color: var(--white); }
 
-.section { padding: 110px 10vw; }
+..section { padding: 110px 10vw; }
 .section-label { margin-bottom: 55px; }
 
 .intro { border-top: 1px solid var(--line); }
@@ -140,12 +140,14 @@ h1 em, h2 span {
   grid-template-columns: 1fr 1fr;
   gap: 9vw;
 }
+
 h2 {
   font-size: clamp(2.4rem, 5vw, 4.7rem);
   line-height: 1.05;
   letter-spacing: -.04em;
   font-weight: 600;
 }
+
 .intro-copy { color: var(--muted); max-width: 560px; }
 .intro-copy p + p { margin-top: 20px; }
 
@@ -154,12 +156,14 @@ h2 {
   background: var(--soft);
   text-align: center;
 }
+
 .quote-mark {
   font-family: "Playfair Display", serif;
   font-size: 6rem;
   line-height: .5;
   color: var(--accent);
 }
+
 blockquote {
   max-width: 1000px;
   margin: 20px auto 25px;
@@ -168,89 +172,132 @@ blockquote {
   line-height: 1.15;
   font-style: italic;
 }
-.quote-section > p {
-  max-width: 720px;
-  margin: auto;
-  color: var(--muted);
+
+/* ==========================================
+   SECCIÓN DE PROYECTOS Y NAVEGACIÓN LIMPIA
+   ========================================== */
+
+/* 1. Evitar que la navegación fija tape el contenido */
+#proyectos,
+.projects-section {
+  padding-top: 4rem !important;    /* Espacio superior de seguridad contra la barra del nav */
+  margin-top: 0 !important;
 }
+
+/* 2. Encabezado principal de Proyectos  */
+.projects-section h2,
+.projects-main-title {
+  font-family: "DM Sans", sans-serif !important;
+  font-size: clamp(2.2rem, 4vw, 3.2rem) !important; /* Tamaño controlado que no desborda */
+  font-weight: 700 !important;
+  color: #26252a !important;
+  line-height: 1.2 !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* 3. Subtítulos de categoría ("Proyectos de desarrollo") */
+.project-category h3,
+.projects-subtitle {
+  font-family: "Playfair Display", serif !important;
+  font-style: italic;
+  font-size: 1.8rem !important;    /* Un tamaño intermedio elegante, no gigante */
+  font-weight: 500 !important;
+  color: #72515e !important;       /* Tono vino sofisticado */
+  margin-top: 2rem !important;     /* Separa adecuadamente del bloque de texto anterior */
+  margin-bottom: 0.75rem !important;
+}
+
+/* 4. Texto descriptivo en la categoría */
+.project-category p {
+  color: #555259 !important;
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  max-width: 750px !important;
+  margin-bottom: 2rem !important;
+}
+  /* Agrega margen inferior al título pequeño superior */
+  .header-subtitle, 
+  header p, 
+  .tu-clase-elba-neira {
+      margin-bottom: 10 px; /* O prueba con 20px */
+  }
 /* =========================================
-   SECCIÓN DE PROYECTOS
-========================================= */
+   SECCIÓN DE PROYECTOS Y CATEGORÍAS (LIMPIO)
+   ========================================= */
 
 .projects {
-    background: #f0ece6;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line, #e2dfd8);
+  border-bottom: 1px solid var(--line, #e2dfd8);
+  padding: 4rem 0;
 }
 
 .projects-intro {
-    display: grid;
-    grid-template-columns: 1.1fr .9fr;
-    gap: 8vw;
-    align-items: end;
-    margin-bottom: 65px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4vw;
+  align-items: end;
+  margin-bottom: 3rem;
 }
 
 .projects-intro > p {
-    max-width: 520px;
-    color: var(--muted);
+  max-width: 520px;
+  color: var(--muted, #555259);
+  line-height: 1.6;
 }
 
-
-/* =========================================
-   CATEGORÍAS
-========================================= */
-
 .project-category {
-    margin-top: 42px;
-    padding-bottom: 55px;
+  width: 100%;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
 }
 
 .project-category + .project-category {
-    margin-top: 30px;
-    padding-top: 72px;
-    border-top: 1px solid var(--line);
+  margin-top: 30px;
+  padding-top: 60px;
+  border-top: 1px solid var(--line, #e2dfd8);
 }
 
-
-/* Encabezado de cada categoría */
-
-.project-category {
-    width: 100%;
-    margin-top: 42px;
-    padding-bottom: 55px;
+/* 1. Título superior pequeño (ej: "Elba Neira" o etiquetas) */
+.header-subtitle, 
+header p, 
+.tu-clase-elba-neira,
+.category-index,
+.project-category p {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--accent-dark, #72515e);
+  margin-bottom: 1.8rem !important; /* CORREGIDO: Separa holgadamente el texto superior */
+  display: block;
 }
 
-.project-category + .project-category {
-    margin-top: 30px;
-    padding-top: 72px;
-    border-top: 1px solid var(--line);
+/* 2. Título principal (ej: "Dos formas de resolver.") */
+.project-category h2,
+.project-category h3,
+.category-header h3,
+.main-title {
+  font-size: clamp(2.2rem, 4vw, 3.7rem);
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--ink, #26252a);
+  margin-top: 0 !important;
+  margin-bottom: 1.2rem !important;
 }
 
-.category-header {
-    width: 100%;
-    margin-bottom: 32px;
-}
-
-.category-index {
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .18em;
-    color: var(--accent-dark);
-    margin-bottom: 10px;
-}
-
-.category-header h3 {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(2.2rem, 4vw, 3.7rem);
-    line-height: 1.05;
-    font-weight: 500;
-    margin-bottom: 12px;
+/* 3. Acento en cursiva dentro del título */
+.main-title span, 
+.main-title em,
+.category-header h3 em {
+  color: var(--accent-dark, #72515e);
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 500;
 }
 
 .category-header p {
-    max-width: 760px;
-    color: var(--muted);
+  max-width: 760px;
+  color: var(--muted, #555259);
 }
 
 /* =========================================
@@ -959,12 +1006,20 @@ avatar-bubble {
   flex-shrink: 0;
 }
 
+  /* Hacer que los comandos parezcan clickeables */
+.term-cmd {
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.term-cmd:hover {
+  color: #38bdf8; /* Cambia de color cuando pasas el mouse por encima */
+}
+
 @media (max-width: 600px) {
   .terminal-title { display: none; }
 }
-
-
-
 /* ==========================================
    SECCIÓN HERO (2 Columnas: Texto + Video)
    ========================================== */
@@ -1101,4 +1156,165 @@ avatar-bubble {
 .button.secondary:active {
   transform: translateY(0) scale(0.98);
   box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+}
+/* Separación y altura de la sección Contacto */
+.contact,
+#contacto {
+  margin-top: 5rem;                  /* Empuja la sección hacia abajo para desahogarla */
+  padding-top: 6rem !important;      /* Espacio superior amplio y elegante */
+  padding-bottom: 5rem !important;
+  background-color: #26252a !important; /* Fondo oscuro original */
+  color: #ffffff !important;
+}
+
+.contact h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+/* ==========================================
+   CONTROL DE ALTURA FIJA EN CONTACTO
+   ========================================== */
+.contact, 
+section.contact, 
+#contacto {
+  min-height: auto !important;     /* Quita cualquier altura mínima gigante previa */
+  height: auto !important;         /* Permite que la caja se ajuste a su contenido */
+  padding-top: 4rem !important;    /* Espacio superior medido (ajústalo a 2rem o 3rem si lo quieres más corto) */
+  padding-bottom: 4rem !important; /* Espacio inferior medido */
+  margin-top: 4rem !important;  
+  color: #99969a;  /* Separa el bloque negro de los elementos de arriba */
+}
+
+/* Reducir márgenes internos de los títulos dentro de Contacto */
+.contact h2 {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+.contact p {
+  margin-bottom: 1.5rem !important;
+}
+
+/* ==========================================
+   VARIABLES DE COLOR Y FONDO CÁLIDO (IMAGEN 2)
+   ========================================== */
+:root {
+  --bg-color: #f7f5f0;        /* Fondo crema/arena suave descansado */
+  --ink: #26252a;             /* Texto principal oscuro opaco */
+  --muted: #555259;           /* Gris mate para subtítulos y textos secundarios */
+  --accent-dark: #72515e;     /* Tono vino/rosa viejo para etiquetas superiores */
+}
+
+/* Aplicar fondo crema cálido a toda la página */
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--ink);
+}
+
+/* 1. Frase superior de categorías (ADMINISTRACIÓN · ANÁLISIS DE DATOS...) */
+.tagline,
+.category-label,
+.section-label {
+  color: var(--accent-dark) !important; /* Tono vino elegante */
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+/* 2. Título principal (Optimizando procesos) */
+h1, .hero h1 {
+  color: var(--muted) !important;      /* Tono gris suave mate como la imagen 2 */
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+/* 3. Palabra/frase destacada en itálica (con código y datos.) */
+h1 em, h1 span,
+h2 em, h2 span {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent-dark) !important; /* Tono vino suave */
+}
+
+/* 4. Parrafo explicativo debajo del título */
+.hero p, .hero-copy {
+  color: var(--muted) !important;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 650px;
+}
+ /*  =========================================*/
+/* 1. Reducir el padding superior e inferior de la sección principal (Hero) */
+.hero,
+#hero,
+header + section {
+  padding-top: 2rem !important;    /* Reduce el espacio con el nav */
+  padding-bottom: 1.5rem !important;/* Acerca la consola hacia arriba */
+  min-height: auto !important;     /* Evita que fuerce alturas de 100vh excesivas */
+}
+
+/* 2. Reducir margen inferior de los botones "Ver proyectos" / "GitHub" */
+.hero-buttons,
+.cta-buttons,
+.hero .buttons {
+  margin-bottom: 1.5rem !important; /* Espacio más ajustado hacia la consola */
+}
+
+/* 3. Pegar la Consola de Exploración dentro del campo de visión */
+.terminal-section,
+.console-container,
+#terminal {
+  margin-top: 1rem !important;     /* Reduce la distancia superior */
+  margin-bottom: 1.5rem !important;
+}
+
+/* 4. Subir ligeramente la burbuja de Dante para que no tape los botones del terminal */
+#dante-widget,
+.dante-container,
+.chatbot-container {
+  bottom: 15px !important;         /* Ajusta la posición para alinearse limpiamente */
+  right: 20px !important;
+}
+
+/* Asegurar que las opciones de la terminal sean cliqueables en PC y móvil */
+.clickable-cmd {
+  cursor: pointer !important;
+  user-select: none !important;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.clickable-cmd:hover {
+  opacity: 0.8;
+  text-decoration: underline !important;
+}
+
+#terminal-output {
+  pointer-events: auto !important;
+}
+
+/* 1. Fondo oscuro suave para todo el contenedor principal */
+.hero-section, 
+header, 
+.tu-contenedor-titulos {
+  background-color: #211f24; /* O el tono oscuro de tu tema */
+  color: #f3f3f5;           /* Texto blanco hueso suave */
+}
+
+/* 2. Subtítulo y número con tono rosado/cobrizo delicado */
+.section-number, 
+.subtitle-top {
+  color: #a87b8d;
+  font-weight: 500;
+  margin-bottom: 1.5rem;   /* Separa "Elba Neira" de "Dos formas de resolver." */
+}
+
+/* 3. Acento en cursiva con el tono rosa viejo / malva */
+.main-title span, 
+.main-title em {
+  color: #9d6b7c;
+  font-style: italic;
 }
